@@ -13,6 +13,23 @@ import { Router } from '@angular/router';
 export class GestionPayeComponent implements OnInit {
   selectedStatus: string = 'all';
   newMessage: string = '';
+  chatMessages: Array<{isOwn: boolean, content: string, timestamp: string}> = [
+    {
+      isOwn: false,
+      content: "Bonjour, j'ai une question concernant le paiement du loyer.",
+      timestamp: "10:30"
+    },
+    {
+      isOwn: true,
+      content: "Bonjour, je suis là pour vous aider. Quelle est votre question ?",
+      timestamp: "10:32"
+    },
+    {
+      isOwn: false,
+      content: "Puis-je payer en plusieurs fois ce mois-ci ?",
+      timestamp: "10:35"
+    }
+  ];
 
   constructor(private router: Router) {}
 
@@ -81,9 +98,19 @@ export class GestionPayeComponent implements OnInit {
   sendMessage(): void {
     if (this.newMessage.trim()) {
       console.log('Envoi du message:', this.newMessage);
-      // Ici vous pouvez ajouter la logique pour envoyer le message
-      // Par exemple, appeler un service pour envoyer le message
-      this.newMessage = ''; // Vider l'input après envoi
+      
+      // Ajouter le nouveau message à la liste des messages
+      const now = new Date();
+      const timestamp = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+      
+      this.chatMessages.push({
+        isOwn: true,
+        content: this.newMessage.trim(),
+        timestamp: timestamp
+      });
+      
+      // Vider l'input après envoi
+      this.newMessage = '';
     }
   }
 
