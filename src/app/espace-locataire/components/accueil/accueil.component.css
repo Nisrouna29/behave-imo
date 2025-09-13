@@ -1,53 +1,9 @@
-/* Accueil Component Styles */
-.gradient-bg {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+/* Accueil Component - Tailwind CSS Only */
+:host {
+  @apply block w-full min-h-screen;
 }
 
-/* Transition effects */
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-/* Hover effects */
-.hover\:bg-orange-50:hover {
-  background-color: #fff7ed;
-}
-
-.hover\:bg-orange-100:hover {
-  background-color: #ffedd5;
-}
-
-.hover\:bg-orange-700:hover {
-  background-color: #c2410c;
-}
-
-.hover\:bg-gray-100:hover {
-  background-color: #f3f4f6;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .lg\:col-span-2 {
-    grid-column: span 1;
-  }
-
-  .lg\:col-span-3 {
-    grid-column: span 1;
-  }
-
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-2 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
+/* Custom scrollbar hidden */
+::-webkit-scrollbar {
+  display: none;
 }

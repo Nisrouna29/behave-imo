@@ -24,6 +24,7 @@ interface MenuSection {
 })
 export class LocataireSidebarComponent {
   @Input() isCollapsed: boolean = false;
+  @Input() isMobileOpen: boolean = false;
   @Output() toggleCollapse = new EventEmitter<void>();
   @Output() navigateTo = new EventEmitter<string>();
 
@@ -90,5 +91,12 @@ export class LocataireSidebarComponent {
 
   getIconClasses(icon: string): string {
     return `fa-solid ${icon} w-5 h-5 ${this.isCollapsed ? 'mx-auto' : 'mr-3'}`;
+  }
+
+  getSidebarClasses(): string {
+    if (this.isMobileOpen) {
+      return 'w-64 fixed z-50';
+    }
+    return this.isCollapsed ? 'w-16' : 'w-64';
   }
 }

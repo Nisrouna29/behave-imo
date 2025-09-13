@@ -14,6 +14,7 @@ import { LocataireSidebarComponent } from './components/sidebar/sidebar.componen
 })
 export class EspaceLocataireComponent implements OnInit {
   isSidebarCollapsed: boolean = false;
+  isMobileSidebarOpen: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -86,6 +87,17 @@ export class EspaceLocataireComponent implements OnInit {
   onSidebarNavigate(route: string): void {
     console.log(`Navigation vers: ${route}`);
     this.router.navigate(['/espace-locataire', route]);
+    // Close mobile sidebar after navigation
+    this.closeMobileSidebar();
+  }
+
+  // Mobile sidebar methods
+  toggleMobileSidebar(): void {
+    this.isMobileSidebarOpen = !this.isMobileSidebarOpen;
+  }
+
+  closeMobileSidebar(): void {
+    this.isMobileSidebarOpen = false;
   }
 
 }

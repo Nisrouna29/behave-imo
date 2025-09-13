@@ -1,0 +1,307 @@
+/* Shared Responsive Styles for Espace Locataire */
+
+/* Base responsive container */
+.locataire-container {
+  width: 100%;
+  min-height: 100vh;
+  display: block;
+}
+
+/* Full width layout */
+.locataire-full-width {
+  width: 100vw;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Responsive grid system */
+.locataire-grid-responsive {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .locataire-grid-responsive {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .locataire-grid-responsive {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .locataire-grid-responsive {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Responsive spacing */
+.locataire-spacing-responsive {
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .locataire-spacing-responsive {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .locataire-spacing-responsive {
+    padding: 2rem;
+  }
+}
+
+/* Responsive text sizes */
+.locataire-text-responsive {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .locataire-text-responsive {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .locataire-text-responsive {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+}
+
+/* Responsive card system */
+.locataire-card-responsive {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+@media (min-width: 640px) {
+  .locataire-card-responsive {
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .locataire-card-responsive {
+    padding: 2rem;
+    border-radius: 1.25rem;
+  }
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 639px) {
+  .locataire-mobile-hidden {
+    display: none !important;
+  }
+  
+  .locataire-mobile-full-width {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .locataire-mobile-padding {
+    padding: 0.75rem !important;
+  }
+  
+  .locataire-mobile-text-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+}
+
+/* Tablet responsive utilities */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .locataire-tablet-hidden {
+    display: none !important;
+  }
+  
+  .locataire-tablet-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Desktop responsive utilities */
+@media (min-width: 1024px) {
+  .locataire-desktop-hidden {
+    display: none !important;
+  }
+  
+  .locataire-desktop-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  
+  .locataire-desktop-grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Responsive form elements */
+.locataire-form-responsive {
+  width: 100%;
+}
+
+.locataire-form-responsive input,
+.locataire-form-responsive select,
+.locataire-form-responsive textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+  .locataire-form-responsive input,
+  .locataire-form-responsive select,
+  .locataire-form-responsive textarea {
+    padding: 1rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* Responsive button system */
+.locataire-btn-responsive {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .locataire-btn-responsive {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    width: auto;
+  }
+}
+
+/* Responsive table system */
+.locataire-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.locataire-table-responsive table {
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+@media (max-width: 639px) {
+  .locataire-table-responsive table {
+    font-size: 0.875rem;
+  }
+  
+  .locataire-table-responsive th,
+  .locataire-table-responsive td {
+    padding: 0.5rem;
+  }
+}
+
+/* Responsive navigation */
+.locataire-nav-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .locataire-nav-responsive {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* Responsive modal system */
+.locataire-modal-responsive {
+  width: 95%;
+  max-width: 500px;
+  margin: 1rem auto;
+}
+
+@media (min-width: 640px) {
+  .locataire-modal-responsive {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .locataire-modal-responsive {
+    width: 80%;
+    max-width: 800px;
+  }
+}
+
+/* Responsive image system */
+.locataire-img-responsive {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Responsive flex utilities */
+.locataire-flex-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .locataire-flex-responsive {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+/* Responsive visibility utilities */
+.locataire-show-mobile {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .locataire-show-mobile {
+    display: none;
+  }
+}
+
+.locataire-show-desktop {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .locataire-show-desktop {
+    display: block;
+  }
+}
+
+/* Responsive overflow handling */
+.locataire-overflow-responsive {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+@media (max-width: 639px) {
+  .locataire-overflow-responsive {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}

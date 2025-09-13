@@ -1,12 +1,12 @@
 <aside id="left-sidebar" 
-       [class]="isCollapsed ? 'w-16' : 'w-64'" 
+       [class]="getSidebarClasses()" 
        class="bg-white border-r border-gray-200 h-screen sticky top-0 shadow-lg transition-all duration-300">
   
   <!-- Header with toggle button -->
   <div class="p-4 border-b border-gray-200">
     <div class="flex items-center justify-between">
       <div *ngIf="!isCollapsed" class="flex items-center space-x-3">
-        <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+        <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
           <i class="fa-solid fa-building text-white text-sm"></i>
         </div>
         <span class="text-lg font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>

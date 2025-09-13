@@ -1,96 +1,21 @@
-/* Sidebar Styles */
-.gradient-bg {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-}
-
-/* Transition animations */
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-/* Hover effects */
-.hover\:bg-gray-200:hover {
-  background-color: #e5e7eb;
-}
-
-.hover\:bg-orange-50:hover {
-  background-color: #fff7ed;
-}
-
-.hover\:text-orange-600:hover {
-  color: #ea580c;
-}
-
-/* Focus effects */
-.focus\:ring-2:focus {
-  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.5);
-}
-
-.focus\:ring-orange-500:focus {
-  --tw-ring-color: #f97316;
-}
-
-.focus\:border-transparent:focus {
-  border-color: transparent;
-}
-
-/* Badge positioning for collapsed state */
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.left-16 {
-  left: 4rem;
-}
-
-.top-1\/2 {
-  top: 50%;
-}
-
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.-translate-y-1\/2 {
-  --tw-translate-y: -50%;
-}
-
-.z-50 {
-  z-index: 50;
-}
-
-/* Text truncation */
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.min-w-0 {
-  min-width: 0px;
+/* Sidebar - Tailwind CSS Only */
+/* Custom scrollbar hidden */
+::-webkit-scrollbar {
+  display: none;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   #left-sidebar {
-    position: fixed;
-    z-index: 40;
-    transform: translateX(-100%);
+    @apply fixed z-50 transform -translate-x-full transition-transform duration-300;
   }
   
-  #left-sidebar:not(.w-16) {
-    transform: translateX(0);
+  #left-sidebar.w-64 {
+    @apply translate-x-0;
+  }
+
+  /* Mobile sidebar positioning */
+  #left-sidebar.fixed {
+    @apply fixed top-0 left-0 h-screen z-50;
   }
 }

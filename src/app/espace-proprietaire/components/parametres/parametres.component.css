@@ -1,3 +1,7 @@
+:host {
+  width: 100%;
+}
+
 /* Custom styles for the settings page */
 .gradient-bg {
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);

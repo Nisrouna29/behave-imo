@@ -1,14 +1,20 @@
-<div class="bg-gray-50 min-h-screen">
-  <header id="header" class="glass-effect border-b border-orange-100 sticky top-0 z-50 shadow-sm">
-    <div class="max-w-full mx-auto px-6 py-4">
+<div class="bg-gray-50 min-h-screen w-full">
+  <header class="backdrop-blur-md bg-white/95 border-b border-orange-100 sticky top-0 z-50 shadow-sm">
+    <div class="w-full mx-auto px-4 md:px-6 py-4">
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+          <!-- Mobile menu button -->
+          <button class="md:hidden w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm hover:shadow-md transition-shadow mr-2" 
+                  (click)="toggleMobileSidebar()">
+            <i class="fa-solid fa-bars text-gray-600"></i>
+          </button>
+          
+          <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
             <i class="fa-solid fa-building text-white text-lg"></i>
           </div>
-          <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
+          <span class="text-xl md:text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
         </div>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2 md:space-x-4">
           <div class="relative">
             <button class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
               <i class="fa-solid fa-bell text-gray-600"></i>
@@ -17,24 +23,37 @@
               <span class="text-xs text-white font-bold">3</span>
             </div>
           </div>
-          <div class="flex items-center space-x-3">
+          <div class="hidden md:flex items-center space-x-3">
             <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Profile" class="w-8 h-8 rounded-full">
             <span class="text-gray-700 font-medium">Pierre Martin</span>
             <i class="fa-solid fa-chevron-down text-gray-400 text-sm"></i>
+          </div>
+          <!-- Mobile profile button -->
+          <div class="md:hidden">
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Profile" class="w-8 h-8 rounded-full">
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="flex">
+  <div class="flex w-full">
+    <!-- Mobile sidebar overlay -->
+    <div class="md:hidden fixed inset-0 bg-black/50 z-40 transition-opacity duration-300" 
+         [class.opacity-0]="!isMobileSidebarOpen"
+         [class.pointer-events-none]="!isMobileSidebarOpen"
+         [class.opacity-100]="isMobileSidebarOpen"
+         [class.pointer-events-auto]="isMobileSidebarOpen"
+         (click)="closeMobileSidebar()"></div>
+    
     <app-locataire-sidebar
       [isCollapsed]="isSidebarCollapsed"
+      [isMobileOpen]="isMobileSidebarOpen"
       (toggleCollapse)="onToggleSidebar()"
       (navigateTo)="onSidebarNavigate($event)">
     </app-locataire-sidebar>
 
-    <main class="flex-1 p-8">
+    <main class="flex-1 w-full min-h-screen">
       <router-outlet></router-outlet>
     </main>
   </div>
