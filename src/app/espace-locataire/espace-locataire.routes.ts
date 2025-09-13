@@ -3,7 +3,6 @@ import { LocataireAccueilComponent } from './components/accueil/accueil.componen
 import { MesCandidaturesComponent } from './components/mes-candidatures/mes-candidatures.component';
 import { MesLogementsComponent } from './components/mes-logements/mes-logements.component';
 import { QuittancesLoyerComponent } from './components/quittances-loyer/quittances-loyer.component';
-import { MesContratsComponent } from './components/mes-contrats/mes-contrats.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { PaiementsComponent } from './components/paiements/paiements.component';
@@ -17,7 +16,6 @@ export const espaceLocataireRoutes: Routes = [
   { path: 'mes-candidatures', component: MesCandidaturesComponent },
   { path: 'mes-logements', component: MesLogementsComponent },
   { path: 'quittances', component: QuittancesLoyerComponent },
-  { path: 'mes-contrats', component: MesContratsComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'maintenance', component: MaintenanceComponent },
   { path: 'paiements', component: PaiementsComponent },

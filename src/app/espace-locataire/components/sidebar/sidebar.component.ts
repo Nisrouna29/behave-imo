@@ -44,8 +44,7 @@ export class LocataireSidebarComponent implements OnInit, OnDestroy {
     {
       title: 'Documents',
       items: [
-        { id: 'quittances', label: 'Quittances de Loyer', icon: 'fa-receipt', route: 'quittances' },
-        { id: 'contrats', label: 'Mes Contrats', icon: 'fa-file-contract', route: 'mes-contrats' }
+        { id: 'quittances', label: 'Quittances de Loyer', icon: 'fa-receipt', route: 'quittances' }
       ]
     },
     {

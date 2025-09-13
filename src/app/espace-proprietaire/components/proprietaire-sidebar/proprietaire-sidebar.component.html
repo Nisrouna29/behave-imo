@@ -104,6 +104,19 @@
                             <span>Gestion de Paye</span>
                         }
                     </span>
+                    <span class="flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer"
+                          [class]="isSidebarCollapsed ? 'justify-center' : ''"
+                          [class.text-gray-700]="currentView !== 'mes-contrats'"
+                          [class.hover:bg-orange-50]="currentView !== 'mes-contrats'"
+                          [class.hover:text-orange-600]="currentView !== 'mes-contrats'"
+                          [class.text-orange-600]="currentView === 'mes-contrats'"
+                          [class.bg-orange-50]="currentView === 'mes-contrats'"
+                          (click)="onMenuItemClick('mes-contrats')">
+                        <i class="fa-solid fa-file-contract w-5 h-5" [class]="isSidebarCollapsed ? '' : 'mr-3'"></i>
+                        @if (!isSidebarCollapsed) {
+                            <span>Mes Contrats</span>
+                        }
+                    </span>
                 </div>
             </div>
 
