@@ -1,27 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import * as Highcharts from 'highcharts';
-
-// Charger et initialiser les modules Highcharts
-async function initHighchartsModules() {
-  try {
-    const HighchartsMore = await import('highcharts/highcharts-more');
-    const SolidGauge = await import('highcharts/modules/solid-gauge');
-    
-    if (HighchartsMore.default) {
-      (HighchartsMore.default as any)(Highcharts);
-    }
-    if (SolidGauge.default) {
-      (SolidGauge.default as any)(Highcharts);
-    }
-  } catch (error) {
-    console.error('Erreur lors du chargement des modules Highcharts:', error);
-  }
-}
-
-// Initialiser les modules
-initHighchartsModules();
 
 @Component({
   selector: 'app-accueil',
@@ -38,11 +17,8 @@ export class AccueilComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Attendre que les modules soient chargés puis initialiser les graphiques
-    setTimeout(async () => {
-      await initHighchartsModules();
-      this.initCharts();
-    }, 200);
+    // Charger Highcharts dynamiquement
+    this.loadHighchartsAndInitialize();
   }
 
   goToProprietes(): void {
@@ -78,9 +54,33 @@ export class AccueilComponent implements OnInit, AfterViewInit {
     console.log('Ajout d\'un événement');
   }
 
-  private initCharts(): void {
+  private async loadHighchartsAndInitialize(): Promise<void> {
+    try {
+      // Charger Highcharts et ses modules
+      const [Highcharts, HighchartsMore, SolidGauge] = await Promise.all([
+        import('highcharts'),
+        import('highcharts/highcharts-more'),
+        import('highcharts/modules/solid-gauge')
+      ]);
+
+      // Initialiser les modules
+      if (HighchartsMore.default) {
+        (HighchartsMore.default as any)(Highcharts.default);
+      }
+      if (SolidGauge.default) {
+        (SolidGauge.default as any)(Highcharts.default);
+      }
+
+      // Initialiser les graphiques
+      this.initCharts(Highcharts.default);
+    } catch (error) {
+      console.error('Erreur lors du chargement de Highcharts:', error);
+    }
+  }
+
+  private initCharts(Highcharts: any): void {
     // Initialiser le graphique des revenus
-    (Highcharts as any).chart('revenue-chart', {
+    Highcharts.chart('revenue-chart', {
       chart: {
         type: 'line',
         backgroundColor: 'transparent'
@@ -109,7 +109,7 @@ export class AccueilComponent implements OnInit, AfterViewInit {
     });
 
     // Initialiser le graphique du taux d'occupation
-    (Highcharts as any).chart('occupancy-chart', {
+    Highcharts.chart('occupancy-chart', {
       chart: {
         type: 'solidgauge',
         backgroundColor: 'transparent',

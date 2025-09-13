@@ -1,62 +1,68 @@
 {
-  "hash": "c7531c00",
-  "configHash": "f092a671",
+  "hash": "58823dfd",
+  "configHash": "e474f0d0",
   "lockfileHash": "5c2daee5",
-  "browserHash": "8b621552",
+  "browserHash": "efd3ed55",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "4578434f",
+      "fileHash": "f3f25649",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "a9a30de4",
+      "fileHash": "f4a8d192",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "4c24810e",
+      "fileHash": "0955cd7b",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "a74f484f",
+      "fileHash": "b9c5c186",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "2a2e976f",
+      "fileHash": "99bb722f",
       "needsInterop": false
     },
     "highcharts": {
       "src": "../../../../../../node_modules/highcharts/highcharts.js",
       "file": "highcharts.js",
-      "fileHash": "b1251c24",
+      "fileHash": "864c32cb",
       "needsInterop": true
     },
     "highcharts/highcharts-more": {
       "src": "../../../../../../node_modules/highcharts/highcharts-more.js",
       "file": "highcharts_highcharts-more.js",
-      "fileHash": "e13bc08c",
+      "fileHash": "8e6518e4",
       "needsInterop": true
     },
     "highcharts/modules/solid-gauge": {
       "src": "../../../../../../node_modules/highcharts/modules/solid-gauge.js",
       "file": "highcharts_modules_solid-gauge.js",
-      "fileHash": "71f22e3b",
+      "fileHash": "2800e2ea",
       "needsInterop": true
     },
     "rxjs/operators": {
       "src": "../../../../../../node_modules/rxjs/dist/esm5/operators/index.js",
       "file": "rxjs_operators.js",
-      "fileHash": "f80a84dc",
+      "fileHash": "33561f62",
       "needsInterop": false
+    },
+    "highcharts/modules/treemap": {
+      "src": "../../../../../../node_modules/highcharts/modules/treemap.js",
+      "file": "highcharts_modules_treemap.js",
+      "fileHash": "d7de80a5",
+      "needsInterop": true
     }
   },
   "chunks": {

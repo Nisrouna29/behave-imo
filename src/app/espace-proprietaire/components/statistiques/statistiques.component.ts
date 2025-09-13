@@ -1,8 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-declare var Highcharts: any;
-
 @Component({
   selector: 'app-statistiques',
   standalone: true,
@@ -18,64 +16,56 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Attendre que Highcharts et tous ses modules soient chargés
-    this.waitForHighchartsAndModules();
+    // Charger Highcharts dynamiquement
+    this.loadHighchartsAndInitialize();
   }
 
-  private waitForHighchartsAndModules(): void {
-    const checkHighcharts = () => {
-      if (typeof Highcharts !== 'undefined') {
-        console.log('Highcharts détecté, vérification des modules...');
-        // Vérifier que les modules spéciaux sont chargés
-        if (this.checkHighchartsModules()) {
-          console.log('Tous les modules sont chargés, initialisation des graphiques...');
-          this.initializeCharts();
-        } else {
-          console.log('Attente des modules Highcharts...');
-          setTimeout(checkHighcharts, 200);
-        }
-      } else {
-        console.log('Attente de Highcharts...');
-        setTimeout(checkHighcharts, 200);
-      }
-    };
-
-    // Démarrer la vérification après un délai initial
-    setTimeout(checkHighcharts, 500);
-  }
-
-  private checkHighchartsModules(): boolean {
-    // Vérifier que les modules spéciaux sont disponibles
+  private async loadHighchartsAndInitialize(): Promise<void> {
     try {
-      // Vérifier si les modules sont chargés en testant les propriétés
-      return Highcharts.chart &&
-             typeof Highcharts.chart === 'function' &&
-             Highcharts.seriesTypes &&
-             Highcharts.seriesTypes.solidgauge;
-    } catch (e) {
-      console.log('Modules pas encore chargés:', e);
-      return false;
+      // Charger Highcharts et ses modules
+      const [Highcharts, HighchartsMore, SolidGauge, Treemap] = await Promise.all([
+        import('highcharts'),
+        import('highcharts/highcharts-more'),
+        import('highcharts/modules/solid-gauge'),
+        import('highcharts/modules/treemap')
+      ]);
+
+      // Initialiser les modules
+      if (HighchartsMore.default) {
+        (HighchartsMore.default as any)(Highcharts.default);
+      }
+      if (SolidGauge.default) {
+        (SolidGauge.default as any)(Highcharts.default);
+      }
+      if (Treemap.default) {
+        (Treemap.default as any)(Highcharts.default);
+      }
+
+      // Initialiser les graphiques
+      this.initializeCharts(Highcharts.default);
+    } catch (error) {
+      console.error('Erreur lors du chargement de Highcharts:', error);
     }
   }
 
-  private initializeCharts(): void {
+  private initializeCharts(Highcharts: any): void {
     console.log('Initialisation des graphiques...');
 
     try {
-      this.createMonthlyRevenueChart();
-      this.createRevenuePieChart();
-      this.createOccupancyGauge();
-      this.createVacancyChart();
-      this.createGeographicChart();
-      this.createProfitChart();
-      this.createCashflowChart();
-      this.createForecastChart();
+      this.createMonthlyRevenueChart(Highcharts);
+      this.createRevenuePieChart(Highcharts);
+      this.createOccupancyGauge(Highcharts);
+      this.createVacancyChart(Highcharts);
+      this.createGeographicChart(Highcharts);
+      this.createProfitChart(Highcharts);
+      this.createCashflowChart(Highcharts);
+      this.createForecastChart(Highcharts);
     } catch (error) {
       console.error('Erreur lors de l\'initialisation des graphiques:', error);
     }
   }
 
-  private createMonthlyRevenueChart(): void {
+  private createMonthlyRevenueChart(Highcharts: any): void {
     Highcharts.chart('monthly-revenue-chart-container', {
       chart: {
         type: 'column',
@@ -106,7 +96,7 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createRevenuePieChart(): void {
+  private createRevenuePieChart(Highcharts: any): void {
     Highcharts.chart('revenue-pie-chart', {
       chart: {
         type: 'pie',
@@ -133,7 +123,7 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createOccupancyGauge(): void {
+  private createOccupancyGauge(Highcharts: any): void {
     Highcharts.chart('occupancy-gauge', {
       chart: {
         type: 'solidgauge',
@@ -193,7 +183,7 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createVacancyChart(): void {
+  private createVacancyChart(Highcharts: any): void {
     Highcharts.chart('vacancy-chart', {
       chart: {
         type: 'line',
@@ -224,7 +214,7 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createGeographicChart(): void {
+  private createGeographicChart(Highcharts: any): void {
     Highcharts.chart('geographic-chart', {
       chart: {
         type: 'treemap',
@@ -256,7 +246,7 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createProfitChart(): void {
+  private createProfitChart(Highcharts: any): void {
     Highcharts.chart('profit-chart', {
       chart: {
         type: 'bar',
@@ -287,7 +277,7 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createCashflowChart(): void {
+  private createCashflowChart(Highcharts: any): void {
     Highcharts.chart('cashflow-chart', {
       chart: {
         type: 'column',
@@ -314,7 +304,7 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createForecastChart(): void {
+  private createForecastChart(Highcharts: any): void {
     Highcharts.chart('forecast-chart', {
       chart: {
         type: 'line',

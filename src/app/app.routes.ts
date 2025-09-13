@@ -1,42 +1,58 @@
 import { Routes } from '@angular/router';
 import { AccueilComponent } from './acceuil/accueil.component';
-import { ProprietesComponent } from './pages/proprietes/proprietes.component';
-import { ServicesPageComponent } from './pages/services/services.component';
-import { AProposComponent } from './pages/a-propos/a-propos.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { PropertyDetailComponent } from './pages/proprietes/property-detail/property-detail.component';
-import { DossierLocationComponent } from './dossier-location/dossier-location.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
-import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-legales.component';
-import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
-import { CgvComponent } from './pages/cgv/cgv.component';
-import { EspaceProprietaireComponent } from './espace-proprietaire/espace-proprietaire.component';
-import { espaceProprietaireRoutes } from './espace-proprietaire/espace-proprietaire.routes';
-import { EspaceLocataireComponent } from './espace-locataire/espace-locataire.component';
-import { espaceLocataireRoutes } from './espace-locataire/espace-locataire.routes';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accueil', component: AccueilComponent },
-  { path: 'proprietes', component: ProprietesComponent },
-  { path: 'proprietes/:id', component: PropertyDetailComponent },
-  { path: 'dossier-location/:id', component: DossierLocationComponent },
-  { path: 'login', component: AuthenticationComponent },
-  { path: 'services', component: ServicesPageComponent },
-  { path: 'a-propos', component: AProposComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'mentions-legales', component: MentionsLegalesComponent },
-  { path: 'politique-confidentialite', component: PolitiqueConfidentialiteComponent },
-  { path: 'cgv', component: CgvComponent },
+  { 
+    path: 'proprietes', 
+    loadComponent: () => import('./pages/proprietes/proprietes.component').then(m => m.ProprietesComponent)
+  },
+  { 
+    path: 'proprietes/:id', 
+    loadComponent: () => import('./pages/proprietes/property-detail/property-detail.component').then(m => m.PropertyDetailComponent)
+  },
+  { 
+    path: 'dossier-location/:id', 
+    loadComponent: () => import('./dossier-location/dossier-location.component').then(m => m.DossierLocationComponent)
+  },
+  { 
+    path: 'login', 
+    loadComponent: () => import('./authentication/authentication.component').then(m => m.AuthenticationComponent)
+  },
+  { 
+    path: 'services', 
+    loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesPageComponent)
+  },
+  { 
+    path: 'a-propos', 
+    loadComponent: () => import('./pages/a-propos/a-propos.component').then(m => m.AProposComponent)
+  },
+  { 
+    path: 'contact', 
+    loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent)
+  },
+  { 
+    path: 'mentions-legales', 
+    loadComponent: () => import('./pages/mentions-legales/mentions-legales.component').then(m => m.MentionsLegalesComponent)
+  },
+  { 
+    path: 'politique-confidentialite', 
+    loadComponent: () => import('./pages/politique-confidentialite/politique-confidentialite.component').then(m => m.PolitiqueConfidentialiteComponent)
+  },
+  { 
+    path: 'cgv', 
+    loadComponent: () => import('./pages/cgv/cgv.component').then(m => m.CgvComponent)
+  },
   {
     path: 'espace-proprietaire',
-    component: EspaceProprietaireComponent,
-    children: espaceProprietaireRoutes
+    loadComponent: () => import('./espace-proprietaire/espace-proprietaire.component').then(m => m.EspaceProprietaireComponent),
+    loadChildren: () => import('./espace-proprietaire/espace-proprietaire.routes').then(m => m.espaceProprietaireRoutes)
   },
   {
     path: 'espace-locataire',
-    component: EspaceLocataireComponent,
-    children: espaceLocataireRoutes
+    loadComponent: () => import('./espace-locataire/espace-locataire.component').then(m => m.EspaceLocataireComponent),
+    loadChildren: () => import('./espace-locataire/espace-locataire.routes').then(m => m.espaceLocataireRoutes)
   },
   { path: '**', redirectTo: '/accueil' }
 ];
