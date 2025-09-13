@@ -27,6 +27,11 @@ export class HeaderComponent {
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/accueil']);
+    this.router.navigate(['/accueil']).then(() => {
+      // Force reload if already on accueil page
+      if (this.router.url === '/accueil') {
+        window.location.reload();
+      }
+    });
   }
 }
