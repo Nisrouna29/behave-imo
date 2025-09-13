@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   isMobileMenuOpen = false;
 
+  constructor(private router: Router) {}
+
   navigationItems = [
     { label: 'Accueil', route: '/accueil' },
     { label: 'Propriétés', route: '/proprietes' },
@@ -22,5 +24,9 @@ export class HeaderComponent {
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  navigateToHome(): void {
+    this.router.navigate(['/accueil']);
   }
 }

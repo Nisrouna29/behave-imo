@@ -315,4 +315,8 @@ export class ChatComponent {
   onVoiceMessage() {
     alert('Fonctionnalité d\'enregistrement vocal à implémenter');
   }
+
+  navigateToHome(): void {
+    this.router.navigate(['/accueil']);
+  }
 }

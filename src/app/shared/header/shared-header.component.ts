@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shared-header',
@@ -13,6 +13,8 @@ export class SharedHeaderComponent {
   @Input() activeRoute: string = '';
 
   isMobileMenuOpen = false;
+
+  constructor(private router: Router) {}
 
   navigationItems = [
     { label: 'Accueil', route: '/accueil' },
@@ -28,5 +30,9 @@ export class SharedHeaderComponent {
 
   isActiveRoute(route: string): boolean {
     return this.activeRoute === route;
+  }
+
+  navigateToHome(): void {
+    this.router.navigate(['/accueil']);
   }
 }

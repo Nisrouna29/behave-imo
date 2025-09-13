@@ -101,4 +101,8 @@ export class EspaceLocataireComponent implements OnInit {
     this.isMobileSidebarOpen = false;
   }
 
+  navigateToHome(): void {
+    this.router.navigate(['/accueil']);
+  }
+
 }

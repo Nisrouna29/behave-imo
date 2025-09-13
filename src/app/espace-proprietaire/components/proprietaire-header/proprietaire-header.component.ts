@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proprietaire-header',
@@ -13,6 +14,8 @@ export class ProprietaireHeaderComponent {
   @Output() logout = new EventEmitter<void>();
 
   showUserMenu = false;
+
+  constructor(private router: Router) {}
 
   toggleUserMenu(): void {
     this.showUserMenu = !this.showUserMenu;
@@ -29,5 +32,9 @@ export class ProprietaireHeaderComponent {
     if (!target.closest('.user-menu-container')) {
       this.showUserMenu = false;
     }
+  }
+
+  navigateToHome(): void {
+    this.router.navigate(['/accueil']);
   }
 }
