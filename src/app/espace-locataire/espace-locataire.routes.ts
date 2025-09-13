@@ -9,6 +9,8 @@ import { PaiementsComponent } from './components/paiements/paiements.component';
 import { MesRendezVousComponent } from './components/mes-rendez-vous/mes-rendez-vous.component';
 import { PrendreRendezVousComponent } from './components/prendre-rendez-vous/prendre-rendez-vous.component';
 import { ParametresComponent } from './components/parametres/parametres.component';
+import { MesContratsComponent } from './components/mes-contrats/mes-contrats.component';
+import { EtatsDesLieuxComponent } from './components/etats-des-lieux/etats-des-lieux.component';
 
 export const espaceLocataireRoutes: Routes = [
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
@@ -22,8 +24,9 @@ export const espaceLocataireRoutes: Routes = [
   { path: 'rendez-vous', component: MesRendezVousComponent },
   { path: 'prendre-rendez-vous', component: PrendreRendezVousComponent },
   { path: 'parametres', component: ParametresComponent },
+  { path: 'etats-des-lieux', component: EtatsDesLieuxComponent },
+  { path: 'mes-contrats', component: MesContratsComponent },
   // Ajoutez d'autres routes ici selon vos besoins
-  // { path: 'contrats', component: ContratsComponent },
   // { path: 'documents', component: DocumentsComponent },
   // { path: 'messages', component: MessagesComponent },
   // { path: 'notifications', component: NotificationsComponent },

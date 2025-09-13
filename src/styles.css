@@ -36,6 +36,8 @@
 
 /* Additional Tailwind utility classes */
 .translate-x-0 { transform: translateX(0); }
+.translate-y-0 { transform: translateY(0); }
+.-translate-y-1\/2 { transform: translateY(-50%); }
 .bg-gray-50 { background-color: #f9fafb; }
 .bg-gray-100 { background-color: #f3f4f6; }
 .bg-gray-200 { background-color: #e5e7eb; }

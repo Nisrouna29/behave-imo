@@ -1,0 +1,498 @@
+<div class="max-w-7xl mx-auto px-6 py-8">
+  <!-- Header du tableau de bord -->
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Mes États des lieux</h1>
+      <p class="text-gray-600">Consultez et téléchargez vos états des lieux</p>
+      <div class="flex items-center mt-3 space-x-4">
+        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">{{ stats.total }} Total</span>
+        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">{{ stats.termines }} Terminés</span>
+        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">{{ stats.enCours }} En cours</span>
+        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">{{ stats.planifies }} Planifié</span>
+      </div>
+    </div>
+    <div class="flex space-x-3">
+      <button (click)="telechargerTout()" 
+              class="border border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-medium">
+        <i class="fa-solid fa-download mr-2"></i>
+        Tout télécharger
+      </button>
+      <button (click)="planifierVisite()" 
+              class="gradient-bg text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium">
+        <i class="fa-solid fa-calendar mr-2"></i>
+        Planifier visite
+      </button>
+    </div>
+  </div>
+
+  <!-- Carte d'informations du logement -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <div class="flex items-center space-x-6">
+      <img class="property-image" [src]="logement.image" [alt]="logement.nom">
+      <div class="flex-1">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ logement.nom }}</h2>
+        <p class="text-gray-600 mb-3">{{ logement.adresse }}</p>
+        <div class="grid grid-cols-4 gap-6">
+          <div>
+            <p class="text-sm text-gray-500">Surface</p>
+            <p class="text-lg font-semibold text-gray-800">{{ logement.surface }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Pièces</p>
+            <p class="text-lg font-semibold text-gray-800">{{ logement.pieces }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Étage</p>
+            <p class="text-lg font-semibold text-gray-800">{{ logement.etage }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Loyer</p>
+            <p class="text-lg font-semibold text-gray-800">{{ logement.loyer }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-lg font-medium mb-3">
+          <i class="fa-solid fa-check-circle mr-2"></i>
+          Locataire actuel
+        </div>
+        <p class="text-sm text-gray-500">Bail depuis</p>
+        <p class="text-lg font-semibold text-gray-800">{{ logement.bailDepuis }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section des filtres -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold text-gray-800">Filtres et recherche</h2>
+      <button (click)="resetFilters()" 
+              class="text-orange-600 hover:text-orange-700 font-medium text-sm">
+        <i class="fa-solid fa-refresh mr-2"></i>
+        Réinitialiser
+      </button>
+    </div>
+    
+    <div class="grid grid-cols-4 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Rechercher</label>
+        <div class="relative">
+          <input type="text" 
+                 [(ngModel)]="filters.search"
+                 (input)="onSearchChange($any($event.target).value)"
+                 placeholder="Type d'état, date..." 
+                 class="filter-input w-full border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+          <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+        <select [(ngModel)]="filters.type"
+                (change)="onTypeChange($any($event.target).value)"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+          <option value="">Tous les types</option>
+          <option value="entree">État d'entrée</option>
+          <option value="sortie">État de sortie</option>
+          <option value="periodique">État périodique</option>
+        </select>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
+        <select [(ngModel)]="filters.status"
+                (change)="onStatusChange($any($event.target).value)"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+          <option value="">Tous les statuts</option>
+          <option value="termine">Terminé</option>
+          <option value="en-cours">En cours</option>
+          <option value="planifie">Planifié</option>
+        </select>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Année</label>
+        <select [(ngModel)]="filters.year"
+                (change)="onYearChange($any($event.target).value)"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+          <option value="">Toutes les années</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <span class="text-sm text-gray-600">Affichage:</span>
+        <div class="flex space-x-2">
+          <button (click)="toggleView('grid')" 
+                  [class]="currentView === 'grid' ? 'view-toggle active' : 'view-toggle'">
+            <i class="fa-solid fa-th-large"></i>
+          </button>
+          <button (click)="toggleView('list')" 
+                  [class]="currentView === 'list' ? 'view-toggle active' : 'view-toggle'">
+            <i class="fa-solid fa-list"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <span class="text-sm text-gray-600">Trier par:</span>
+        <select [(ngModel)]="filters.sort"
+                (change)="onSortChange($any($event.target).value)"
+                class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+          <option value="date-desc">Date (plus récent)</option>
+          <option value="date-asc">Date (plus ancien)</option>
+          <option value="type">Type</option>
+          <option value="status">Statut</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vue d'ensemble des statistiques -->
+  <div class="grid grid-cols-4 gap-6 mb-8">
+    <div class="stat-card bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-600">États terminés</p>
+          <p class="text-3xl font-bold text-green-600 mt-2">{{ stats.termines }}</p>
+          <p class="text-sm text-gray-500 mt-1">Consultables</p>
+        </div>
+        <div class="icon-wrapper bg-green-100">
+          <i class="fa-solid fa-check text-green-600 text-xl"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="stat-card bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-600">En cours</p>
+          <p class="text-3xl font-bold text-yellow-600 mt-2">{{ stats.enCours }}</p>
+          <p class="text-sm text-gray-500 mt-1">En attente</p>
+        </div>
+        <div class="icon-wrapper bg-yellow-100">
+          <i class="fa-solid fa-clock text-yellow-600 text-xl"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="stat-card bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-600">Défauts signalés</p>
+          <p class="text-3xl font-bold text-red-600 mt-2">{{ stats.defautsSignales }}</p>
+          <p class="text-sm text-gray-500 mt-1">Au total</p>
+        </div>
+        <div class="icon-wrapper bg-red-100">
+          <i class="fa-solid fa-exclamation-triangle text-red-600 text-xl"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="stat-card bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-600">Documents</p>
+          <p class="text-3xl font-bold text-blue-600 mt-2">{{ stats.documents }}</p>
+          <p class="text-sm text-gray-500 mt-1">Téléchargeables</p>
+        </div>
+        <div class="icon-wrapper bg-blue-100">
+          <i class="fa-solid fa-file-pdf text-blue-600 text-xl"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableau des états des lieux -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Liste des états des lieux</h2>
+      <div class="flex items-center space-x-3">
+        <span class="text-sm text-gray-600">{{ etatsDesLieux.length }} états des lieux</span>
+        <button class="bg-orange-100 text-orange-600 px-3 py-1 rounded-lg text-sm font-medium">
+          <i class="fa-solid fa-table mr-1"></i>
+          Vue tableau
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Type d'état</th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Statut</th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Inspecteur</th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Défauts</th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Photos</th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Document</th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let etat of etatsDesLieux" 
+              class="table-row-hover transition-colors">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <i class="fa-solid fa-calendar text-gray-400 mr-2"></i>
+                <span class="text-sm font-medium text-gray-900">{{ etat.date }}</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span [class]="'type-badge ' + etat.type">
+                <i [class]="etat.type === 'entree' ? 'fa-solid fa-sign-in-alt mr-1' : 
+                           etat.type === 'sortie' ? 'fa-solid fa-sign-out-alt mr-1' : 
+                           'fa-solid fa-rotate mr-1'"></i>
+                {{ etat.typeLabel }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span [class]="'status-badge ' + etat.statut">
+                <i [class]="etat.statut === 'termine' ? 'fa-solid fa-check-circle mr-1' : 
+                           etat.statut === 'en-cours' ? 'fa-solid fa-clock mr-1' : 
+                           'fa-solid fa-calendar-check mr-1'"></i>
+                {{ etat.statutLabel }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <img [src]="etat.inspecteurAvatar" 
+                     [alt]="etat.inspecteur" 
+                     class="inspector-avatar mr-3">
+                <div>
+                  <div class="text-sm font-medium text-gray-900">{{ etat.inspecteur }}</div>
+                  <div class="text-sm text-gray-500">{{ etat.inspecteurRole }}</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span [class]="'defect-badge ' + etat.defautsClass">
+                <i [class]="etat.defauts === 0 ? 'fa-solid fa-check mr-1' : 
+                           etat.defauts <= 2 ? 'fa-solid fa-exclamation-triangle mr-1' : 
+                           'fa-solid fa-times-circle mr-1'"></i>
+                {{ etat.defautsLabel }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <i class="fa-solid fa-camera text-gray-400 mr-2"></i>
+                <span class="text-sm font-medium text-gray-900">{{ etat.photos }} photos</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center" *ngIf="etat.documentDisponible">
+                <i class="fa-solid fa-file-pdf text-red-500 mr-2"></i>
+                <span class="text-sm text-gray-900">{{ etat.document }}</span>
+              </div>
+              <span *ngIf="!etat.documentDisponible" class="text-sm text-gray-500">{{ etat.document }}</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <div class="flex space-x-2">
+                <button (click)="consulterEtat(etat)" 
+                        class="action-btn bg-blue-100 text-blue-600 hover:bg-blue-200" 
+                        title="Consulter">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button (click)="telechargerDocument(etat)" 
+                        [disabled]="!etat.documentDisponible"
+                        [class]="etat.documentDisponible ? 'action-btn bg-green-100 text-green-600 hover:bg-green-200' : 'action-btn bg-gray-100 text-gray-400 cursor-not-allowed'" 
+                        title="Télécharger">
+                  <i class="fa-solid fa-download"></i>
+                </button>
+                <button (click)="partagerDocument(etat)" 
+                        [disabled]="!etat.documentDisponible"
+                        [class]="etat.documentDisponible ? 'action-btn bg-orange-100 text-orange-600 hover:bg-orange-200' : 'action-btn bg-gray-100 text-gray-400 cursor-not-allowed'" 
+                        title="Partager">
+                  <i class="fa-solid fa-share"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flex items-center justify-between mt-6 pt-6 border-t border-gray-200">
+      <div class="flex items-center space-x-2">
+        <span class="text-sm text-gray-600">Affichage de 1 à {{ etatsDesLieux.length }} sur {{ etatsDesLieux.length }} états des lieux</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button class="pagination-btn cursor-not-allowed" disabled>
+          <i class="fa-solid fa-chevron-left mr-1"></i>
+          Précédent
+        </button>
+        <button class="pagination-btn active">1</button>
+        <button class="pagination-btn cursor-not-allowed" disabled>
+          Suivant
+          <i class="fa-solid fa-chevron-right ml-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Résumé des défauts par catégorie -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Résumé des défauts par catégorie</h2>
+    <div class="grid grid-cols-3 gap-6">
+      <div class="defect-category critiques">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-red-800">Défauts critiques</h3>
+          <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-sm font-medium">{{ defautsSummary.critiques.count }}</span>
+        </div>
+        <div class="space-y-2">
+          <div *ngFor="let item of defautsSummary.critiques.items" class="flex items-center justify-between text-sm">
+            <span class="text-red-700">{{ item.nom }}</span>
+            <span class="text-red-600 font-medium">{{ item.count }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="defect-category moyens">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-orange-800">Défauts moyens</h3>
+          <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-sm font-medium">{{ defautsSummary.moyens.count }}</span>
+        </div>
+        <div class="space-y-2">
+          <div *ngFor="let item of defautsSummary.moyens.items" class="flex items-center justify-between text-sm">
+            <span class="text-orange-700">{{ item.nom }}</span>
+            <span class="text-orange-600 font-medium">{{ item.count }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="defect-category mineurs">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-yellow-800">Défauts mineurs</h3>
+          <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm font-medium">{{ defautsSummary.mineurs.count }}</span>
+        </div>
+        <div class="space-y-2">
+          <div *ngFor="let item of defautsSummary.mineurs.items" class="flex items-center justify-between text-sm">
+            <span class="text-yellow-700">{{ item.nom }}</span>
+            <span class="text-yellow-600 font-medium">{{ item.count }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chronologie du logement -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Chronologie de mon logement</h2>
+    <div class="relative">
+      <div class="timeline-line"></div>
+      
+      <div class="space-y-6">
+        <div *ngFor="let event of timeline" class="flex items-start space-x-4">
+          <div [class]="'timeline-dot w-4 h-4 rounded-full border-2 border-white shadow-sm ' + getTimelineColorClass(event.color)"></div>
+          <div [class]="'flex-1 border rounded-lg p-4 ' + getTimelineBgClass(event.color)">
+            <div class="flex items-center justify-between mb-2">
+              <h3 [class]="'font-semibold ' + getTimelineTextClass(event.color)">{{ event.title }}</h3>
+              <span [class]="'text-sm ' + getTimelineDateClass(event.color)">{{ event.date }}</span>
+            </div>
+            <p [class]="'text-sm ' + getTimelineDescClass(event.color)">{{ event.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Archive des documents -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Archive des documents</h2>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="border border-gray-200 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-semibold text-gray-800">Documents PDF</h3>
+          <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">6 fichiers</span>
+        </div>
+        <div class="space-y-3">
+          <div class="document-item">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-file-pdf text-red-500"></i>
+                <div>
+                  <p class="text-sm font-medium text-gray-800">État_entrée_15mars2023.pdf</p>
+                  <p class="text-xs text-gray-500">2.4 MB • Téléchargé 3 fois</p>
+                </div>
+              </div>
+              <button class="text-blue-600 hover:text-blue-800">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+          <div class="document-item">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-file-pdf text-red-500"></i>
+                <div>
+                  <p class="text-sm font-medium text-gray-800">État_périodique_15sept2024.pdf</p>
+                  <p class="text-xs text-gray-500">1.8 MB • Téléchargé 1 fois</p>
+                </div>
+              </div>
+              <button class="text-blue-600 hover:text-blue-800">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="text-orange-600 text-sm font-medium hover:text-orange-700">
+              Voir tous les documents PDF
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border border-gray-200 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-semibold text-gray-800">Photos d'archives</h3>
+          <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">156 photos</span>
+        </div>
+        <div class="photo-grid mb-4">
+          <img class="photo-thumbnail" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/0e41ba13b9-8be0a8f87a4daa4ef73d.png" alt="apartment room photo archive">
+          <img class="photo-thumbnail" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f832684f91-ad54edc693f06e42f5f4.png" alt="apartment kitchen photo archive">
+          <img class="photo-thumbnail" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e3c9dbe8de-21c74a55eac9c916fb93.png" alt="apartment bathroom photo archive">
+        </div>
+        <div class="text-center">
+          <button class="text-orange-600 text-sm font-medium hover:text-orange-700">
+            Parcourir toutes les photos
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section de contact support -->
+  <div class="contact-section rounded-2xl shadow-lg p-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-orange-800 mb-2">Besoin d'aide ?</h2>
+        <p class="text-orange-700 mb-4">Notre équipe est là pour vous accompagner dans toutes vos démarches</p>
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-phone text-orange-600"></i>
+            <span class="text-orange-800 font-medium">01 42 86 73 95</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-envelope text-orange-600"></i>
+            <span class="text-orange-800 font-medium">support&#64;immopro.fr</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex space-x-3">
+        <button class="bg-white text-orange-600 border border-orange-300 px-6 py-3 rounded-xl hover:bg-orange-50 transition-all duration-300 font-medium">
+          <i class="fa-solid fa-comments mr-2"></i>
+          Chat en direct
+        </button>
+        <button class="gradient-bg text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium">
+          <i class="fa-solid fa-headset mr-2"></i>
+          Contacter le support
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

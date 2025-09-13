@@ -1,0 +1,734 @@
+<div class="max-w-7xl mx-auto px-6 py-8">
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Mes Contrats de Location</h1>
+      <p class="text-gray-600">Gérez vos baux de location et vente</p>
+      <div class="flex items-center mt-3 space-x-4">
+        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">{{ contracts.length }} Contrat(s)</span>
+        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">{{ activeContractsCount }} Actif(s)</span>
+        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">1 En cours</span>
+      </div>
+    </div>
+    <div class="flex space-x-3">
+      <button class="border border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-medium">
+        <i class="fa-solid fa-download mr-2"></i>
+        Télécharger tout
+      </button>
+      <button class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium">
+        <i class="fa-solid fa-plus mr-2"></i>
+        Nouveau contrat
+      </button>
+    </div>
+  </div>
+
+  <!-- Current Lease Card -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <div class="flex items-start justify-between mb-6">
+      <div class="flex items-center space-x-4">
+        <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+          <i class="fa-solid fa-file-contract text-white text-2xl"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800">Contrat de Location Principal</h2>
+          <p class="text-gray-600 mb-2">75 Avenue des Champs-Élysées, 75008 Paris</p>
+          <div class="flex items-center space-x-4">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+              <i class="fa-solid fa-check-circle mr-1"></i>
+              Actif
+            </span>
+            <span class="text-sm text-gray-600">Bail depuis Mars 2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <p class="text-sm text-gray-500">Loyer mensuel</p>
+        <p class="text-3xl font-bold text-gray-800">2,450€</p>
+        <p class="text-sm text-gray-500 mt-1">+ 150€ charges</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-6 mb-6">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-blue-800">Date de début</span>
+          <i class="fa-solid fa-calendar text-blue-600"></i>
+        </div>
+        <p class="text-lg font-bold text-blue-900">15 Mars 2023</p>
+      </div>
+      
+      <div class="bg-purple-50 border border-purple-200 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-purple-800">Date de fin</span>
+          <i class="fa-solid fa-calendar-xmark text-purple-600"></i>
+        </div>
+        <p class="text-lg font-bold text-purple-900">14 Mars 2026</p>
+      </div>
+      
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-green-800">Durée restante</span>
+          <i class="fa-solid fa-clock text-green-600"></i>
+        </div>
+        <p class="text-lg font-bold text-green-900">16 mois</p>
+      </div>
+      
+      <div class="bg-orange-50 border border-orange-200 rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-orange-800">Dépôt de garantie</span>
+          <i class="fa-solid fa-shield-alt text-orange-600"></i>
+        </div>
+        <p class="text-lg font-bold text-orange-900">2,450€</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2">
+          <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Propriétaire" class="w-8 h-8 rounded-full">
+          <div>
+            <p class="text-sm font-medium text-gray-800">M. Jean Dupont</p>
+            <p class="text-xs text-gray-500">Propriétaire</p>
+          </div>
+        </div>
+        <div class="text-sm text-gray-600">
+          <i class="fa-solid fa-phone mr-1"></i>
+          01 42 86 73 95
+        </div>
+        <div class="text-sm text-gray-600">
+          <i class="fa-solid fa-envelope mr-1"></i>
+          j.dupont&#64;email.com
+        </div>
+      </div>
+      <div class="flex space-x-2">
+        <button class="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition-colors font-medium">
+          <i class="fa-solid fa-eye mr-1"></i>
+          Consulter
+        </button>
+        <button class="bg-green-50 text-green-600 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors font-medium">
+          <i class="fa-solid fa-download mr-1"></i>
+          Télécharger
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contract Tabs -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg mb-8">
+    <div class="border-b border-gray-200">
+      <nav class="flex space-x-8 px-6">
+        <button id="tab-location" class="py-4 px-1 border-b-2 border-orange-500 font-medium text-sm text-orange-600 whitespace-nowrap">
+          <i class="fa-solid fa-home mr-2"></i>
+          Contrats de Location
+        </button>
+        <button id="tab-vente" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap">
+          <i class="fa-solid fa-handshake mr-2"></i>
+          Contrats de Vente
+        </button>
+        <button id="tab-historique" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap">
+          <i class="fa-solid fa-history mr-2"></i>
+          Historique
+        </button>
+      </nav>
+    </div>
+
+    <div id="tab-content-location" class="p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">Mes Contrats de Location</h3>
+        <div class="flex items-center space-x-3">
+          <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-orange-500">
+            <option>Tous les statuts</option>
+            <option>Actifs</option>
+            <option>Expirés</option>
+            <option>Résiliés</option>
+          </select>
+          <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-orange-500">
+        </div>
+      </div>
+
+      <div class="grid gap-6">
+        <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-300">
+          <div class="flex items-start justify-between">
+            <div class="flex space-x-4">
+              <img class="w-20 h-20 rounded-xl object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/d13f0792a2-2741323c0cf2ad423311.png" alt="modern apartment building exterior with balconies">
+              <div class="flex-1">
+                <div class="flex items-center space-x-3 mb-2">
+                  <h4 class="text-lg font-semibold text-gray-800">Appartement Champs-Élysées</h4>
+                  <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Actif</span>
+                </div>
+                <p class="text-gray-600 mb-3">75 Avenue des Champs-Élysées, 75008 Paris</p>
+                <div class="grid grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <span class="text-gray-500">Surface:</span>
+                    <span class="font-medium ml-1">85 m²</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Pièces:</span>
+                    <span class="font-medium ml-1">3 pièces</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Début:</span>
+                    <span class="font-medium ml-1">15/03/2023</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Fin:</span>
+                    <span class="font-medium ml-1">14/03/2026</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-gray-800">2,450€</p>
+              <p class="text-sm text-gray-500">+ 150€ charges</p>
+              <div class="flex space-x-2 mt-4">
+                <button class="bg-blue-50 text-blue-600 p-2 rounded-lg hover:bg-blue-100">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="bg-green-50 text-green-600 p-2 rounded-lg hover:bg-green-100">
+                  <i class="fa-solid fa-download"></i>
+                </button>
+                <button class="bg-orange-50 text-orange-600 p-2 rounded-lg hover:bg-orange-100">
+                  <i class="fa-solid fa-edit"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-300">
+          <div class="flex items-start justify-between">
+            <div class="flex space-x-4">
+              <img class="w-20 h-20 rounded-xl object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/c5fa606447-9d0ecae07a7341090a46.png" alt="modern studio apartment interior minimalist">
+              <div class="flex-1">
+                <div class="flex items-center space-x-3 mb-2">
+                  <h4 class="text-lg font-semibold text-gray-800">Studio Montmartre</h4>
+                  <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Préavis</span>
+                </div>
+                <p class="text-gray-600 mb-3">18 Rue de Montmartre, 75001 Paris</p>
+                <div class="grid grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <span class="text-gray-500">Surface:</span>
+                    <span class="font-medium ml-1">35 m²</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Pièces:</span>
+                    <span class="font-medium ml-1">1 pièce</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Début:</span>
+                    <span class="font-medium ml-1">01/09/2022</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Fin:</span>
+                    <span class="font-medium ml-1">31/12/2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-gray-800">1,200€</p>
+              <p class="text-sm text-gray-500">+ 80€ charges</p>
+              <div class="flex space-x-2 mt-4">
+                <button class="bg-blue-50 text-blue-600 p-2 rounded-lg hover:bg-blue-100">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="bg-green-50 text-green-600 p-2 rounded-lg hover:bg-green-100">
+                  <i class="fa-solid fa-download"></i>
+                </button>
+                <button class="bg-orange-50 text-orange-600 p-2 rounded-lg hover:bg-orange-100">
+                  <i class="fa-solid fa-edit"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-content-vente" class="p-6 hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">Contrats de Vente</h3>
+        <button class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-300 font-medium">
+          <i class="fa-solid fa-plus mr-2"></i>
+          Nouveau contrat de vente
+        </button>
+      </div>
+
+      <div class="grid gap-6">
+        <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-300">
+          <div class="flex items-start justify-between">
+            <div class="flex space-x-4">
+              <img class="w-20 h-20 rounded-xl object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/155fa4fde4-539e632ab01a3b522878.png" alt="luxury apartment living room for sale">
+              <div class="flex-1">
+                <div class="flex items-center space-x-3 mb-2">
+                  <h4 class="text-lg font-semibold text-gray-800">Appartement Luxury</h4>
+                  <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">En négociation</span>
+                </div>
+                <p class="text-gray-600 mb-3">42 Avenue Foch, 75016 Paris</p>
+                <div class="grid grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <span class="text-gray-500">Surface:</span>
+                    <span class="font-medium ml-1">120 m²</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Pièces:</span>
+                    <span class="font-medium ml-1">4 pièces</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Promesse:</span>
+                    <span class="font-medium ml-1">15/11/2024</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">Signature:</span>
+                    <span class="font-medium ml-1">15/01/2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-gray-800">650,000€</p>
+              <p class="text-sm text-gray-500">Prix de vente</p>
+              <div class="flex space-x-2 mt-4">
+                <button class="bg-blue-50 text-blue-600 p-2 rounded-lg hover:bg-blue-100">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="bg-green-50 text-green-600 p-2 rounded-lg hover:bg-green-100">
+                  <i class="fa-solid fa-download"></i>
+                </button>
+                <button class="bg-orange-50 text-orange-600 p-2 rounded-lg hover:bg-orange-100">
+                  <i class="fa-solid fa-edit"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-content-historique" class="p-6 hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-800">Historique des Contrats</h3>
+        <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-orange-500">
+          <option>Toutes les années</option>
+          <option>2024</option>
+          <option>2023</option>
+          <option>2022</option>
+        </select>
+      </div>
+
+      <div class="space-y-4">
+        <div class="border border-gray-200 rounded-xl p-4 bg-gray-50">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-times text-red-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800">Studio République</h4>
+                <p class="text-sm text-gray-600">12 Place de la République, 75003 Paris</p>
+                <p class="text-xs text-gray-500">Résilié le 30/08/2022</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-gray-800">950€</p>
+              <p class="text-xs text-gray-500">18 mois de location</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl p-4 bg-gray-50">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-check text-green-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800">Appartement Bastille</h4>
+                <p class="text-sm text-gray-600">8 Rue de la Bastille, 75004 Paris</p>
+                <p class="text-xs text-gray-500">Vendu le 15/03/2023</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-gray-800">425,000€</p>
+              <p class="text-xs text-gray-500">Vente réalisée</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contract Details -->
+  <div class="grid grid-cols-2 gap-6 mb-8">
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+      <h3 class="text-xl font-bold text-gray-800 mb-6">Détails du Bail Principal</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Type de bail:</span>
+          <span class="font-medium">Bail d'habitation</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Durée:</span>
+          <span class="font-medium">3 ans</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Meublé:</span>
+          <span class="font-medium">Non meublé</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Révision loyer:</span>
+          <span class="font-medium">Annuelle (IRL)</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Préavis:</span>
+          <span class="font-medium">3 mois</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3">
+          <span class="text-gray-600">Clause de résiliation:</span>
+          <span class="font-medium">Oui</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+      <h3 class="text-xl font-bold text-gray-800 mb-6">Informations Financières</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Loyer hors charges:</span>
+          <span class="font-bold text-lg">2,450€</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Charges:</span>
+          <span class="font-medium">150€</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Total mensuel:</span>
+          <span class="font-bold text-lg">2,600€</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Dépôt de garantie:</span>
+          <span class="font-medium">2,450€</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <span class="text-gray-600">Frais d'agence:</span>
+          <span class="font-medium">1,225€</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3">
+          <span class="text-gray-600">Total versé à l'entrée:</span>
+          <span class="font-bold text-lg">6,275€</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documents Section -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xl font-bold text-gray-800">Documents du Contrat</h3>
+      <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+        <i class="fa-solid fa-upload mr-2"></i>
+        Ajouter document
+      </button>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4">
+      <div class="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-pdf text-red-600"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-medium text-gray-800">Bail signé</h4>
+            <p class="text-sm text-gray-500">PDF • 2.4 MB</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 bg-blue-50 text-blue-600 py-2 px-3 rounded-lg hover:bg-blue-100 text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i>
+            Voir
+          </button>
+          <button class="bg-green-50 text-green-600 py-2 px-3 rounded-lg hover:bg-green-100">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-pdf text-blue-600"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-medium text-gray-800">État des lieux entrée</h4>
+            <p class="text-sm text-gray-500">PDF • 1.8 MB</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 bg-blue-50 text-blue-600 py-2 px-3 rounded-lg hover:bg-blue-100 text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i>
+            Voir
+          </button>
+          <button class="bg-green-50 text-green-600 py-2 px-3 rounded-lg hover:bg-green-100">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-pdf text-green-600"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-medium text-gray-800">Assurance habitation</h4>
+            <p class="text-sm text-gray-500">PDF • 892 KB</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 bg-blue-50 text-blue-600 py-2 px-3 rounded-lg hover:bg-blue-100 text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i>
+            Voir
+          </button>
+          <button class="bg-green-50 text-green-600 py-2 px-3 rounded-lg hover:bg-green-100">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-pdf text-purple-600"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-medium text-gray-800">Diagnostics immobiliers</h4>
+            <p class="text-sm text-gray-500">PDF • 3.2 MB</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 bg-blue-50 text-blue-600 py-2 px-3 rounded-lg hover:bg-blue-100 text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i>
+            Voir
+          </button>
+          <button class="bg-green-50 text-green-600 py-2 px-3 rounded-lg hover:bg-green-100">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-pdf text-orange-600"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-medium text-gray-800">Règlement copropriété</h4>
+            <p class="text-sm text-gray-500">PDF • 1.5 MB</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 bg-blue-50 text-blue-600 py-2 px-3 rounded-lg hover:bg-blue-100 text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i>
+            Voir
+          </button>
+          <button class="bg-green-50 text-green-600 py-2 px-3 rounded-lg hover:bg-green-100">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-pdf text-yellow-600"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-medium text-gray-800">Quittances de loyer</h4>
+            <p class="text-sm text-gray-500">PDF • 4.1 MB</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 bg-blue-50 text-blue-600 py-2 px-3 rounded-lg hover:bg-blue-100 text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i>
+            Voir
+          </button>
+          <button class="bg-green-50 text-green-600 py-2 px-3 rounded-lg hover:bg-green-100">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Schedule -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xl font-bold text-gray-800">Échéancier des Paiements</h3>
+      <div class="flex items-center space-x-3">
+        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+          <i class="fa-solid fa-check mr-1"></i>
+          À jour
+        </span>
+        <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+          <i class="fa-solid fa-download mr-2"></i>
+          Exporter
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mois</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Loyer</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Charges</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date paiement</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Décembre 2024</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2,450€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2,600€</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En attente</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">01/12/2024</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Novembre 2024</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2,450€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2,600€</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Payé</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">30/10/2024</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Octobre 2024</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2,450€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2,600€</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Payé</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">29/09/2024</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Septembre 2024</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2,450€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">150€</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2,600€</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Payé</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">31/08/2024</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Notifications and Alerts -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+    <h3 class="text-xl font-bold text-gray-800 mb-6">Notifications et Alertes</h3>
+    
+    <div class="space-y-4">
+      <div class="flex items-start space-x-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mt-1">
+          <i class="fa-solid fa-exclamation-triangle text-yellow-600"></i>
+        </div>
+        <div class="flex-1">
+          <h4 class="font-semibold text-yellow-800 mb-1">Loyer de décembre en attente</h4>
+          <p class="text-sm text-yellow-700">Le paiement du loyer de décembre 2024 (2,600€) est attendu avant le 01/12/2024.</p>
+          <button class="mt-2 text-sm text-yellow-800 hover:text-yellow-900 font-medium">
+            Effectuer le paiement →
+          </button>
+        </div>
+        <span class="text-xs text-yellow-600">Il y a 2 jours</span>
+      </div>
+
+      <div class="flex items-start space-x-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mt-1">
+          <i class="fa-solid fa-info-circle text-blue-600"></i>
+        </div>
+        <div class="flex-1">
+          <h4 class="font-semibold text-blue-800 mb-1">Révision annuelle du loyer</h4>
+          <p class="text-sm text-blue-700">Votre loyer sera révisé le 15 mars 2025 selon l'indice de référence des loyers (IRL).</p>
+          <button class="mt-2 text-sm text-blue-800 hover:text-blue-900 font-medium">
+            En savoir plus →
+          </button>
+        </div>
+        <span class="text-xs text-blue-600">Il y a 5 jours</span>
+      </div>
+
+      <div class="flex items-start space-x-4 p-4 bg-green-50 border border-green-200 rounded-xl">
+        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mt-1">
+          <i class="fa-solid fa-check-circle text-green-600"></i>
+        </div>
+        <div class="flex-1">
+          <h4 class="font-semibold text-green-800 mb-1">Assurance habitation renouvelée</h4>
+          <p class="text-sm text-green-700">Votre assurance habitation a été automatiquement renouvelée pour l'année 2025.</p>
+          <button class="mt-2 text-sm text-green-800 hover:text-green-900 font-medium">
+            Télécharger l'attestation →
+          </button>
+        </div>
+        <span class="text-xs text-green-600">Il y a 1 semaine</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Landlord -->
+  <div class="bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl border border-orange-200 shadow-lg p-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-orange-800 mb-2">Contactez votre propriétaire</h2>
+        <p class="text-orange-700 mb-4">Besoin d'aide ou d'informations sur votre contrat ?</p>
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center space-x-2">
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="M. Jean Dupont" class="w-8 h-8 rounded-full">
+            <div>
+              <p class="font-medium text-orange-800">M. Jean Dupont</p>
+              <p class="text-sm text-orange-600">Propriétaire</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-phone text-orange-600"></i>
+            <span class="text-orange-800 font-medium">01 42 86 73 95</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-envelope text-orange-600"></i>
+            <span class="text-orange-800 font-medium">j.dupont&#64;email.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex space-x-3">
+        <button class="bg-white text-orange-600 border border-orange-300 px-6 py-3 rounded-xl hover:bg-orange-50 transition-all duration-300 font-medium">
+          <i class="fa-solid fa-envelope mr-2"></i>
+          Envoyer un message
+        </button>
+        <button class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium">
+          <i class="fa-solid fa-phone mr-2"></i>
+          Appeler maintenant
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

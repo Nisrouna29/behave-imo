@@ -1,0 +1,369 @@
+/* Styles spécifiques pour le composant états des lieux */
+::-webkit-scrollbar { 
+  display: none;
+}
+
+* { 
+  font-family: 'Inter', sans-serif; 
+}
+
+.gradient-bg { 
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); 
+}
+
+.glass-effect { 
+  backdrop-filter: blur(10px); 
+  background: rgba(255, 255, 255, 0.95); 
+}
+
+.highlighted-section {
+  outline: 2px solid #3F20FB;
+  background-color: rgba(63, 32, 251, 0.1);
+}
+
+.edit-button {
+  position: absolute;
+  z-index: 1000;
+}
+
+html, body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Styles pour les cartes */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour les boutons */
+.btn-primary {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4);
+}
+
+/* Styles pour les badges */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+/* Styles pour les tableaux */
+.table-row-hover:hover {
+  background-color: rgba(249, 115, 22, 0.05);
+}
+
+/* Styles pour la timeline */
+.timeline-line {
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e5e7eb;
+}
+
+.timeline-dot {
+  position: relative;
+  z-index: 10;
+}
+
+/* Styles pour les filtres */
+.filter-input:focus {
+  ring: 2px;
+  ring-color: #f97316;
+  border-color: transparent;
+}
+
+/* Styles pour les statistiques */
+.stat-card {
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour les icônes */
+.icon-wrapper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles pour les images */
+.property-image {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.inspector-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+/* Styles pour les actions */
+.action-btn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Styles pour les documents */
+.document-item {
+  padding: 0.5rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.document-item:hover {
+  background-color: #f3f4f6;
+}
+
+/* Styles pour les photos */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.photo-thumbnail {
+  width: 100%;
+  height: 4rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+/* Styles pour les défauts */
+.defect-category {
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.defect-category.critiques {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.defect-category.moyens {
+  background-color: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.defect-category.mineurs {
+  background-color: #fffbeb;
+  border-color: #fde68a;
+}
+
+/* Styles pour les états */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge.termine {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.en-cours {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.planifie {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* Styles pour les types */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.type-badge.entree {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.type-badge.sortie {
+  background-color: #fecaca;
+  color: #991b1b;
+}
+
+.type-badge.periodique {
+  background-color: #e9d5ff;
+  color: #7c3aed;
+}
+
+/* Styles pour les défauts */
+.defect-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.defect-badge.green {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.defect-badge.yellow {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.defect-badge.orange {
+  background-color: #fed7aa;
+  color: #c2410c;
+}
+
+.defect-badge.red {
+  background-color: #fecaca;
+  color: #991b1b;
+}
+
+.defect-badge.gray {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+/* Styles pour les boutons de vue */
+.view-toggle {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.view-toggle.active {
+  background-color: rgba(249, 115, 22, 0.1);
+  color: #ea580c;
+}
+
+.view-toggle:not(.active) {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.view-toggle:not(.active):hover {
+  background-color: #e5e7eb;
+}
+
+/* Styles pour les paginations */
+.pagination-btn {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn.active {
+  background-color: #ea580c;
+  color: white;
+  border-color: #ea580c;
+}
+
+.pagination-btn:not(.active) {
+  background-color: white;
+  color: #6b7280;
+  border-color: #d1d5db;
+}
+
+.pagination-btn:not(.active):hover {
+  background-color: #f9fafb;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Styles pour les sections de contact */
+.contact-section {
+  background: linear-gradient(to right, #fff7ed, #fed7aa);
+  border-color: #fed7aa;
+}
+
+/* Styles pour les animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Styles pour les responsive */
+@media (max-width: 768px) {
+  .property-image {
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .defect-category {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+}

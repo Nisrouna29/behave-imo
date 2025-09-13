@@ -1,0 +1,107 @@
+/* Styles pour le composant mes-contrats */
+.gradient-bg {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Animations pour les cartes de contrat */
+.contract-card {
+  transition: all 0.3s ease;
+}
+
+.contract-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Styles pour les boutons d'action */
+.action-button {
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+}
+
+/* Styles pour la timeline */
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #3b82f6, #10b981);
+}
+
+/* Styles pour les badges de statut */
+.status-badge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Styles pour les documents */
+.document-card {
+  transition: all 0.2s ease;
+}
+
+.document-card:hover {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+  .contract-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dates-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Styles pour les icônes */
+.icon-orange {
+  color: #f97316;
+}
+
+.icon-green {
+  color: #10b981;
+}
+
+.icon-blue {
+  color: #3b82f6;
+}
+
+.icon-red {
+  color: #ef4444;
+}
+
+/* Styles pour les gradients de texte */
+.text-gradient {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

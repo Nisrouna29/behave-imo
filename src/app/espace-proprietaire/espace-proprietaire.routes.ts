@@ -11,6 +11,8 @@ import { StatistiquesComponent } from './components/statistiques/statistiques.co
 import { PlanningComponent } from './components/planning/planning.component';
 import { ParametresComponent } from './components/parametres/parametres.component';
 import { MesContratsComponent } from './components/mes-contrats/mes-contrats.component';
+import { EtatLieuxComponent } from './components/etat-lieux/etat-lieux.component';
+import { NouvelEtatLieuxComponent } from './components/nouvel-etat-lieux/nouvel-etat-lieux.component';
 import { ChatComponent } from './components/chat/chat.component';
 
 export const espaceProprietaireRoutes: Routes = [
@@ -27,6 +29,8 @@ export const espaceProprietaireRoutes: Routes = [
   { path: 'statistiques', component: StatistiquesComponent },
   { path: 'planning', component: PlanningComponent },
   { path: 'mes-contrats', component: MesContratsComponent },
+  { path: 'etat-lieux', component: EtatLieuxComponent },
+  { path: 'nouvel-etat-lieux', component: NouvelEtatLieuxComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'parametres', component: ParametresComponent },
 ];

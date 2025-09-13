@@ -41,6 +41,8 @@ export class EspaceProprietaireComponent {
             this.currentView = 'dossiers-locataires';
           } else if (lastSegment === 'gestion-paye') {
             this.currentView = 'gestion-paye';
+          } else if (lastSegment === 'etat-lieux') {
+            this.currentView = 'etat-lieux';
           } else {
             this.currentView = lastSegment || 'accueil';
           }

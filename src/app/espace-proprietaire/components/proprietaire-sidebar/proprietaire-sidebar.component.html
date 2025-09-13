@@ -56,6 +56,19 @@
                             <span>Propriétés</span>
                         }
                     </span>
+                    <span class="flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer"
+                          [class]="isSidebarCollapsed ? 'justify-center' : ''"
+                          [class.text-gray-700]="currentView !== 'etat-lieux'"
+                          [class.hover:bg-orange-50]="currentView !== 'etat-lieux'"
+                          [class.hover:text-orange-600]="currentView !== 'etat-lieux'"
+                          [class.text-orange-600]="currentView === 'etat-lieux'"
+                          [class.bg-orange-50]="currentView === 'etat-lieux'"
+                          (click)="onMenuItemClick('etat-lieux')">
+                        <i class="fa-solid fa-clipboard-check w-5 h-5" [class]="isSidebarCollapsed ? '' : 'mr-3'"></i>
+                        @if (!isSidebarCollapsed) {
+                            <span>États des lieux</span>
+                        }
+                    </span>
                 </div>
             </div>
 
@@ -229,6 +242,16 @@
                           (click)="onMenuItemClick('proprietes')">
                         <i class="fa-solid fa-building w-5 h-5 mr-3"></i>
                         <span>Propriétés</span>
+                    </span>
+                    <span class="flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer"
+                          [class.text-gray-700]="currentView !== 'etat-lieux'"
+                          [class.hover:bg-orange-50]="currentView !== 'etat-lieux'"
+                          [class.hover:text-orange-600]="currentView !== 'etat-lieux'"
+                          [class.text-orange-600]="currentView === 'etat-lieux'"
+                          [class.bg-orange-50]="currentView === 'etat-lieux'"
+                          (click)="onMenuItemClick('etat-lieux')">
+                        <i class="fa-solid fa-clipboard-check w-5 h-5 mr-3"></i>
+                        <span>États des lieux</span>
                     </span>
                 </div>
             </div>

@@ -1,0 +1,189 @@
+::-webkit-scrollbar { 
+  display: none;
+}
+
+* { 
+  font-family: 'Inter', sans-serif; 
+}
+
+.gradient-bg { 
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); 
+}
+
+.glass-effect { 
+  backdrop-filter: blur(10px); 
+  background: rgba(255, 255, 255, 0.95); 
+}
+
+.highlighted-section {
+  outline: 2px solid #3F20FB;
+  background-color: rgba(63, 32, 251, 0.1);
+}
+
+.edit-button {
+  position: absolute;
+  z-index: 1000;
+}
+
+html, body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Styles spécifiques pour le nouvel état des lieux */
+.room-card {
+  transition: all 0.3s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.template-card {
+  transition: all 0.3s ease;
+}
+
+.template-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.state-btn {
+  transition: all 0.2s ease;
+}
+
+.state-btn:hover {
+  transform: translateY(-1px);
+}
+
+.state-btn.selected {
+  font-weight: 600;
+}
+
+.defect-card {
+  transition: all 0.3s ease;
+}
+
+.defect-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.photo-container {
+  transition: all 0.3s ease;
+}
+
+.photo-container:hover .photo-overlay {
+  opacity: 1;
+}
+
+.photo-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tab-button {
+  transition: all 0.2s ease;
+}
+
+.tab-button.active {
+  border-bottom-color: #f97316;
+  color: #ea580c;
+}
+
+.progress-bar {
+  transition: width 0.5s ease;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+  
+  .mobile-full {
+    width: 100%;
+  }
+  
+  .mobile-stack {
+    flex-direction: column;
+  }
+}
+
+/* Styles pour les badges de statut */
+.severity-urgent {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.severity-moyen {
+  background-color: #fffbeb;
+  color: #d97706;
+  border-color: #fed7aa;
+}
+
+.severity-mineur {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border-color: #bbf7d0;
+}
+
+/* Styles pour les boutons d'action */
+.action-btn {
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles pour les formulaires */
+.form-input {
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* Styles pour les cartes de progression */
+.progress-card {
+  transition: all 0.3s ease;
+}
+
+.progress-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+}
