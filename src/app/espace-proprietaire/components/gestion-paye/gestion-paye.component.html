@@ -1,22 +1,26 @@
 <main class="flex-1">
-    <div id="payment-management" class="max-w-7xl mx-auto px-6 py-8">
-        <div id="payment-header" class="flex items-center justify-between mb-8">
-            <div class="flex items-center space-x-4">
-                <button (click)="goBack()" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <i class="fa-solid fa-arrow-left text-gray-600"></i>
-                </button>
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-800">Gestion de Paye</h1>
-                    <p class="text-gray-600">Suivi des paiements mensuels des locataires</p>
+    <!-- Hero Section -->
+    <section id="hero-section" class="gradient-bg h-[300px] relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+            <div class="text-center text-white">
+                <h1 class="text-4xl font-bold mb-4">Gestion de Paye</h1>
+                <p class="text-xl mb-8 opacity-90">Suivez et gérez tous les paiements de vos locataires en temps réel</p>
+                <div class="flex justify-center space-x-4">
+                    <button (click)="exportReport()" class="bg-white text-orange-600 px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+                        <i class="fa-solid fa-download mr-2"></i>
+                        Exporter rapport
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-orange-600 transition-all">
+                        <i class="fa-solid fa-bell mr-2"></i>
+                        Envoyer rappels
+                    </button>
                 </div>
             </div>
-            <div class="flex space-x-3">
-                <button (click)="exportReport()" class="border border-orange-500 text-orange-500 px-6 py-3 rounded-xl hover:bg-orange-50 transition-all duration-300 font-medium">
-                    <i class="fa-solid fa-download mr-2"></i>
-                    Exporter rapport
-                </button>
-            </div>
         </div>
+    </section>
+
+    <div id="payment-management" class="max-w-7xl mx-auto px-6 py-8">
 
         <div id="stats-overview" class="grid grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
