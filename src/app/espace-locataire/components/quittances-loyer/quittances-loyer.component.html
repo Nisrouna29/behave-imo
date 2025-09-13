@@ -1,0 +1,508 @@
+<div class="p-8">
+  <div id="breadcrumb-section" class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Quittances de Loyer</span>
+    </nav>
+  </div>
+
+  <div id="page-header-section" class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Quittances de Loyer</h1>
+        <p class="text-gray-600">Consultez et téléchargez toutes vos quittances de loyer</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-filter mr-2"></i>
+          Filtrer
+        </button>
+        <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+          <i class="fa-solid fa-download mr-2"></i>
+          Télécharger tout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="receipt-filters-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Année</label>
+          <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option>2025</option>
+            <option>2024</option>
+            <option>2023</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Mois</label>
+          <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option>Tous les mois</option>
+            <option>Janvier</option>
+            <option>Décembre</option>
+            <option>Novembre</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
+          <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option>Tous</option>
+            <option>Payé</option>
+            <option>En attente</option>
+            <option>En retard</option>
+          </select>
+        </div>
+        <div class="flex items-end">
+          <button class="w-full px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+            Appliquer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="receipts-overview-section" class="mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">15</p>
+            <p class="text-gray-600 text-sm">Quittances payées</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clock text-yellow-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">1</p>
+            <p class="text-gray-600 text-sm">En attente</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-euro-sign text-blue-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">44,250€</p>
+            <p class="text-gray-600 text-sm">Total payé</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-calendar text-orange-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">16</p>
+            <p class="text-gray-600 text-sm">Mois de location</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="receipt-detail-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-8">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold text-gray-900">Quittance de Loyer - Décembre 2024</h2>
+          <div class="flex items-center space-x-3">
+            <button onclick="window.print()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+              <i class="fa-solid fa-print mr-2"></i>
+              Imprimer
+            </button>
+            <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+              <i class="fa-solid fa-download mr-2"></i>
+              Télécharger PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="border-2 border-gray-200 rounded-lg p-8">
+          <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">QUITTANCE DE LOYER</h1>
+            <p class="text-gray-600">Période du 1er au 31 Décembre 2024</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Bailleur</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <p class="font-semibold text-gray-900">Marie DUBOIS</p>
+                <p class="text-gray-700">45 Avenue Foch</p>
+                <p class="text-gray-700">75016 Paris</p>
+                <p class="text-gray-700">Tél: 01 42 56 78 90</p>
+                <p class="text-gray-700">Email: marie.dubois&#64;email.com</p>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Locataire</h3>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <p class="font-semibold text-gray-900">Pierre MARTIN</p>
+                <p class="text-gray-700">123 Avenue Charles de Gaulle</p>
+                <p class="text-gray-700">92200 Neuilly-sur-Seine</p>
+                <p class="text-gray-700">Tél: 06 12 34 56 78</p>
+                <p class="text-gray-700">Email: pierre.martin&#64;email.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Description du Logement</h3>
+            <div class="bg-blue-50 rounded-lg p-4">
+              <p class="text-gray-900"><span class="font-semibold">Adresse:</span> 123 Avenue Charles de Gaulle, 92200 Neuilly-sur-Seine</p>
+              <p class="text-gray-900"><span class="font-semibold">Type:</span> Villa individuelle de 120m²</p>
+              <p class="text-gray-900"><span class="font-semibold">Composition:</span> 4 chambres, 2 salles de bain, jardin 200m²</p>
+              <p class="text-gray-900"><span class="font-semibold">Parking:</span> 2 places de stationnement</p>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Détail du Paiement</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full border border-gray-300">
+                <thead class="bg-gray-100">
+                  <tr>
+                    <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-900">Désignation</th>
+                    <th class="border border-gray-300 px-4 py-3 text-right font-semibold text-gray-900">Montant</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border border-gray-300 px-4 py-3 text-gray-900">Loyer mensuel (Décembre 2024)</td>
+                    <td class="border border-gray-300 px-4 py-3 text-right font-semibold text-gray-900">2,800.00 €</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-300 px-4 py-3 text-gray-900">Charges locatives</td>
+                    <td class="border border-gray-300 px-4 py-3 text-right font-semibold text-gray-900">150.00 €</td>
+                  </tr>
+                  <tr class="bg-orange-50">
+                    <td class="border border-gray-300 px-4 py-3 font-bold text-gray-900">TOTAL PAYÉ</td>
+                    <td class="border border-gray-300 px-4 py-3 text-right font-bold text-orange-600 text-xl">2,950.00 €</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Informations de Paiement</h3>
+              <div class="space-y-2">
+                <p class="text-gray-900"><span class="font-semibold">Mode de paiement:</span> Virement bancaire</p>
+                <p class="text-gray-900"><span class="font-semibold">Date de paiement:</span> 01 Décembre 2024</p>
+                <p class="text-gray-900"><span class="font-semibold">Référence:</span> LOYER-DEC-2024-001</p>
+                <p class="text-gray-900"><span class="font-semibold">Statut:</span> <span class="text-green-600 font-bold">PAYÉ</span></p>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Période de Location</h3>
+              <div class="space-y-2">
+                <p class="text-gray-900"><span class="font-semibold">Début de bail:</span> 01 Octobre 2024</p>
+                <p class="text-gray-900"><span class="font-semibold">Fin de bail:</span> 30 Septembre 2027</p>
+                <p class="text-gray-900"><span class="font-semibold">Durée:</span> 36 mois</p>
+                <p class="text-gray-900"><span class="font-semibold">Dépôt de garantie:</span> 2,800.00 €</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6">
+            <div class="flex justify-between items-end">
+              <div>
+                <p class="text-sm text-gray-600 mb-2">Document généré le:</p>
+                <p class="text-gray-900 font-semibold">13 Janvier 2025</p>
+              </div>
+              <div class="text-right">
+                <p class="text-sm text-gray-600 mb-2">Signature du bailleur:</p>
+                <div class="w-32 h-16 border border-gray-300 rounded flex items-center justify-center">
+                  <span class="text-gray-400 text-sm">Signature</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p class="text-sm text-yellow-800">
+              <i class="fa-solid fa-info-circle mr-2"></i>
+              <strong>Information importante:</strong> Cette quittance certifie que le locataire s'est acquitté du loyer et des charges pour la période mentionnée ci-dessus. Elle peut être utilisée comme justificatif de domicile.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="receipts-history-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-900">Historique des Quittances</h2>
+      </div>
+      <div class="p-6">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Période</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Loyer</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Charges</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Total</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Date paiement</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Statut</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-4 px-4 text-gray-900">Janvier 2025</td>
+                <td class="py-4 px-4 text-gray-900">2,800€</td>
+                <td class="py-4 px-4 text-gray-900">150€</td>
+                <td class="py-4 px-4 font-semibold text-gray-900">2,950€</td>
+                <td class="py-4 px-4 text-gray-600">-</td>
+                <td class="py-4 px-4">
+                  <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">En attente</span>
+                </td>
+                <td class="py-4 px-4">
+                  <button class="text-orange-600 hover:text-orange-700 font-medium text-sm mr-3">Payer</button>
+                  <button class="text-gray-400 text-sm" disabled="">Indisponible</button>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 bg-green-50">
+                <td class="py-4 px-4 text-gray-900 font-semibold">Décembre 2024</td>
+                <td class="py-4 px-4 text-gray-900">2,800€</td>
+                <td class="py-4 px-4 text-gray-900">150€</td>
+                <td class="py-4 px-4 font-semibold text-gray-900">2,950€</td>
+                <td class="py-4 px-4 text-gray-600">01/12/2024</td>
+                <td class="py-4 px-4">
+                  <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Payé</span>
+                </td>
+                <td class="py-4 px-4">
+                  <button class="text-blue-600 hover:text-blue-700 font-medium text-sm mr-3">
+                    <i class="fa-solid fa-eye mr-1"></i>Voir
+                  </button>
+                  <button class="text-green-600 hover:text-green-700 font-medium text-sm">
+                    <i class="fa-solid fa-download mr-1"></i>PDF
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-4 px-4 text-gray-900">Novembre 2024</td>
+                <td class="py-4 px-4 text-gray-900">2,800€</td>
+                <td class="py-4 px-4 text-gray-900">150€</td>
+                <td class="py-4 px-4 font-semibold text-gray-900">2,950€</td>
+                <td class="py-4 px-4 text-gray-600">01/11/2024</td>
+                <td class="py-4 px-4">
+                  <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Payé</span>
+                </td>
+                <td class="py-4 px-4">
+                  <button class="text-blue-600 hover:text-blue-700 font-medium text-sm mr-3">
+                    <i class="fa-solid fa-eye mr-1"></i>Voir
+                  </button>
+                  <button class="text-green-600 hover:text-green-700 font-medium text-sm">
+                    <i class="fa-solid fa-download mr-1"></i>PDF
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-4 px-4 text-gray-900">Octobre 2024</td>
+                <td class="py-4 px-4 text-gray-900">2,800€</td>
+                <td class="py-4 px-4 text-gray-900">150€</td>
+                <td class="py-4 px-4 font-semibold text-gray-900">2,950€</td>
+                <td class="py-4 px-4 text-gray-600">01/10/2024</td>
+                <td class="py-4 px-4">
+                  <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Payé</span>
+                </td>
+                <td class="py-4 px-4">
+                  <button class="text-blue-600 hover:text-blue-700 font-medium text-sm mr-3">
+                    <i class="fa-solid fa-eye mr-1"></i>Voir
+                  </button>
+                  <button class="text-green-600 hover:text-green-700 font-medium text-sm">
+                    <i class="fa-solid fa-download mr-1"></i>PDF
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-6 flex items-center justify-between">
+          <p class="text-sm text-gray-600">Affichage de 4 quittances sur 16 au total</p>
+          <div class="flex items-center space-x-2">
+            <button class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span class="px-3 py-2 bg-orange-500 text-white rounded-lg">1</span>
+            <span class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg cursor-pointer">2</span>
+            <span class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg cursor-pointer">3</span>
+            <span class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg cursor-pointer">4</span>
+            <button class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-reminders-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900">Rappels et Notifications</h2>
+      </div>
+      <div class="p-6">
+        <div class="space-y-4">
+          <div class="flex items-start p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+              <i class="fa-solid fa-exclamation-triangle text-yellow-600"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-gray-900 mb-1">Loyer Janvier 2025 à payer</h3>
+              <p class="text-gray-700 text-sm mb-3">Le paiement du loyer de janvier est attendu avant le 5 janvier 2025.</p>
+              <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600">Montant: 2,950€</span>
+                <button class="text-orange-600 hover:text-orange-700 font-medium text-sm">
+                  Payer maintenant
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-start p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+              <i class="fa-solid fa-info-circle text-blue-600"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-gray-900 mb-1">Révision annuelle du loyer</h3>
+              <p class="text-gray-700 text-sm mb-3">La révision annuelle du loyer aura lieu le 1er octobre 2025 selon l'indice IRL.</p>
+              <span class="text-sm text-gray-600">Prochain montant estimé: 2,856€</span>
+            </div>
+          </div>
+
+          <div class="flex items-start p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+              <i class="fa-solid fa-check-circle text-green-600"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-gray-900 mb-1">Paiement automatique activé</h3>
+              <p class="text-gray-700 text-sm mb-3">Vos paiements sont automatisés chaque 1er du mois. Assurez-vous d'avoir suffisamment de fonds.</p>
+              <button class="text-green-600 hover:text-green-700 font-medium text-sm">
+                Gérer les prélèvements
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tax-summary-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900">Récapitulatif Fiscal</h2>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-4">Année 2024</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span class="text-gray-700">Total loyers payés</span>
+                <span class="font-semibold text-gray-900">8,400€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-700">Total charges payées</span>
+                <span class="font-semibold text-gray-900">450€</span>
+              </div>
+              <div class="flex justify-between border-t pt-3">
+                <span class="font-semibold text-gray-900">Total 2024</span>
+                <span class="font-bold text-orange-600">8,850€</span>
+              </div>
+            </div>
+            <button class="w-full mt-4 px-4 py-2 bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors">
+              <i class="fa-solid fa-download mr-2"></i>
+              Attestation fiscale 2024
+            </button>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-4">Année 2025 (en cours)</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span class="text-gray-700">Total loyers payés</span>
+                <span class="font-semibold text-gray-900">0€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-700">Total charges payées</span>
+                <span class="font-semibold text-gray-900">0€</span>
+              </div>
+              <div class="flex justify-between border-t pt-3">
+                <span class="font-semibold text-gray-900">Total 2025</span>
+                <span class="font-bold text-orange-600">0€</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+              <p class="text-sm text-gray-600">
+                <i class="fa-solid fa-info-circle mr-2"></i>
+                L'attestation 2025 sera disponible en janvier 2026
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="help-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900">Aide et Support</h2>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-50 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <i class="fa-solid fa-question-circle text-blue-500 text-2xl"></i>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Questions fréquentes</h3>
+            <p class="text-gray-600 text-sm mb-4">Trouvez des réponses aux questions les plus courantes sur les quittances.</p>
+            <button class="text-blue-600 hover:text-blue-700 font-medium text-sm">
+              Consulter la FAQ
+            </button>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-50 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <i class="fa-solid fa-headset text-green-500 text-2xl"></i>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Support technique</h3>
+            <p class="text-gray-600 text-sm mb-4">Besoin d'aide pour télécharger ou imprimer vos quittances ?</p>
+            <button class="text-green-600 hover:text-green-700 font-medium text-sm">
+              Contacter le support
+            </button>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-orange-50 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <i class="fa-solid fa-file-alt text-orange-500 text-2xl"></i>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Guide utilisateur</h3>
+            <p class="text-gray-600 text-sm mb-4">Apprenez à utiliser toutes les fonctionnalités de votre espace locataire.</p>
+            <button class="text-orange-600 hover:text-orange-700 font-medium text-sm">
+              Télécharger le guide
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

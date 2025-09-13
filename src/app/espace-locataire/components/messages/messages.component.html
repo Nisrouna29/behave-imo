@@ -1,0 +1,467 @@
+<div class="p-8">
+  <div id="breadcrumb-section" class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Communication</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Messages</span>
+    </nav>
+  </div>
+
+  <div id="page-header-section" class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Messages</h1>
+        <p class="text-gray-600">Communiquez avec votre bailleur et l'équipe de gestion</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-search mr-2"></i>
+          Rechercher
+        </button>
+        <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+          <i class="fa-solid fa-plus mr-2"></i>
+          Nouveau message
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-6">
+    <div id="messages-sidebar" class="col-span-4">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 h-[700px] flex flex-col">
+        <div class="p-6 border-b border-gray-100">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-bold text-gray-900">Conversations</h2>
+            <div class="flex items-center space-x-2">
+              <button class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
+                <i class="fa-solid fa-filter text-sm"></i>
+              </button>
+              <button class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
+                <i class="fa-solid fa-ellipsis-h text-sm"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="relative">
+            <input type="text" placeholder="Rechercher une conversation..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
+          </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto">
+          <div class="conversation-item p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 bg-orange-50 border-l-4 border-l-orange-500">
+            <div class="flex items-start space-x-3">
+              <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Marie Dubois" class="w-10 h-10 rounded-full">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-semibold text-gray-900 truncate">Marie Dubois</h3>
+                  <span class="text-xs text-gray-500">14:30</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-1">Bailleur</p>
+                <p class="text-sm text-gray-800 truncate">Bonjour Pierre, concernant la réparation du chauffage...</p>
+                <div class="flex items-center mt-2">
+                  <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                  <span class="text-xs text-red-600 font-medium">Non lu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="conversation-item p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50">
+            <div class="flex items-start space-x-3">
+              <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-8.jpg" alt="Support ImmoPro" class="w-10 h-10 rounded-full">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-semibold text-gray-900 truncate">Support ImmoPro</h3>
+                  <span class="text-xs text-gray-500">Hier</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-1">Équipe support</p>
+                <p class="text-sm text-gray-700 truncate">Votre demande de quittance a été traitée avec succès</p>
+                <div class="flex items-center mt-2">
+                  <i class="fa-solid fa-check text-green-500 text-xs mr-2"></i>
+                  <span class="text-xs text-green-600">Lu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="conversation-item p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50">
+            <div class="flex items-start space-x-3">
+              <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg" alt="Syndic Immobilier" class="w-10 h-10 rounded-full">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-semibold text-gray-900 truncate">Syndic Immobilier</h3>
+                  <span class="text-xs text-gray-500">2 jours</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-1">Gestion immobilière</p>
+                <p class="text-sm text-gray-700 truncate">Assemblée générale prévue le 15 février</p>
+                <div class="flex items-center mt-2">
+                  <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                  <span class="text-xs text-blue-600 font-medium">1 nouveau</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="conversation-item p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50">
+            <div class="flex items-start space-x-3">
+              <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-9.jpg" alt="Jean Maintenance" class="w-10 h-10 rounded-full">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-semibold text-gray-900 truncate">Jean Maintenance</h3>
+                  <span class="text-xs text-gray-500">3 jours</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-1">Technicien</p>
+                <p class="text-sm text-gray-700 truncate">Intervention terminée pour la plomberie</p>
+                <div class="flex items-center mt-2">
+                  <i class="fa-solid fa-check text-green-500 text-xs mr-2"></i>
+                  <span class="text-xs text-green-600">Lu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="conversation-item p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50">
+            <div class="flex items-start space-x-3">
+              <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg" alt="Assurance Habitation" class="w-10 h-10 rounded-full">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-semibold text-gray-900 truncate">Assurance Habitation</h3>
+                  <span class="text-xs text-gray-500">1 sem</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-1">Service client</p>
+                <p class="text-sm text-gray-700 truncate">Renouvellement de votre contrat d'assurance</p>
+                <div class="flex items-center mt-2">
+                  <i class="fa-solid fa-check text-green-500 text-xs mr-2"></i>
+                  <span class="text-xs text-green-600">Lu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="messages-content" class="col-span-8">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 h-[700px] flex flex-col">
+        <div class="p-6 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Marie Dubois" class="w-12 h-12 rounded-full">
+              <div>
+                <h3 class="font-bold text-gray-900">Marie Dubois</h3>
+                <p class="text-sm text-gray-600">Bailleur • En ligne</p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
+                <i class="fa-solid fa-phone"></i>
+              </button>
+              <button class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
+                <i class="fa-solid fa-video"></i>
+              </button>
+              <button class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
+                <i class="fa-solid fa-ellipsis-h"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="messages-list" class="flex-1 overflow-y-auto p-6 space-y-4">
+          <div class="flex justify-center">
+            <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">Aujourd'hui</span>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Marie Dubois" class="w-8 h-8 rounded-full">
+            <div class="flex-1 max-w-md">
+              <div class="bg-gray-100 rounded-2xl rounded-tl-md p-4">
+                <p class="text-gray-900">Bonjour Pierre, j'espère que vous allez bien. Je vous contacte concernant la réparation du système de chauffage dans votre logement.</p>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block">14:15</span>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Marie Dubois" class="w-8 h-8 rounded-full">
+            <div class="flex-1 max-w-md">
+              <div class="bg-gray-100 rounded-2xl rounded-tl-md p-4">
+                <p class="text-gray-900">Le technicien peut passer jeudi matin entre 9h et 12h. Est-ce que cela vous convient ?</p>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block">14:16</span>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3 justify-end">
+            <div class="flex-1 max-w-md text-right">
+              <div class="bg-orange-500 text-white rounded-2xl rounded-tr-md p-4 inline-block">
+                <p>Bonjour Marie, merci pour votre message. Oui, jeudi matin me convient parfaitement.</p>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block">14:25</span>
+            </div>
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Vous" class="w-8 h-8 rounded-full">
+          </div>
+
+          <div class="flex items-start space-x-3 justify-end">
+            <div class="flex-1 max-w-md text-right">
+              <div class="bg-orange-500 text-white rounded-2xl rounded-tr-md p-4 inline-block">
+                <p>Je serai présent dans le logement. Faut-il que je prépare quelque chose de particulier ?</p>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block">14:26</span>
+            </div>
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Vous" class="w-8 h-8 rounded-full">
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Marie Dubois" class="w-8 h-8 rounded-full">
+            <div class="flex-1 max-w-md">
+              <div class="bg-gray-100 rounded-2xl rounded-tl-md p-4">
+                <p class="text-gray-900">Parfait ! Non, pas de préparation particulière. Le technicien apportera tout son matériel. Il vous contactera directement jeudi matin pour confirmer l'heure exacte.</p>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block">14:30</span>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 text-gray-500">
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Marie Dubois" class="w-6 h-6 rounded-full">
+            <div class="flex space-x-1">
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+            </div>
+            <span class="text-xs">Marie est en train d'écrire...</span>
+          </div>
+        </div>
+
+        <div class="p-6 border-t border-gray-100">
+          <div class="flex items-end space-x-4">
+            <button class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
+              <i class="fa-solid fa-paperclip"></i>
+            </button>
+            <button class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
+              <i class="fa-solid fa-image"></i>
+            </button>
+            <div class="flex-1">
+              <textarea placeholder="Tapez votre message..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-orange-500 focus:border-orange-500 resize-none" rows="1"></textarea>
+            </div>
+            <button class="px-6 py-3 gradient-bg text-white rounded-xl hover:shadow-lg transition-all">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+          <div class="flex items-center mt-3 text-xs text-gray-500">
+            <i class="fa-solid fa-info-circle mr-2"></i>
+            Appuyez sur Entrée pour envoyer, Maj+Entrée pour une nouvelle ligne
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quick-actions-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Actions rapides</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <button class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+            <i class="fa-solid fa-wrench text-blue-500"></i>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-gray-900 text-sm">Demande de réparation</p>
+            <p class="text-xs text-gray-600">Signaler un problème</p>
+          </div>
+        </button>
+        <button class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mr-3">
+            <i class="fa-solid fa-receipt text-green-500"></i>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-gray-900 text-sm">Demande de quittance</p>
+            <p class="text-xs text-gray-600">Obtenir un justificatif</p>
+          </div>
+        </button>
+        <button class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="w-10 h-10 bg-yellow-50 rounded-lg flex items-center justify-center mr-3">
+            <i class="fa-solid fa-calendar text-yellow-500"></i>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-gray-900 text-sm">Prendre RDV</p>
+            <p class="text-xs text-gray-600">Planifier une visite</p>
+          </div>
+        </button>
+        <button class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center mr-3">
+            <i class="fa-solid fa-exclamation-triangle text-red-500"></i>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-gray-900 text-sm">Urgence</p>
+            <p class="text-xs text-gray-600">Problème urgent</p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="message-stats-section" class="mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-envelope text-blue-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">23</p>
+            <p class="text-gray-600 text-sm">Messages reçus</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-paper-plane text-green-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">18</p>
+            <p class="text-gray-600 text-sm">Messages envoyés</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clock text-orange-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">2h</p>
+            <p class="text-gray-600 text-sm">Temps de réponse moyen</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-users text-purple-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">5</p>
+            <p class="text-gray-600 text-sm">Contacts actifs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="message-templates-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Modèles de messages</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+          <h3 class="font-semibold text-gray-900 mb-2">Demande de réparation</h3>
+          <p class="text-sm text-gray-600 mb-3">Bonjour, je souhaite signaler un problème dans mon logement qui nécessite une intervention...</p>
+          <div class="flex items-center text-xs text-gray-500">
+            <i class="fa-solid fa-copy mr-2"></i>
+            Utiliser ce modèle
+          </div>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+          <h3 class="font-semibold text-gray-900 mb-2">Absence temporaire</h3>
+          <p class="text-sm text-gray-600 mb-3">Bonjour, je vous informe que je serai absent(e) de mon logement du... au... pour...</p>
+          <div class="flex items-center text-xs text-gray-500">
+            <i class="fa-solid fa-copy mr-2"></i>
+            Utiliser ce modèle
+          </div>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+          <h3 class="font-semibold text-gray-900 mb-2">Demande de quittance</h3>
+          <p class="text-sm text-gray-600 mb-3">Bonjour, pourriez-vous me faire parvenir la quittance de loyer pour le mois de...</p>
+          <div class="flex items-center text-xs text-gray-500">
+            <i class="fa-solid fa-copy mr-2"></i>
+            Utiliser ce modèle
+          </div>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+          <h3 class="font-semibold text-gray-900 mb-2">Remerciements</h3>
+          <p class="text-sm text-gray-600 mb-3">Bonjour, je vous remercie pour votre intervention rapide concernant...</p>
+          <div class="flex items-center text-xs text-gray-500">
+            <i class="fa-solid fa-copy mr-2"></i>
+            Utiliser ce modèle
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="message-settings-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Paramètres de messagerie</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-4">Notifications</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium text-gray-900">Notifications par email</p>
+                <p class="text-sm text-gray-600">Recevoir les nouveaux messages par email</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer" checked="">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium text-gray-900">Notifications push</p>
+                <p class="text-sm text-gray-600">Notifications instantanées sur votre navigateur</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer" checked="">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium text-gray-900">Sons de notification</p>
+                <p class="text-sm text-gray-600">Jouer un son lors de nouveaux messages</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-4">Confidentialité</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium text-gray-900">Accusés de lecture</p>
+                <p class="text-sm text-gray-600">Indiquer quand vous avez lu un message</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer" checked="">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-medium text-gray-900">Statut en ligne</p>
+                <p class="text-sm text-gray-600">Afficher votre statut de connexion</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer" checked="">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+              </label>
+            </div>
+            <div>
+              <button class="w-full px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+                Sauvegarder les paramètres
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

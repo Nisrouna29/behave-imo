@@ -1,0 +1,744 @@
+<div class="p-8">
+  <div id="breadcrumb-section" class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Documents</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Mes Contrats</span>
+    </nav>
+  </div>
+
+  <div id="page-header-section" class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Mes Contrats de Bail</h1>
+        <p class="text-gray-600">Consultez et gérez tous vos contrats de location en un seul endroit</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-filter mr-2"></i>
+          Filtrer
+        </button>
+        <button class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-download mr-2"></i>
+          Télécharger tout
+        </button>
+        <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+          <i class="fa-solid fa-plus mr-2"></i>
+          Nouveau contrat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="contracts-overview-section" class="mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">3</p>
+            <p class="text-gray-600 text-sm">Contrats actifs</p>
+          </div>
+          <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-contract text-green-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">1</p>
+            <p class="text-gray-600 text-sm">Renouvellement proche</p>
+          </div>
+          <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clock text-yellow-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">2</p>
+            <p class="text-gray-600 text-sm">Avenants signés</p>
+          </div>
+          <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-file-signature text-blue-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">7</p>
+            <p class="text-gray-600 text-sm">Total historique</p>
+          </div>
+          <div class="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-archive text-purple-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="active-contracts-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-gray-900">Contrats Actifs</h2>
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-gray-600">Vue:</span>
+              <button class="px-3 py-1 bg-orange-100 text-orange-600 text-sm rounded-lg">
+                <i class="fa-solid fa-th-large mr-1"></i>Détaillée
+              </button>
+              <button class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-lg hover:bg-gray-200">
+                <i class="fa-solid fa-list mr-1"></i>Compacte
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="space-y-6">
+          
+          <div id="contract-card-1" class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fa-solid fa-file-contract text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-1">Contrat Villa Neuilly</h3>
+                  <p class="text-gray-600 mb-2">123 Avenue Charles de Gaulle, Neuilly-sur-Seine</p>
+                  <div class="flex items-center space-x-4 text-sm text-gray-500">
+                    <span class="flex items-center">
+                      <i class="fa-solid fa-calendar mr-1"></i>
+                      Signé le 15/03/2022
+                    </span>
+                    <span class="flex items-center">
+                      <i class="fa-solid fa-user mr-1"></i>
+                      Marie Dubois
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Actif</span>
+                <p class="text-gray-500 text-sm mt-2">ID: CNT-2022-001</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div class="bg-blue-50 rounded-lg p-4">
+                <p class="text-blue-600 font-semibold text-sm mb-1">Durée du bail</p>
+                <p class="text-gray-900 font-bold">3 ans</p>
+                <p class="text-gray-600 text-sm">Du 01/04/2022 au 30/09/2027</p>
+              </div>
+              <div class="bg-green-50 rounded-lg p-4">
+                <p class="text-green-600 font-semibold text-sm mb-1">Loyer mensuel</p>
+                <p class="text-gray-900 font-bold">2,800€</p>
+                <p class="text-gray-600 text-sm">+ 150€ de charges</p>
+              </div>
+              <div class="bg-purple-50 rounded-lg p-4">
+                <p class="text-purple-600 font-semibold text-sm mb-1">Dépôt de garantie</p>
+                <p class="text-gray-900 font-bold">5,600€</p>
+                <p class="text-gray-600 text-sm">2 mois de loyer</p>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+              <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600">Échéance: </span>
+                <span class="font-semibold text-orange-600">Dans 2 ans et 8 mois</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <button class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors">
+                  <i class="fa-solid fa-eye mr-2"></i>Consulter
+                </button>
+                <button class="px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors">
+                  <i class="fa-solid fa-download mr-2"></i>Télécharger
+                </button>
+                <button class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors">
+                  <i class="fa-solid fa-edit mr-2"></i>Avenant
+                </button>
+                <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                  <i class="fa-solid fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="contract-card-2" class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fa-solid fa-file-contract text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-1">Contrat Appartement Centre-Ville</h3>
+                  <p class="text-gray-600 mb-2">45 Rue de la République, Lyon 2ème</p>
+                  <div class="flex items-center space-x-4 text-sm text-gray-500">
+                    <span class="flex items-center">
+                      <i class="fa-solid fa-calendar mr-1"></i>
+                      Signé le 10/06/2023
+                    </span>
+                    <span class="flex items-center">
+                      <i class="fa-solid fa-user mr-1"></i>
+                      Jean Moreau
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Actif</span>
+                <p class="text-gray-500 text-sm mt-2">ID: CNT-2023-012</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div class="bg-blue-50 rounded-lg p-4">
+                <p class="text-blue-600 font-semibold text-sm mb-1">Durée du bail</p>
+                <p class="text-gray-900 font-bold">3 ans</p>
+                <p class="text-gray-600 text-sm">Du 15/06/2023 au 15/06/2026</p>
+              </div>
+              <div class="bg-green-50 rounded-lg p-4">
+                <p class="text-green-600 font-semibold text-sm mb-1">Loyer mensuel</p>
+                <p class="text-gray-900 font-bold">1,450€</p>
+                <p class="text-gray-600 text-sm">+ 100€ de charges</p>
+              </div>
+              <div class="bg-purple-50 rounded-lg p-4">
+                <p class="text-purple-600 font-semibold text-sm mb-1">Dépôt de garantie</p>
+                <p class="text-gray-900 font-bold">2,900€</p>
+                <p class="text-gray-600 text-sm">2 mois de loyer</p>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+              <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600">Échéance: </span>
+                <span class="font-semibold text-yellow-600">Dans 5 mois</span>
+                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">
+                  <i class="fa-solid fa-exclamation-triangle mr-1"></i>Renouvellement proche
+                </span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <button class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors">
+                  <i class="fa-solid fa-eye mr-2"></i>Consulter
+                </button>
+                <button class="px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors">
+                  <i class="fa-solid fa-download mr-2"></i>Télécharger
+                </button>
+                <button class="px-4 py-2 bg-yellow-50 text-yellow-600 rounded-lg hover:bg-yellow-100 transition-colors">
+                  <i class="fa-solid fa-refresh mr-2"></i>Renouveler
+                </button>
+                <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                  <i class="fa-solid fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="contract-card-3" class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fa-solid fa-file-contract text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-1">Contrat Studio Étudiant</h3>
+                  <p class="text-gray-600 mb-2">12 Rue des Écoles, Paris 5ème</p>
+                  <div class="flex items-center space-x-4 text-sm text-gray-500">
+                    <span class="flex items-center">
+                      <i class="fa-solid fa-calendar mr-1"></i>
+                      Signé le 20/08/2024
+                    </span>
+                    <span class="flex items-center">
+                      <i class="fa-solid fa-user mr-1"></i>
+                      Sophie Laurent
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Actif</span>
+                <p class="text-gray-500 text-sm mt-2">ID: CNT-2024-025</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div class="bg-blue-50 rounded-lg p-4">
+                <p class="text-blue-600 font-semibold text-sm mb-1">Durée du bail</p>
+                <p class="text-gray-900 font-bold">1 an</p>
+                <p class="text-gray-600 text-sm">Du 01/09/2024 au 31/08/2025</p>
+              </div>
+              <div class="bg-green-50 rounded-lg p-4">
+                <p class="text-green-600 font-semibold text-sm mb-1">Loyer mensuel</p>
+                <p class="text-gray-900 font-bold">950€</p>
+                <p class="text-gray-600 text-sm">+ 50€ de charges</p>
+              </div>
+              <div class="bg-purple-50 rounded-lg p-4">
+                <p class="text-purple-600 font-semibold text-sm mb-1">Dépôt de garantie</p>
+                <p class="text-gray-900 font-bold">950€</p>
+                <p class="text-gray-600 text-sm">1 mois de loyer</p>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+              <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600">Échéance: </span>
+                <span class="font-semibold text-green-600">Dans 8 mois</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <button class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors">
+                  <i class="fa-solid fa-eye mr-2"></i>Consulter
+                </button>
+                <button class="px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors">
+                  <i class="fa-solid fa-download mr-2"></i>Télécharger
+                </button>
+                <button class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors">
+                  <i class="fa-solid fa-edit mr-2"></i>Avenant
+                </button>
+                <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                  <i class="fa-solid fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <div id="contract-timeline-section">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div class="p-6 border-b border-gray-100">
+          <h2 class="text-xl font-bold text-gray-900">Chronologie des Contrats</h2>
+        </div>
+        <div class="p-6">
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <i class="fa-solid fa-file-signature text-green-600"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h3 class="font-semibold text-gray-900">Contrat Studio signé</h3>
+                  <span class="text-xs text-gray-500">20 Août 2024</span>
+                </div>
+                <p class="text-gray-600 text-sm">Sophie Laurent - Studio Étudiant</p>
+                <p class="text-green-600 text-sm font-medium">Nouveau bail étudiant - 950€/mois</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <i class="fa-solid fa-file-pen text-blue-600"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h3 class="font-semibold text-gray-900">Avenant signé</h3>
+                  <span class="text-xs text-gray-500">15 Mai 2024</span>
+                </div>
+                <p class="text-gray-600 text-sm">Marie Dubois - Villa Neuilly</p>
+                <p class="text-blue-600 text-sm font-medium">Révision loyer +3% - 2,800€/mois</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <i class="fa-solid fa-file-signature text-green-600"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h3 class="font-semibold text-gray-900">Renouvellement signé</h3>
+                  <span class="text-xs text-gray-500">10 Juin 2023</span>
+                </div>
+                <p class="text-gray-600 text-sm">Jean Moreau - Appartement Centre-Ville</p>
+                <p class="text-green-600 text-sm font-medium">Bail renouvelé 3 ans - 1,450€/mois</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <i class="fa-solid fa-file-contract text-orange-600"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h3 class="font-semibold text-gray-900">Premier contrat signé</h3>
+                  <span class="text-xs text-gray-500">15 Mars 2022</span>
+                </div>
+                <p class="text-gray-600 text-sm">Marie Dubois - Villa Neuilly</p>
+                <p class="text-orange-600 text-sm font-medium">Nouveau bail 3 ans - 2,720€/mois</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-100">
+            <button class="w-full text-orange-600 hover:text-orange-700 font-medium text-sm">
+              Voir l'historique complet
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contract-alerts-section">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div class="p-6 border-b border-gray-100">
+          <h2 class="text-xl font-bold text-gray-900">Alertes &amp; Rappels</h2>
+        </div>
+        <div class="p-6">
+          <div class="space-y-4">
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                  <i class="fa-solid fa-exclamation-triangle text-red-600"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-red-900 mb-1">Renouvellement urgent</h3>
+                  <p class="text-red-700 text-sm">Le contrat de Jean Moreau expire dans 5 mois</p>
+                  <p class="text-red-600 text-xs mt-1">Action requise avant le 15/01/2025</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                  <i class="fa-solid fa-clock text-yellow-600"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-yellow-900 mb-1">Révision de loyer</h3>
+                  <p class="text-yellow-700 text-sm">Révision annuelle prévue pour Villa Neuilly</p>
+                  <p class="text-yellow-600 text-xs mt-1">Échéance: 01/04/2025</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                  <i class="fa-solid fa-file-pen text-blue-600"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-blue-900 mb-1">Avenant en attente</h3>
+                  <p class="text-blue-700 text-sm">Modification charges Studio Étudiant</p>
+                  <p class="text-blue-600 text-xs mt-1">Signature en attente</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                  <i class="fa-solid fa-check text-green-600"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold text-green-900 mb-1">Contrats à jour</h3>
+                  <p class="text-green-700 text-sm">Tous les autres contrats sont conformes</p>
+                  <p class="text-green-600 text-xs mt-1">Dernière vérification: 10/01/2025</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contract-documents-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-gray-900">Documents Associés</h2>
+          <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+            <i class="fa-solid fa-upload mr-2"></i>
+            Importer un document
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="border border-blue-200 bg-blue-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-file-contract text-blue-600 text-xl"></i>
+              </div>
+              <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">PDF</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Bail Villa Neuilly</h3>
+            <p class="text-gray-600 text-sm mb-3">Contrat principal signé le 15/03/2022</p>
+            <div class="flex items-center justify-between text-xs text-gray-500">
+              <span>2.4 MB</span>
+              <span>Dernière modification: 15/05/2024</span>
+            </div>
+            <div class="flex items-center space-x-2 mt-4">
+              <button class="flex-1 px-3 py-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors text-sm">
+                <i class="fa-solid fa-eye mr-1"></i>Voir
+              </button>
+              <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="border border-green-200 bg-green-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-file-pen text-green-600 text-xl"></i>
+              </div>
+              <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">PDF</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Avenant révision loyer</h3>
+            <p class="text-gray-600 text-sm mb-3">Augmentation 3% - Villa Neuilly</p>
+            <div class="flex items-center justify-between text-xs text-gray-500">
+              <span>180 KB</span>
+              <span>Signé le: 15/05/2024</span>
+            </div>
+            <div class="flex items-center space-x-2 mt-4">
+              <button class="flex-1 px-3 py-2 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition-colors text-sm">
+                <i class="fa-solid fa-eye mr-1"></i>Voir
+              </button>
+              <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="border border-orange-200 bg-orange-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-clipboard-check text-orange-600 text-xl"></i>
+              </div>
+              <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs font-medium rounded-full">PDF</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">État des lieux entrant</h3>
+            <p class="text-gray-600 text-sm mb-3">Studio Étudiant - 01/09/2024</p>
+            <div class="flex items-center justify-between text-xs text-gray-500">
+              <span>3.2 MB</span>
+              <span>Photos incluses</span>
+            </div>
+            <div class="flex items-center space-x-2 mt-4">
+              <button class="flex-1 px-3 py-2 bg-orange-100 text-orange-600 rounded-lg hover:bg-orange-200 transition-colors text-sm">
+                <i class="fa-solid fa-eye mr-1"></i>Voir
+              </button>
+              <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="border border-purple-200 bg-purple-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-shield-alt text-purple-600 text-xl"></i>
+              </div>
+              <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">PDF</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Attestation d'assurance</h3>
+            <p class="text-gray-600 text-sm mb-3">Jean Moreau - Valide jusqu'au 15/06/2025</p>
+            <div class="flex items-center justify-between text-xs text-gray-500">
+              <span>156 KB</span>
+              <span>Reçue le: 10/06/2024</span>
+            </div>
+            <div class="flex items-center space-x-2 mt-4">
+              <button class="flex-1 px-3 py-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors text-sm">
+                <i class="fa-solid fa-eye mr-1"></i>Voir
+              </button>
+              <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="border border-yellow-200 bg-yellow-50 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-euro-sign text-yellow-600 text-xl"></i>
+              </div>
+              <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">PDF</span>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Quittance dépôt garantie</h3>
+            <p class="text-gray-600 text-sm mb-3">Sophie Laurent - 950€</p>
+            <div class="flex items-center justify-between text-xs text-gray-500">
+              <span>89 KB</span>
+              <span>Émise le: 20/08/2024</span>
+            </div>
+            <div class="flex items-center space-x-2 mt-4">
+              <button class="flex-1 px-3 py-2 bg-yellow-100 text-yellow-600 rounded-lg hover:bg-yellow-200 transition-colors text-sm">
+                <i class="fa-solid fa-eye mr-1"></i>Voir
+              </button>
+              <button class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center min-h-[200px] hover:border-orange-300 hover:bg-orange-50 transition-colors cursor-pointer">
+            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-3">
+              <i class="fa-solid fa-plus text-gray-400 text-xl"></i>
+            </div>
+            <p class="text-gray-600 font-medium mb-1">Ajouter un document</p>
+            <p class="text-gray-500 text-sm text-center">Glissez-déposez ou cliquez pour sélectionner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contract-analytics-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900">Analyse des Contrats</h2>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-4">Répartition par durée</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+                <div class="flex items-center">
+                  <div class="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
+                  <span class="text-gray-700">Contrats 3 ans</span>
+                </div>
+                <div class="text-right">
+                  <span class="font-bold text-gray-900">2</span>
+                  <span class="text-gray-500 text-sm ml-2">66.7%</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+                <div class="flex items-center">
+                  <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                  <span class="text-gray-700">Contrats 1 an</span>
+                </div>
+                <div class="text-right">
+                  <span class="font-bold text-gray-900">1</span>
+                  <span class="text-gray-500 text-sm ml-2">33.3%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-4">Revenus par contrat</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-lg">
+                <span class="text-gray-700">Villa Neuilly</span>
+                <span class="font-bold text-gray-900">2,800€/mois</span>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg">
+                <span class="text-gray-700">Appartement Centre-Ville</span>
+                <span class="font-bold text-gray-900">1,450€/mois</span>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg">
+                <span class="text-gray-700">Studio Étudiant</span>
+                <span class="font-bold text-gray-900">950€/mois</span>
+              </div>
+              <div class="pt-4 border-t border-gray-200">
+                <div class="flex items-center justify-between">
+                  <span class="font-semibold text-gray-900">Total mensuel</span>
+                  <span class="font-bold text-orange-600 text-xl">5,200€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="archived-contracts-section" class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="p-6 border-b border-gray-100">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-gray-900">Contrats Archivés</h2>
+          <button class="text-gray-500 hover:text-orange-600 text-sm">
+            <i class="fa-solid fa-archive mr-2"></i>
+            Voir tous les archives
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Logement</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Locataire</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Période</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Loyer</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Statut</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-900">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-3 px-4">
+                  <div>
+                    <p class="font-medium text-gray-900">Appartement Centre-Ville</p>
+                    <p class="text-sm text-gray-600">45 Rue de la République</p>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="flex items-center">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg" alt="Thomas Durand" class="w-8 h-8 rounded-full mr-3">
+                    <span class="text-gray-900">Thomas Durand</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4 text-gray-700">
+                  01/06/2020 - 31/05/2023
+                </td>
+                <td class="py-3 px-4 font-semibold text-gray-900">1,350€</td>
+                <td class="py-3 px-4">
+                  <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded-full">Expiré</span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="flex items-center space-x-2">
+                    <button class="text-blue-600 hover:text-blue-700">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="text-green-600 hover:text-green-700">
+                      <i class="fa-solid fa-download"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-3 px-4">
+                  <div>
+                    <p class="font-medium text-gray-900">Studio Montparnasse</p>
+                    <p class="text-sm text-gray-600">8 Rue de la Gaîté</p>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="flex items-center">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg" alt="Emma Petit" class="w-8 h-8 rounded-full mr-3">
+                    <span class="text-gray-900">Emma Petit</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4 text-gray-700">
+                  15/09/2021 - 14/09/2022
+                </td>
+                <td class="py-3 px-4 font-semibold text-gray-900">850€</td>
+                <td class="py-3 px-4">
+                  <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded-full">Terminé</span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="flex items-center space-x-2">
+                    <button class="text-blue-600 hover:text-blue-700">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="text-green-600 hover:text-green-700">
+                      <i class="fa-solid fa-download"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

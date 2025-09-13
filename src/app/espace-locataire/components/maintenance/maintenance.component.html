@@ -1,0 +1,426 @@
+<div class="p-8">
+  <div id="breadcrumb-section" class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Services</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Demande de Maintenance</span>
+    </nav>
+  </div>
+
+  <div id="page-header-section" class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Demande de Maintenance</h1>
+        <p class="text-gray-600">Signalez un problème dans votre logement et suivez l'avancement des réparations</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-history mr-2"></i>
+          Historique
+        </button>
+        <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+          <i class="fa-solid fa-plus mr-2"></i>
+          Nouvelle demande
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-6">
+    <div id="maintenance-form" class="col-span-8">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Nouvelle demande de maintenance</h2>
+          <p class="text-gray-600">Décrivez le problème rencontré dans votre logement</p>
+        </div>
+
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Type de problème *</label>
+              <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                <option value="">Sélectionnez le type de problème</option>
+                <option value="plomberie">Plomberie</option>
+                <option value="electricite">Électricité</option>
+                <option value="chauffage">Chauffage / Climatisation</option>
+                <option value="serrurerie">Serrurerie</option>
+                <option value="menuiserie">Menuiserie</option>
+                <option value="peinture">Peinture / Revêtement</option>
+                <option value="electromenager">Électroménager</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Niveau d'urgence *</label>
+              <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                <option value="">Sélectionnez le niveau d'urgence</option>
+                <option value="urgent" class="text-red-600">🔴 Urgent (24h)</option>
+                <option value="important" class="text-orange-600">🟠 Important (3-5 jours)</option>
+                <option value="normal" class="text-green-600">🟢 Normal (1-2 semaines)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Pièce concernée *</label>
+              <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                <option value="">Sélectionnez la pièce</option>
+                <option value="salon">Salon</option>
+                <option value="cuisine">Cuisine</option>
+                <option value="chambre1">Chambre 1</option>
+                <option value="chambre2">Chambre 2</option>
+                <option value="salle-de-bain">Salle de bain</option>
+                <option value="wc">WC</option>
+                <option value="entree">Entrée</option>
+                <option value="balcon">Balcon/Terrasse</option>
+                <option value="cave">Cave</option>
+                <option value="parking">Parking</option>
+                <option value="parties-communes">Parties communes</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Date souhaitée d'intervention</label>
+              <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Titre du problème *</label>
+            <input type="text" placeholder="Ex: Fuite d'eau sous l'évier de la cuisine" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Description détaillée *</label>
+            <textarea rows="6" placeholder="Décrivez le problème en détail : quand est-il apparu, dans quelles circonstances, quelle est l'ampleur du problème..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 resize-none"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Photos du problème</label>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-orange-400 transition-colors">
+              <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-camera text-gray-400 text-2xl"></i>
+              </div>
+              <p class="text-gray-600 mb-2">Glissez vos photos ici ou cliquez pour sélectionner</p>
+              <p class="text-sm text-gray-500">PNG, JPG jusqu'à 10MB (maximum 5 photos)</p>
+              <input type="file" multiple="" accept="image/*" class="hidden">
+              <button type="button" class="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                Choisir des fichiers
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Disponibilités</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm text-gray-700 mb-1">Créneaux préférés</label>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-orange-500 focus:ring-orange-500">
+                    <span class="ml-2 text-sm text-gray-700">Matin (8h-12h)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-orange-500 focus:ring-orange-500">
+                    <span class="ml-2 text-sm text-gray-700">Après-midi (14h-18h)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-orange-500 focus:ring-orange-500">
+                    <span class="ml-2 text-sm text-gray-700">Soirée (18h-20h)</span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm text-gray-700 mb-1">Jours de la semaine</label>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-orange-500 focus:ring-orange-500">
+                    <span class="ml-2 text-sm text-gray-700">Lundi - Vendredi</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-orange-500 focus:ring-orange-500">
+                    <span class="ml-2 text-sm text-gray-700">Samedi</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-orange-500 focus:ring-orange-500">
+                    <span class="ml-2 text-sm text-gray-700">Dimanche</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Informations de contact</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm text-gray-700 mb-1">Téléphone</label>
+                <input type="tel" value="06 12 34 56 78" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+              </div>
+              <div>
+                <label class="block text-sm text-gray-700 mb-1">Email</label>
+                <input type="email" value="pierre.martin&#64;email.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div class="flex items-start">
+              <i class="fa-solid fa-info-circle text-blue-500 mt-1 mr-3"></i>
+              <div>
+                <h3 class="font-semibold text-blue-900 mb-1">Information importante</h3>
+                <p class="text-sm text-blue-800">Votre demande sera transmise à votre bailleur et à l'équipe de maintenance. Vous recevrez une confirmation par email avec un numéro de suivi.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-6 border-t border-gray-200">
+            <button type="button" class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+              Annuler
+            </button>
+            <div class="flex space-x-4">
+              <button type="button" class="px-6 py-3 bg-white border border-orange-500 text-orange-600 rounded-lg hover:bg-orange-50 transition-colors">
+                Enregistrer brouillon
+              </button>
+              <button type="submit" class="px-8 py-3 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+                <i class="fa-solid fa-paper-plane mr-2"></i>
+                Envoyer la demande
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="maintenance-sidebar" class="col-span-4">
+      <div class="space-y-6">
+        <div id="urgency-guide" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Guide des urgences</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <div class="w-3 h-3 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+              <div>
+                <p class="font-semibold text-red-600 text-sm">URGENT (24h)</p>
+                <p class="text-sm text-gray-600">Fuite d'eau importante, panne électrique totale, chauffage en panne l'hiver, serrure cassée</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-3 h-3 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+              <div>
+                <p class="font-semibold text-orange-600 text-sm">IMPORTANT (3-5 jours)</p>
+                <p class="text-sm text-gray-600">Problème d'eau chaude, dysfonctionnement électroménager, infiltration légère</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-3 h-3 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+              <div>
+                <p class="font-semibold text-green-600 text-sm">NORMAL (1-2 semaines)</p>
+                <p class="text-sm text-gray-600">Retouche peinture, réparation mineure, remplacement d'ampoule</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="contact-emergency" class="bg-red-50 border border-red-200 rounded-xl p-6">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <i class="fa-solid fa-phone text-white text-xl"></i>
+            </div>
+            <h3 class="font-bold text-red-900 mb-2">Urgence absolue ?</h3>
+            <p class="text-sm text-red-800 mb-4">En cas d'urgence vitale ou de danger immédiat, contactez directement :</p>
+            <div class="space-y-2">
+              <span class="block w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors cursor-pointer">
+                <i class="fa-solid fa-phone mr-2"></i>
+                01 23 45 67 89
+              </span>
+              <p class="text-xs text-red-700">Service d'urgence 24h/24</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="maintenance-tips" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Conseils maintenance</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-lightbulb text-yellow-500 mt-1"></i>
+              <div>
+                <p class="font-medium text-gray-900 text-sm">Photos détaillées</p>
+                <p class="text-sm text-gray-600">Prenez plusieurs photos sous différents angles pour faciliter le diagnostic</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-clock text-blue-500 mt-1"></i>
+              <div>
+                <p class="font-medium text-gray-900 text-sm">Délais de traitement</p>
+                <p class="text-sm text-gray-600">Les demandes sont traitées dans l'ordre d'arrivée selon leur urgence</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-user-check text-green-500 mt-1"></i>
+              <div>
+                <p class="font-medium text-gray-900 text-sm">Présence requise</p>
+                <p class="text-sm text-gray-600">Votre présence ou celle d'un représentant est nécessaire lors de l'intervention</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="recent-requests" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Demandes récentes</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div>
+                <p class="font-medium text-gray-900 text-sm">Robinet qui goutte</p>
+                <p class="text-xs text-gray-600">Il y a 5 jours</p>
+              </div>
+              <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Terminé</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div>
+                <p class="font-medium text-gray-900 text-sm">Ampoule grillée</p>
+                <p class="text-xs text-gray-600">Il y a 2 semaines</p>
+              </div>
+              <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Terminé</span>
+            </div>
+          </div>
+          <button class="w-full mt-4 px-4 py-2 text-orange-600 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+            Voir tout l'historique
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="maintenance-stats-section" class="mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clipboard-list text-blue-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">12</p>
+            <p class="text-gray-600 text-sm">Demandes totales</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-hourglass-half text-orange-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">2</p>
+            <p class="text-gray-600 text-sm">En cours</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">10</p>
+            <p class="text-gray-600 text-sm">Terminées</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clock text-purple-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">3.2j</p>
+            <p class="text-gray-600 text-sm">Délai moyen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="maintenance-process-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Processus de traitement</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-paper-plane text-blue-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">1. Envoi</h3>
+          <p class="text-sm text-gray-600">Vous soumettez votre demande avec tous les détails nécessaires</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-search text-orange-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">2. Analyse</h3>
+          <p class="text-sm text-gray-600">Notre équipe évalue la demande et planifie l'intervention</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-wrench text-green-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">3. Intervention</h3>
+          <p class="text-sm text-gray-600">Le technicien qualifié intervient selon le planning convenu</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-check-double text-purple-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">4. Validation</h3>
+          <p class="text-sm text-gray-600">Vous validez la réparation et recevez le rapport d'intervention</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="maintenance-faq-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes</h2>
+      <div class="space-y-6">
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Combien de temps pour traiter ma demande ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600">
+            <p>Le délai de traitement dépend du niveau d'urgence : 24h pour les urgences, 3-5 jours pour les problèmes importants, et 1-2 semaines pour les demandes normales.</p>
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Qui prend en charge les frais de réparation ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600 hidden">
+            <p>Les frais sont à la charge du propriétaire pour les réparations dues à l'usure normale et les gros travaux. Les dégradations causées par le locataire sont à sa charge.</p>
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Puis-je suivre l'avancement de ma demande ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600 hidden">
+            <p>Oui, vous recevrez un numéro de suivi par email et pourrez suivre l'avancement dans votre espace locataire. Vous serez notifié à chaque étape.</p>
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Que faire si le problème persiste après l'intervention ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600 hidden">
+            <p>Si le problème n'est pas résolu, vous pouvez créer une nouvelle demande en mentionnant la référence de l'intervention précédente. Une nouvelle intervention sera programmée.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

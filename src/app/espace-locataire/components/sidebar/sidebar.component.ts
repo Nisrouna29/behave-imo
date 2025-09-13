@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 interface MenuItem {
   id: string;
@@ -22,11 +24,13 @@ interface MenuSection {
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class LocataireSidebarComponent {
+export class LocataireSidebarComponent implements OnInit, OnDestroy {
   @Input() isCollapsed: boolean = false;
   @Input() isMobileOpen: boolean = false;
   @Output() toggleCollapse = new EventEmitter<void>();
   @Output() navigateTo = new EventEmitter<string>();
+
+  private routerSubscription: Subscription = new Subscription();
 
   menuSections: MenuSection[] = [
     {
@@ -34,14 +38,14 @@ export class LocataireSidebarComponent {
       items: [
         { id: 'accueil', label: 'Accueil Locataire', icon: 'fa-home', route: 'accueil' },
         { id: 'candidatures', label: 'Mes Candidatures', icon: 'fa-file-text', route: 'mes-candidatures' },
-        { id: 'logement', label: 'Mon Logement', icon: 'fa-building', route: 'logement' }
+        { id: 'logement', label: 'Mes Logements', icon: 'fa-building', route: 'mes-logements' }
       ]
     },
     {
       title: 'Documents',
       items: [
         { id: 'quittances', label: 'Quittances de Loyer', icon: 'fa-receipt', route: 'quittances' },
-        { id: 'contrats', label: 'Mes Contrats', icon: 'fa-file-contract', route: 'contrats' },
+        { id: 'contrats', label: 'Mes Contrats', icon: 'fa-file-contract', route: 'mes-contrats' },
         { id: 'documents', label: 'Documents Divers', icon: 'fa-folder', route: 'documents' }
       ]
     },
@@ -71,12 +75,50 @@ export class LocataireSidebarComponent {
 
   activeItem: string = 'accueil';
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // Set initial active item based on current URL
+    this.setActiveItemFromUrl();
+    
+    // Listen to route changes to update active item
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.setActiveItemFromUrl();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe();
+  }
+
+  private setActiveItemFromUrl(): void {
+    const url = this.router.url;
+    const urlSegments = url.split('/');
+    const currentRoute = urlSegments[urlSegments.length - 1];
+    
+    // Find the menu item that matches the current route
+    for (const section of this.menuSections) {
+      for (const item of section.items) {
+        if (item.route === currentRoute || item.id === currentRoute) {
+          this.activeItem = item.id;
+          return;
+        }
+      }
+    }
+    
+    // Default to accueil if no match found
+    if (currentRoute === '' || currentRoute === 'espace-locataire') {
+      this.activeItem = 'accueil';
+    }
+  }
+
   onToggleCollapse(): void {
     this.toggleCollapse.emit();
   }
 
   onNavigate(route: string): void {
-    this.activeItem = route;
     this.navigateTo.emit(route);
   }
 

@@ -1,0 +1,32 @@
+.gradient-bg {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Font Awesome Icons */
+.fa-solid.fa-building::before { content: "\f1ad"; }
+.fa-solid.fa-chevron-right::before { content: "\f054"; }
+.fa-solid.fa-search::before { content: "\f002"; }
+.fa-solid.fa-plus::before { content: "\f067"; }
+.fa-solid.fa-filter::before { content: "\f0b0"; }
+.fa-solid.fa-ellipsis-h::before { content: "\f141"; }
+.fa-solid.fa-check::before { content: "\f00c"; }
+.fa-solid.fa-phone::before { content: "\f095"; }
+.fa-solid.fa-video::before { content: "\f03d"; }
+.fa-solid.fa-paperclip::before { content: "\f0c6"; }
+.fa-solid.fa-image::before { content: "\f03e"; }
+.fa-solid.fa-paper-plane::before { content: "\f1d8"; }
+.fa-solid.fa-info-circle::before { content: "\f05a"; }
+.fa-solid.fa-wrench::before { content: "\f0ad"; }
+.fa-solid.fa-receipt::before { content: "\f543"; }
+.fa-solid.fa-calendar::before { content: "\f133"; }
+.fa-solid.fa-exclamation-triangle::before { content: "\f071"; }
+.fa-solid.fa-envelope::before { content: "\f0e0"; }
+.fa-solid.fa-paper-plane::before { content: "\f1d8"; }
+.fa-solid.fa-clock::before { content: "\f017"; }
+.fa-solid.fa-users::before { content: "\f0c0"; }
+.fa-solid.fa-copy::before { content: "\f0c5"; }
