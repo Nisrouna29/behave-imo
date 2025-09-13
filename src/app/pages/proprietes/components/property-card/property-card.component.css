@@ -1,1 +1,74 @@
 /* Property card component styles */
+
+/* Price and button alignment */
+.price-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Price styling */
+.property-price {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 700;
+  color: #1f2937; /* text-gray-800 */
+  line-height: 1.2;
+}
+
+/* Button styling */
+.details-button {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  border-radius: 0.5rem; /* rounded-lg */
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.details-button:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .property-price {
+    font-size: 1rem; /* text-base */
+  }
+  
+  .details-button {
+    font-size: 0.75rem; /* text-xs */
+    padding: 0.375rem 0.75rem; /* px-3 py-1.5 */
+  }
+  
+  .price-button-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .details-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Grid view specific */
+.grid-view .price-button-container {
+  margin-top: 1rem;
+}
+
+/* List view specific */
+.list-view .price-button-container {
+  margin-top: 1rem;
+}
+
+/* Ensure proper alignment */
+.price-button-container > * {
+  display: flex;
+  align-items: center;
+}

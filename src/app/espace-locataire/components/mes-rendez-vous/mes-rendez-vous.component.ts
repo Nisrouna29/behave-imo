@@ -137,6 +137,8 @@ export class MesRendezVousComponent implements OnInit {
     this.initializeData();
     this.generateCalendarDays();
     this.filteredAppointments = [...this.appointments];
+    console.log('Appointments loaded:', this.appointments.length);
+    console.log('Filtered appointments:', this.filteredAppointments.length);
   }
 
   private initializeData(): void {
@@ -430,8 +432,10 @@ export class MesRendezVousComponent implements OnInit {
   }
 
   onModifyAppointment(appointment: Appointment | null): void {
+    console.log('Modify appointment clicked:', appointment);
     if (appointment) {
       console.log('Modify appointment:', appointment);
+      alert(`Modification du rendez-vous: ${appointment.title}`);
       // Implement appointment modification
     }
   }

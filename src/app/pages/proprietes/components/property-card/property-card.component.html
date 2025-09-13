@@ -48,10 +48,10 @@
                     {{ property.area }}m²
                 </span>
             </div>
-            <div class="flex justify-between items-center">
-                <span class="text-xl sm:text-2xl font-bold text-gray-800">{{ property.price }}</span>
+            <div class="price-button-container">
+                <span class="property-price">{{ property.price }}</span>
                 <button
-                    class="gradient-bg text-white px-3 sm:px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-300 font-medium text-sm"
+                    class="details-button"
                     (click)="onViewDetails()"
                 >
                     Voir détails
@@ -110,10 +110,10 @@
                         {{ property.area }}m²
                     </span>
                 </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-2xl font-bold text-gray-800">{{ property.price }}</span>
+                <div class="price-button-container">
+                    <span class="property-price">{{ property.price }}</span>
                     <button
-                        class="gradient-bg text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300 font-medium"
+                        class="details-button"
                         (click)="onViewDetails()"
                     >
                         Voir détails
