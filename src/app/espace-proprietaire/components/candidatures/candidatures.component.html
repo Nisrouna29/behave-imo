@@ -2,7 +2,7 @@
     <!-- Hero Section -->
     <section id="hero-section" class="gradient-bg h-[300px] relative overflow-hidden">
         <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+        <div class="relative z-10 w-full px-4 md:px-6 lg:px-8 py-16">
             <div class="text-center text-white">
                 <h1 class="text-4xl font-bold mb-4">Candidatures Immobilières</h1>
                 <p class="text-xl mb-8 opacity-90">Analysez et gérez toutes les candidatures pour vos propriétés</p>
@@ -20,14 +20,14 @@
         </div>
     </section>
 
-        <div id="applications-dashboard" class="max-w-7xl mx-auto px-6 py-8">
+        <div id="applications-dashboard" class="w-full px-4 md:px-6 lg:px-8 py-8">
 
-            <div id="stats-overview" class="grid grid-cols-5 gap-6 mb-8">
+            <div id="stats-overview" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-8">
                 <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-600 text-sm mb-1">Total candidatures</p>
-                            <p class="text-3xl font-bold text-gray-800">247</p>
+                            <p class="text-gray-600 text-sm mb-1">Total</p>
+                            <p class="text-3xl font-bold text-blue-600">247</p>
                         </div>
                         <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                             <i class="fa-solid fa-file-text text-blue-600 text-xl"></i>
@@ -85,7 +85,7 @@
                     <h2 class="text-xl font-bold text-gray-800">Recherche et filtres</h2>
                     <button (click)="resetFilters()" class="text-orange-600 hover:text-orange-700 font-medium">Réinitialiser</button>
                 </div>
-                <div class="grid grid-cols-6 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Rechercher</label>
                         <div class="relative">

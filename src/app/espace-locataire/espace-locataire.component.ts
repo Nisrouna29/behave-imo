@@ -86,6 +86,7 @@ export class EspaceLocataireComponent implements OnInit {
 
   onSidebarNavigate(route: string): void {
     console.log(`Navigation vers: ${route}`);
+    console.log(`URL complète: /espace-locataire/${route}`);
     this.router.navigate(['/espace-locataire', route]);
     // Close mobile sidebar after navigation
     this.closeMobileSidebar();

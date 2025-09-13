@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { LocataireAccueilComponent } from './components/accueil/accueil.component';
+import { MesCandidaturesComponent } from './components/mes-candidatures/mes-candidatures.component';
 
 export const espaceLocataireRoutes: Routes = [
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: 'accueil', component: LocataireAccueilComponent },
+  { path: 'mes-candidatures', component: MesCandidaturesComponent },
   // Ajoutez d'autres routes ici selon vos besoins
-  // { path: 'candidatures', component: CandidaturesComponent },
   // { path: 'logement', component: LogementComponent },
   // { path: 'quittances', component: QuittancesComponent },
   // { path: 'contrats', component: ContratsComponent },

@@ -6,14 +6,11 @@
   <div class="p-4 border-b border-gray-200">
     <div class="flex items-center justify-between">
       <div *ngIf="!isCollapsed" class="flex items-center space-x-3">
-        <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-          <i class="fa-solid fa-building text-white text-sm"></i>
-        </div>
-        <span class="text-lg font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
+        <span class="text-lg font-bold text-gray-800">Menu</span>
       </div>
       <button (click)="onToggleCollapse()" 
-              class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
-        <i class="fa-solid" [class.fa-bars]="!isCollapsed" [class.fa-xmark]="isCollapsed" class="text-gray-600"></i>
+              class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+        <i class="fa-solid fa-bars text-gray-600"></i>
       </button>
     </div>
   </div>
@@ -54,24 +51,5 @@
         </div>
       </div>
     </nav>
-  </div>
-
-  <!-- User Profile Section -->
-  <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
-    <div *ngIf="!isCollapsed" class="flex items-center space-x-3">
-      <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" 
-           alt="Profile" 
-           class="w-8 h-8 rounded-full">
-      <div class="flex-1 min-w-0">
-        <p class="text-sm font-medium text-gray-900 truncate">Pierre Martin</p>
-        <p class="text-xs text-gray-500 truncate">Locataire</p>
-      </div>
-    </div>
-    
-    <div *ngIf="isCollapsed" class="flex justify-center">
-      <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" 
-           alt="Profile" 
-           class="w-8 h-8 rounded-full">
-    </div>
   </div>
 </aside>

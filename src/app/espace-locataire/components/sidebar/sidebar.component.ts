@@ -33,7 +33,7 @@ export class LocataireSidebarComponent {
       title: 'Tableau de bord',
       items: [
         { id: 'accueil', label: 'Accueil Locataire', icon: 'fa-home', route: 'accueil' },
-        { id: 'candidatures', label: 'Mes Candidatures', icon: 'fa-file-text', route: 'candidatures' },
+        { id: 'candidatures', label: 'Mes Candidatures', icon: 'fa-file-text', route: 'mes-candidatures' },
         { id: 'logement', label: 'Mon Logement', icon: 'fa-building', route: 'logement' }
       ]
     },
