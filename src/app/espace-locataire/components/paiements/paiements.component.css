@@ -1,40 +1,4 @@
-@import "tailwindcss";
-
-@theme {
-  --color-orange-50: #fff7ed;
-  --color-orange-100: #ffedd5;
-  --color-orange-200: #fed7aa;
-  --color-orange-300: #fdba74;
-  --color-orange-400: #fb923c;
-  --color-orange-500: #f97316;
-  --color-orange-600: #ea580c;
-  --color-orange-700: #c2410c;
-  --color-orange-800: #9a3412;
-  --color-orange-900: #7c2d12;
-
-  --font-family-sans: Inter, sans-serif;
-}
-
-
-/* Custom styles */
-::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  font-family: 'Inter', sans-serif;
-}
-
-.gradient-bg {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-}
-
-.glass-effect {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-/* Additional Tailwind utility classes */
+/* Custom utility classes */
 .translate-x-0 { transform: translateX(0); }
 .bg-gray-50 { background-color: #f9fafb; }
 .bg-gray-100 { background-color: #f3f4f6; }
@@ -119,7 +83,6 @@
 .bg-yellow-200 { background-color: #fde68a; }
 .bg-yellow-600 { background-color: #ca8a04; }
 .bg-yellow-800 { background-color: #92400e; }
-.bg-yellow-900 { color: #78350f; }
 
 .text-yellow-600 { color: #ca8a04; }
 .text-yellow-800 { color: #92400e; }
@@ -138,3 +101,26 @@
 
 .bg-white { background-color: #ffffff; }
 .text-white { color: #ffffff; }
+
+.gradient-bg {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.payment-card {
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.payment-card:hover {
+  transform: scale(1.02);
+}
+
+.payment-card.selected {
+  border-color: #f97316;
+  background-color: #fff7ed;
+}

@@ -1,0 +1,670 @@
+<div class="p-8">
+  <div id="breadcrumb-section" class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Finances</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Paiements</span>
+    </nav>
+  </div>
+
+  <div id="page-header-section" class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Centre de Paiement</h1>
+        <p class="text-gray-600">Gérez vos paiements de loyer et charges en toute sécurité</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-download mr-2"></i>
+          Télécharger reçu
+        </button>
+        <button class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+          <i class="fa-solid fa-plus mr-2"></i>
+          Nouveau paiement
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-alerts-section" class="mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+        <div class="flex items-start">
+          <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+            <i class="fa-solid fa-exclamation-triangle text-red-600"></i>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-red-900 mb-2">Paiement en retard</h3>
+            <p class="text-sm text-red-800 mb-3">Votre loyer de décembre 2024 est en retard de 5 jours</p>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-bold text-red-900">1 250,00 €</span>
+              <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                Payer maintenant
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-orange-50 border border-orange-200 rounded-xl p-6">
+        <div class="flex items-start">
+          <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+            <i class="fa-solid fa-clock text-orange-600"></i>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-orange-900 mb-2">Prochaine échéance</h3>
+            <p class="text-sm text-orange-800 mb-3">Loyer de janvier 2025 - Échéance dans 10 jours</p>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-bold text-orange-900">1 250,00 €</span>
+              <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+                Programmer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-8">
+    <div id="payment-form-section" class="col-span-8">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Effectuer un paiement</h2>
+          <p class="text-gray-600">Sélectionnez les montants à payer et votre méthode de paiement</p>
+        </div>
+
+        <div id="payment-selection" class="mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Montants à payer</h3>
+          <div class="space-y-4">
+            <div class="border border-red-200 bg-red-50 rounded-lg p-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <input type="checkbox" id="overdue" checked="" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                  <div class="ml-3">
+                    <label for="overdue" class="font-semibold text-red-900">Loyer Décembre 2024 (En retard)</label>
+                    <p class="text-sm text-red-700">Échéance dépassée de 5 jours</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl font-bold text-red-900">1 250,00 €</span>
+                  <p class="text-sm text-red-700">+ 25,00 € pénalités</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-orange-200 bg-orange-50 rounded-lg p-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <input type="checkbox" id="upcoming" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                  <div class="ml-3">
+                    <label for="upcoming" class="font-semibold text-orange-900">Loyer Janvier 2025</label>
+                    <p class="text-sm text-orange-700">Échéance le 1er janvier 2025</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl font-bold text-orange-900">1 250,00 €</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg p-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <input type="checkbox" id="charges" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                  <div class="ml-3">
+                    <label for="charges" class="font-semibold text-gray-900">Charges Décembre 2024</label>
+                    <p class="text-sm text-gray-600">Eau, électricité, maintenance</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl font-bold text-gray-900">185,50 €</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg p-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <input type="checkbox" id="deposit" class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                  <div class="ml-3">
+                    <label for="deposit" class="font-semibold text-gray-900">Complément Dépôt de Garantie</label>
+                    <p class="text-sm text-gray-600">Solde restant à verser</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl font-bold text-gray-900">625,00 €</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-semibold text-gray-900">Total sélectionné</span>
+              <span id="total-amount" class="text-2xl font-bold text-orange-600">1 275,00 €</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="payment-methods" class="mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Méthode de paiement</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="payment-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-orange-300">
+              <div class="flex items-center">
+                <input type="radio" name="payment-method" id="card" value="card" class="w-5 h-5 text-orange-500 border-gray-300 focus:ring-orange-500">
+                <div class="ml-3 flex-1">
+                  <div class="flex items-center justify-between">
+                    <label for="card" class="font-semibold text-gray-900">Carte bancaire</label>
+                    <div class="flex space-x-2">
+                      <i class="fa-brands fa-cc-visa text-2xl text-blue-600"></i>
+                      <i class="fa-brands fa-cc-mastercard text-2xl text-red-500"></i>
+                    </div>
+                  </div>
+                  <p class="text-sm text-gray-600">Paiement immédiat et sécurisé</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-orange-300">
+              <div class="flex items-center">
+                <input type="radio" name="payment-method" id="sepa" value="sepa" class="w-5 h-5 text-orange-500 border-gray-300 focus:ring-orange-500">
+                <div class="ml-3 flex-1">
+                  <div class="flex items-center justify-between">
+                    <label for="sepa" class="font-semibold text-gray-900">Virement SEPA</label>
+                    <i class="fa-solid fa-university text-2xl text-gray-600"></i>
+                  </div>
+                  <p class="text-sm text-gray-600">Traitement sous 1-2 jours ouvrés</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-orange-300">
+              <div class="flex items-center">
+                <input type="radio" name="payment-method" id="paypal" value="paypal" class="w-5 h-5 text-orange-500 border-gray-300 focus:ring-orange-500">
+                <div class="ml-3 flex-1">
+                  <div class="flex items-center justify-between">
+                    <label for="paypal" class="font-semibold text-gray-900">PayPal</label>
+                    <i class="fa-brands fa-paypal text-2xl text-blue-600"></i>
+                  </div>
+                  <p class="text-sm text-gray-600">Connexion à votre compte PayPal</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-orange-300">
+              <div class="flex items-center">
+                <input type="radio" name="payment-method" id="scheduled" value="scheduled" class="w-5 h-5 text-orange-500 border-gray-300 focus:ring-orange-500">
+                <div class="ml-3 flex-1">
+                  <div class="flex items-center justify-between">
+                    <label for="scheduled" class="font-semibold text-gray-900">Paiement programmé</label>
+                    <i class="fa-solid fa-calendar-alt text-2xl text-green-600"></i>
+                  </div>
+                  <p class="text-sm text-gray-600">Programmer pour une date ultérieure</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="card-details" class="mb-8 hidden">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Informations de carte</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Numéro de carte</label>
+              <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Date d'expiration</label>
+              <input type="text" placeholder="MM/AA" maxlength="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Code CVV</label>
+              <input type="text" placeholder="123" maxlength="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Nom du porteur</label>
+              <input type="text" placeholder="Pierre Martin" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+          </div>
+        </div>
+
+        <div id="scheduled-details" class="mb-8 hidden">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Programmation du paiement</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Date d'exécution</label>
+              <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Récurrence</label>
+              <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                <option value="once">Paiement unique</option>
+                <option value="monthly">Mensuel</option>
+                <option value="quarterly">Trimestriel</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="payment-security" class="mb-8">
+          <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div class="flex items-start">
+              <i class="fa-solid fa-shield-alt text-green-600 mt-1 mr-3"></i>
+              <div>
+                <h3 class="font-semibold text-green-900 mb-2">Paiement sécurisé</h3>
+                <p class="text-sm text-green-800">Vos données sont protégées par un cryptage SSL 256 bits. Nous ne stockons jamais vos informations bancaires.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-6 border-t border-gray-200">
+          <button type="button" class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+            Annuler
+          </button>
+          <div class="flex space-x-4">
+            <button type="button" class="px-6 py-3 bg-white border border-orange-500 text-orange-600 rounded-lg hover:bg-orange-50 transition-colors">
+              Enregistrer pour plus tard
+            </button>
+            <button type="submit" class="px-8 py-3 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+              <i class="fa-solid fa-lock mr-2"></i>
+              Payer maintenant
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="payment-sidebar" class="col-span-4">
+      <div class="space-y-6">
+        <div id="payment-summary" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Récapitulatif</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600">Loyer Décembre 2024</span>
+              <span class="font-semibold text-gray-900">1 250,00 €</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-red-600">Pénalités de retard</span>
+              <span class="font-semibold text-red-600">25,00 €</span>
+            </div>
+            <hr class="border-gray-200">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-gray-900">Total à payer</span>
+              <span class="text-xl font-bold text-orange-600">1 275,00 €</span>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <div class="flex items-center">
+              <i class="fa-solid fa-info-circle text-blue-500 mr-2"></i>
+              <span class="text-sm text-blue-800">Économisez 25€ en payant avant le 31/12</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="saved-methods" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Méthodes enregistrées</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div class="flex items-center">
+                <i class="fa-brands fa-cc-visa text-blue-600 text-xl mr-3"></i>
+                <div>
+                  <p class="font-medium text-gray-900">•••• 4532</p>
+                  <p class="text-xs text-gray-600">Expire 03/26</p>
+                </div>
+              </div>
+              <button class="text-orange-600 hover:text-orange-700">
+                <i class="fa-solid fa-edit"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div class="flex items-center">
+                <i class="fa-solid fa-university text-gray-600 text-xl mr-3"></i>
+                <div>
+                  <p class="font-medium text-gray-900">Compte Courant</p>
+                  <p class="text-xs text-gray-600">FR76 •••• 8901</p>
+                </div>
+              </div>
+              <button class="text-orange-600 hover:text-orange-700">
+                <i class="fa-solid fa-edit"></i>
+              </button>
+            </div>
+          </div>
+          <button class="w-full mt-4 px-4 py-2 text-orange-600 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+            + Ajouter une méthode
+          </button>
+        </div>
+
+        <div id="payment-help" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Besoin d'aide ?</h3>
+          <div class="space-y-3">
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-question-circle text-blue-500 mt-1"></i>
+              <div>
+                <p class="font-medium text-gray-900 text-sm">FAQ Paiements</p>
+                <p class="text-sm text-gray-600">Réponses aux questions courantes</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-phone text-green-500 mt-1"></i>
+              <div>
+                <p class="font-medium text-gray-900 text-sm">Support téléphonique</p>
+                <p class="text-sm text-gray-600">01 23 45 67 89</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-envelope text-purple-500 mt-1"></i>
+              <div>
+                <p class="font-medium text-gray-900 text-sm">Email</p>
+                <p class="text-sm text-gray-600">support&#64;immopro.fr</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="payment-tips" class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+          <h3 class="text-lg font-bold text-yellow-900 mb-4">Conseils</h3>
+          <div class="space-y-3">
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-calendar-check text-yellow-600 mt-1"></i>
+              <div>
+                <p class="font-medium text-yellow-900 text-sm">Programmez vos paiements</p>
+                <p class="text-sm text-yellow-800">Évitez les retards avec les paiements automatiques</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-bell text-yellow-600 mt-1"></i>
+              <div>
+                <p class="font-medium text-yellow-900 text-sm">Activez les rappels</p>
+                <p class="text-sm text-yellow-800">Recevez des notifications avant chaque échéance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-history-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Historique des paiements</h2>
+        <div class="flex space-x-4">
+          <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option value="all">Tous les paiements</option>
+            <option value="completed">Terminés</option>
+            <option value="pending">En attente</option>
+            <option value="failed">Échoués</option>
+          </select>
+          <button class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-download mr-2"></i>
+            Exporter
+          </button>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Date</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Description</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Méthode</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Montant</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Statut</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100 hover:bg-gray-50">
+              <td class="py-4 px-4 text-sm text-gray-900">15 Nov 2024</td>
+              <td class="py-4 px-4">
+                <div>
+                  <p class="font-medium text-gray-900">Loyer Novembre 2024</p>
+                  <p class="text-sm text-gray-600">Paiement mensuel</p>
+                </div>
+              </td>
+              <td class="py-4 px-4">
+                <div class="flex items-center">
+                  <i class="fa-brands fa-cc-visa text-blue-600 mr-2"></i>
+                  <span class="text-sm text-gray-900">•••• 4532</span>
+                </div>
+              </td>
+              <td class="py-4 px-4 font-semibold text-gray-900">1 250,00 €</td>
+              <td class="py-4 px-4">
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Terminé</span>
+              </td>
+              <td class="py-4 px-4">
+                <button class="text-orange-600 hover:text-orange-700 mr-2">
+                  <i class="fa-solid fa-download"></i>
+                </button>
+                <button class="text-gray-600 hover:text-gray-700">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50">
+              <td class="py-4 px-4 text-sm text-gray-900">28 Oct 2024</td>
+              <td class="py-4 px-4">
+                <div>
+                  <p class="font-medium text-gray-900">Charges Octobre 2024</p>
+                  <p class="text-sm text-gray-600">Eau, électricité</p>
+                </div>
+              </td>
+              <td class="py-4 px-4">
+                <div class="flex items-center">
+                  <i class="fa-solid fa-university text-gray-600 mr-2"></i>
+                  <span class="text-sm text-gray-900">Virement</span>
+                </div>
+              </td>
+              <td class="py-4 px-4 font-semibold text-gray-900">185,50 €</td>
+              <td class="py-4 px-4">
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Terminé</span>
+              </td>
+              <td class="py-4 px-4">
+                <button class="text-orange-600 hover:text-orange-700 mr-2">
+                  <i class="fa-solid fa-download"></i>
+                </button>
+                <button class="text-gray-600 hover:text-gray-700">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50">
+              <td class="py-4 px-4 text-sm text-gray-900">01 Oct 2024</td>
+              <td class="py-4 px-4">
+                <div>
+                  <p class="font-medium text-gray-900">Loyer Octobre 2024</p>
+                  <p class="text-sm text-gray-600">Paiement mensuel</p>
+                </div>
+              </td>
+              <td class="py-4 px-4">
+                <div class="flex items-center">
+                  <i class="fa-brands fa-paypal text-blue-600 mr-2"></i>
+                  <span class="text-sm text-gray-900">PayPal</span>
+                </div>
+              </td>
+              <td class="py-4 px-4 font-semibold text-gray-900">1 250,00 €</td>
+              <td class="py-4 px-4">
+                <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">En attente</span>
+              </td>
+              <td class="py-4 px-4">
+                <button class="text-orange-600 hover:text-orange-700 mr-2">
+                  <i class="fa-solid fa-redo"></i>
+                </button>
+                <button class="text-gray-600 hover:text-gray-700">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr class="border-b border-gray-100 hover:bg-gray-50">
+              <td class="py-4 px-4 text-sm text-gray-900">25 Sep 2024</td>
+              <td class="py-4 px-4">
+                <div>
+                  <p class="font-medium text-gray-900">Dépôt de Garantie</p>
+                  <p class="text-sm text-gray-600">Premier versement</p>
+                </div>
+              </td>
+              <td class="py-4 px-4">
+                <div class="flex items-center">
+                  <i class="fa-brands fa-cc-mastercard text-red-500 mr-2"></i>
+                  <span class="text-sm text-gray-900">•••• 1234</span>
+                </div>
+              </td>
+              <td class="py-4 px-4 font-semibold text-gray-900">625,00 €</td>
+              <td class="py-4 px-4">
+                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">Échoué</span>
+              </td>
+              <td class="py-4 px-4">
+                <button class="text-orange-600 hover:text-orange-700 mr-2">
+                  <i class="fa-solid fa-redo"></i>
+                </button>
+                <button class="text-gray-600 hover:text-gray-700">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex items-center justify-between mt-6">
+        <div class="text-sm text-gray-600">Affichage 1-4 sur 24 paiements</div>
+        <div class="flex space-x-2">
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="px-3 py-2 bg-orange-500 text-white rounded-lg">1</button>
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">2</button>
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">3</button>
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-stats-section" class="mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">22</p>
+            <p class="text-gray-600 text-sm">Paiements réussis</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clock text-orange-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">1</p>
+            <p class="text-gray-600 text-sm">En attente</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-times-circle text-red-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">1</p>
+            <p class="text-gray-600 text-sm">Échoués</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-euro-sign text-blue-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">28 750</p>
+            <p class="text-gray-600 text-sm">Total payé (€)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-security-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Sécurité et confidentialité</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-shield-alt text-green-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Cryptage SSL</h3>
+          <p class="text-sm text-gray-600">Toutes vos transactions sont protégées par un cryptage SSL 256 bits de niveau bancaire</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-user-shield text-blue-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Données sécurisées</h3>
+          <p class="text-sm text-gray-600">Nous ne stockons jamais vos informations bancaires complètes sur nos serveurs</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-certificate text-purple-600 text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Conformité PCI DSS</h3>
+          <p class="text-sm text-gray-600">Nos systèmes respectent les standards de sécurité les plus stricts de l'industrie</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment-faq-section" class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur les paiements</h2>
+      <div class="space-y-6">
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Puis-je payer plusieurs mois en avance ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600">
+            <p>Oui, vous pouvez effectuer plusieurs paiements en même temps. Sélectionnez simplement tous les montants que vous souhaitez régler dans la section "Montants à payer". Le système calculera automatiquement le total et vous permettra de tout payer en une seule transaction.</p>
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Que se passe-t-il si mon paiement échoue ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600 hidden">
+            <p>En cas d'échec de paiement, vous recevrez immédiatement une notification par email. Vous pourrez retenter le paiement depuis votre historique ou créer un nouveau paiement. Si le problème persiste, contactez votre banque ou notre service client.</p>
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Comment programmer des paiements automatiques ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600 hidden">
+            <p>Sélectionnez "Paiement programmé" comme méthode, puis choisissez la récurrence souhaitée (mensuelle, trimestrielle). Le système effectuera automatiquement les paiements aux dates prévues. Vous pouvez modifier ou annuler ces programmations à tout moment.</p>
+          </div>
+        </div>
+        <div class="border border-gray-200 rounded-lg p-6">
+          <button class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">Puis-je obtenir un reçu de paiement ?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-400"></i>
+          </button>
+          <div class="mt-4 text-sm text-gray-600 hidden">
+            <p>Oui, après chaque paiement réussi, vous recevez automatiquement un reçu par email. Vous pouvez également télécharger tous vos reçus depuis l'historique des paiements en cliquant sur l'icône de téléchargement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { QuittancesLoyerComponent } from './components/quittances-loyer/quittanc
 import { MesContratsComponent } from './components/mes-contrats/mes-contrats.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { PaiementsComponent } from './components/paiements/paiements.component';
 
 export const espaceLocataireRoutes: Routes = [
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
@@ -16,6 +17,7 @@ export const espaceLocataireRoutes: Routes = [
   { path: 'mes-contrats', component: MesContratsComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'paiements', component: PaiementsComponent },
   // Ajoutez d'autres routes ici selon vos besoins
   // { path: 'contrats', component: ContratsComponent },
   // { path: 'documents', component: DocumentsComponent },
