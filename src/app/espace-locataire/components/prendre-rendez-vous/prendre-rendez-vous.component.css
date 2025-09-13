@@ -1,0 +1,266 @@
+/* Prendre Rendez-vous Component Styles */
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Gradient background */
+.gradient-bg {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+/* Glass effect */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Appointment slot animations */
+.appointment-slot {
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.appointment-slot:hover {
+  transform: scale(1.02);
+}
+
+.appointment-slot.selected {
+  border-color: #f97316;
+  background-color: #fff7ed;
+}
+
+/* Time slot styles */
+.time-slot {
+  transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+  background-color: #fff7ed;
+}
+
+.time-slot.selected {
+  background-color: #f97316;
+  color: white;
+}
+
+.time-slot.unavailable {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Date cell styles */
+.date-cell {
+  transition: all 0.2s ease;
+}
+
+.date-cell:hover {
+  background-color: #fff7ed;
+}
+
+/* Button hover effects */
+button:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Status badge animations */
+span[class*="bg-green-100"],
+span[class*="bg-yellow-100"],
+span[class*="bg-blue-100"],
+span[class*="bg-red-100"],
+span[class*="bg-orange-100"] {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Icon animations */
+.fa-solid {
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover .fa-solid {
+  transform: scale(1.1);
+}
+
+/* Card shadow on hover */
+.bg-white:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+/* Form input focus styles */
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* Calendar grid */
+.grid-cols-7 {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-cols-1.md\:grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  .grid-cols-1.md\:grid-cols-4 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  .col-span-8 {
+    grid-column: span 12 / span 12;
+  }
+  
+  .col-span-4 {
+    grid-column: span 12 / span 12;
+  }
+  
+  .col-span-5 {
+    grid-column: span 12 / span 12;
+  }
+  
+  .col-span-7 {
+    grid-column: span 12 / span 12;
+  }
+}
+
+/* FAQ accordion animation */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-content.expanded {
+  max-height: 200px;
+}
+
+/* Loading spinner */
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom checkbox styles */
+input[type="checkbox"] {
+  accent-color: #f97316;
+}
+
+input[type="radio"] {
+  accent-color: #f97316;
+}
+
+/* Alert styles */
+.bg-blue-50 {
+  background-color: #eff6ff;
+}
+
+.bg-green-50 {
+  background-color: #f0fdf4;
+}
+
+.bg-yellow-50 {
+  background-color: #fefce8;
+}
+
+/* Agent availability indicators */
+.availability-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.availability-indicator.available {
+  background-color: #10b981;
+}
+
+.availability-indicator.busy {
+  background-color: #f59e0b;
+}
+
+.availability-indicator.offline {
+  background-color: #6b7280;
+}
+
+/* Star rating */
+.star-rating {
+  color: #fbbf24;
+}
+
+.star-rating .fa-star {
+  font-size: 0.75rem;
+}
+
+/* Form validation styles */
+.form-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Success message */
+.success-message {
+  color: #10b981;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Custom scrollbar for specific containers */
+.time-slots-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.time-slots-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.time-slots-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .bg-white {
+    background: white !important;
+    box-shadow: none !important;
+  }
+}

@@ -1,0 +1,707 @@
+<div class="p-6">
+  <!-- Breadcrumb -->
+  <div class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Rendez-vous</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Prendre rendez-vous</span>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Prendre rendez-vous</h1>
+        <p class="text-gray-600">Planifiez votre rendez-vous avec votre gestionnaire immobilier</p>
+      </div>
+        <div class="flex items-center space-x-4">
+          <button (click)="onViewMyAppointments()" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-calendar-alt mr-2"></i>
+            Voir mes RDV
+          </button>
+          <button (click)="onEmergencyCall()" class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+            <i class="fa-solid fa-phone mr-2"></i>
+            Appel d'urgence
+          </button>
+        </div>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div class="mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+        <div class="flex items-start">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+            <i class="fa-solid fa-info-circle text-blue-600"></i>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-blue-900 mb-2">Prochain rendez-vous</h3>
+            <p class="text-sm text-blue-800 mb-3">Visite d'état des lieux - 15 janvier 2025 à 14h00</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-blue-900">Avec Marie Dubois</span>
+              <button (click)="onModifyAppointment(upcomingAppointments[0])" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                Modifier
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-green-50 border border-green-200 rounded-xl p-6">
+        <div class="flex items-start">
+          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+            <i class="fa-solid fa-calendar-check text-green-600"></i>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-green-900 mb-2">Créneaux disponibles</h3>
+            <p class="text-sm text-green-800 mb-3">De nombreux créneaux libres cette semaine</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-green-900">Réservation immédiate</span>
+              <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                Réserver
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-8">
+    <!-- Main Form -->
+    <div class="col-span-8">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Nouveau rendez-vous</h2>
+          <p class="text-gray-600">Remplissez les informations ci-dessous pour planifier votre rendez-vous</p>
+        </div>
+
+        <!-- Appointment Type -->
+        <div class="mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Type de rendez-vous</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div *ngFor="let type of appointmentTypes" 
+                 (click)="onAppointmentSlotClick(type.id)"
+                 [class]="'appointment-slot border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-orange-300 ' + (selectedType === type.id ? 'selected border-orange-500 bg-orange-50' : '')">
+              <div class="flex items-center">
+                <input type="radio" 
+                       [name]="'appointment-type'" 
+                       [id]="type.id" 
+                       [value]="type.id"
+                       [checked]="selectedType === type.id"
+                       class="w-5 h-5 text-orange-500 border-gray-300 focus:ring-orange-500">
+                <div class="ml-3 flex-1">
+                  <div class="flex items-center justify-between">
+                    <label [for]="type.id" class="font-semibold text-gray-900">{{ type.label }}</label>
+                    <i [class]="'fa-solid ' + type.icon + ' text-2xl ' + type.color"></i>
+                  </div>
+                  <p class="text-sm text-gray-600">{{ type.description }}</p>
+                  <span class="text-xs text-gray-500">Durée: {{ type.duration }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent Selection -->
+        <div class="mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Choisir un agent</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div *ngFor="let agent of agents" 
+                 (click)="onAgentSlotClick(agent.id)"
+                 [class]="'border border-gray-200 rounded-lg p-4 hover:border-orange-300 cursor-pointer ' + (selectedAgent === agent.id ? 'border-orange-500 bg-orange-50' : '')">
+              <div class="flex items-center">
+                <input type="radio" 
+                       [name]="'agent'" 
+                       [id]="agent.id" 
+                       [value]="agent.id"
+                       [checked]="selectedAgent === agent.id"
+                       class="w-5 h-5 text-orange-500 border-gray-300 focus:ring-orange-500">
+                <div class="ml-3 flex-1">
+                  <div class="flex items-center space-x-3">
+                    <img *ngIf="agent.avatar" 
+                         [src]="agent.avatar" 
+                         [alt]="agent.name" 
+                         class="w-12 h-12 rounded-full">
+                    <div *ngIf="!agent.avatar" 
+                         class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                      <i [class]="'fa-solid ' + agent.icon + ' text-orange-600'"></i>
+                    </div>
+                    <div>
+                      <label [for]="agent.id" class="font-semibold text-gray-900 cursor-pointer">{{ agent.name }}</label>
+                      <p class="text-sm text-gray-600">{{ agent.role }}</p>
+                      <div *ngIf="agent.rating" class="flex items-center mt-1">
+                        <div class="flex text-yellow-400">
+                          <i *ngFor="let star of [].constructor(agent.stars)" 
+                             class="fa-solid fa-star text-xs"></i>
+                          <i *ngFor="let star of [].constructor(5 - agent.stars)" 
+                             class="fa-regular fa-star text-xs"></i>
+                        </div>
+                        <span class="text-xs text-gray-500 ml-1">({{ agent.rating }})</span>
+                      </div>
+                      <span *ngIf="agent.recommended" class="text-xs text-green-600 font-medium">Recommandé</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date and Time Selection -->
+        <div class="mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Date et heure</h3>
+          <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-5">
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Choisir une date</label>
+              <div class="border border-gray-200 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-4">
+                  <button class="p-2 hover:bg-gray-100 rounded-lg">
+                    <i class="fa-solid fa-chevron-left text-gray-600"></i>
+                  </button>
+                  <h4 class="font-semibold text-gray-900">Janvier 2025</h4>
+                  <button class="p-2 hover:bg-gray-100 rounded-lg">
+                    <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                  </button>
+                </div>
+                <div class="grid grid-cols-7 gap-1">
+                  <div class="text-center text-xs font-medium text-gray-500 py-2">Lun</div>
+                  <div class="text-center text-xs font-medium text-gray-500 py-2">Mar</div>
+                  <div class="text-center text-xs font-medium text-gray-500 py-2">Mer</div>
+                  <div class="text-center text-xs font-medium text-gray-500 py-2">Jeu</div>
+                  <div class="text-center text-xs font-medium text-gray-500 py-2">Ven</div>
+                  <div class="text-center text-xs font-medium text-gray-500 py-2">Sam</div>
+                  <div class="text-center text-xs font-medium text-gray-500 py-2">Dim</div>
+                  
+                  <div class="text-center py-2 text-gray-400">30</div>
+                  <div class="text-center py-2 text-gray-400">31</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onDateCellClick('2025-01-01')">1</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onDateCellClick('2025-01-02')">2</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onDateCellClick('2025-01-03')">3</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onDateCellClick('2025-01-04')">4</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onDateCellClick('2025-01-05')">5</div>
+                  
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-06')">6</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-07')">7</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-08')">8</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-09')">9</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-10')">10</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-11')">11</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-12')">12</div>
+                  
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-13')">13</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-14')">14</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell bg-orange-100 text-orange-700 font-semibold" 
+                       (click)="onSelectDate('2025-01-15')">15</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-16')">16</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-17')">17</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-18')">18</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-19')">19</div>
+                  
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-20')">20</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-21')">21</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-22')">22</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-23')">23</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-24')">24</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-25')">25</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-26')">26</div>
+                  
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-27')">27</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-28')">28</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-29')">29</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-30')">30</div>
+                  <div class="text-center py-2 cursor-pointer hover:bg-orange-50 rounded date-cell" 
+                       (click)="onSelectDate('2025-01-31')">31</div>
+                  <div class="text-center py-2 text-gray-400">1</div>
+                  <div class="text-center py-2 text-gray-400">2</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-span-7">
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Créneaux disponibles</label>
+              <div class="border border-gray-200 rounded-lg p-4">
+                <div class="mb-4">
+                  <h5 class="font-medium text-gray-900 mb-2">Matin</h5>
+                  <div class="grid grid-cols-4 gap-2">
+                    <button *ngFor="let slot of timeSlots.morning" 
+                            (click)="onTimeSlotClick(slot.time)"
+                            [class]="'time-slot px-3 py-2 border border-gray-200 rounded-lg text-sm hover:border-orange-300 ' + 
+                                     (slot.available ? '' : 'unavailable bg-gray-100 text-gray-400 cursor-not-allowed') + 
+                                     (selectedTime === slot.time ? ' selected bg-orange-500 text-white border-orange-500' : '')"
+                            [disabled]="!slot.available">
+                      {{ slot.time }}
+                    </button>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <h5 class="font-medium text-gray-900 mb-2">Après-midi</h5>
+                  <div class="grid grid-cols-4 gap-2">
+                    <button *ngFor="let slot of timeSlots.afternoon" 
+                            (click)="onTimeSlotClick(slot.time)"
+                            [class]="'time-slot px-3 py-2 border border-gray-200 rounded-lg text-sm hover:border-orange-300 ' + 
+                                     (slot.available ? '' : 'unavailable bg-gray-100 text-gray-400 cursor-not-allowed') + 
+                                     (selectedTime === slot.time ? ' selected bg-orange-500 text-white border-orange-500' : '')"
+                            [disabled]="!slot.available">
+                      {{ slot.time }}
+                    </button>
+                  </div>
+                </div>
+                <div class="text-xs text-gray-500 mt-4">
+                  <i class="fa-solid fa-info-circle mr-1"></i>
+                  Les créneaux grisés ne sont pas disponibles
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appointment Details -->
+        <div class="mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Détails du rendez-vous</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Objet du rendez-vous</label>
+              <input type="text" 
+                     [(ngModel)]="appointmentForm.subject"
+                     placeholder="Ex: Visite appartement 3 pièces rue de la Paix" 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Adresse du rendez-vous</label>
+              <input type="text" 
+                     [(ngModel)]="appointmentForm.address"
+                     placeholder="Ex: 15 rue de la Paix, 75001 Paris" 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Description ou demandes particulières</label>
+              <textarea rows="4" 
+                        [(ngModel)]="appointmentForm.description"
+                        placeholder="Décrivez vos besoins, questions ou demandes particulières..." 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Preferences -->
+        <div class="mb-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Préférences de contact</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Téléphone</label>
+              <input type="tel" 
+                     [(ngModel)]="appointmentForm.phone"
+                     placeholder="06 12 34 56 78" 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Email de confirmation</label>
+              <input type="email" 
+                     [(ngModel)]="appointmentForm.email"
+                     placeholder="votre@email.com" 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div class="md:col-span-2">
+              <h4 class="font-semibold text-gray-900 mb-3">Notifications</h4>
+              <div class="space-y-3">
+                <div class="flex items-center">
+                  <input type="checkbox" 
+                         [(ngModel)]="appointmentForm.emailReminder"
+                         class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                  <label class="ml-3 text-sm text-gray-900">Rappel par email 24h avant</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" 
+                         [(ngModel)]="appointmentForm.smsReminder"
+                         class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                  <label class="ml-3 text-sm text-gray-900">Rappel par SMS 2h avant</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" 
+                         [(ngModel)]="appointmentForm.calendarInvite"
+                         class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                  <label class="ml-3 text-sm text-gray-900">Invitation calendrier (Google/Outlook)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="flex items-center justify-between pt-6 border-t border-gray-200">
+          <button type="button" class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+            Annuler
+          </button>
+          <div class="flex space-x-4">
+            <button type="button" class="px-6 py-3 bg-white border border-orange-500 text-orange-600 rounded-lg hover:bg-orange-50 transition-colors">
+              Enregistrer en brouillon
+            </button>
+            <button type="submit" 
+                    (click)="onSubmit()"
+                    class="px-8 py-3 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+              <i class="fa-solid fa-calendar-check mr-2"></i>
+              Confirmer le rendez-vous
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-span-4">
+      <div class="space-y-6">
+        <!-- Summary -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Récapitulatif</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600">Type</span>
+              <span class="font-semibold text-gray-900">{{ getSelectedTypeLabel() }}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600">Agent</span>
+              <span class="font-semibold text-gray-900">{{ getSelectedAgentName() }}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600">Date</span>
+              <span class="font-semibold text-gray-900">{{ selectedDate ? (selectedDate | date:'dd/MM/yyyy') : 'Non sélectionnée' }}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600">Heure</span>
+              <span class="font-semibold text-gray-900">{{ selectedTime || 'Non sélectionnée' }}</span>
+            </div>
+            <hr class="border-gray-200">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-gray-900">Durée estimée</span>
+              <span class="text-lg font-bold text-orange-600">{{ getSelectedDuration() }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Actions rapides</h3>
+          <div class="space-y-3">
+            <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-clock text-blue-500 mr-3"></i>
+                <span class="text-sm font-medium text-gray-900">Mes RDV</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+            <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-phone text-green-500 mr-3"></i>
+                <span class="text-sm font-medium text-gray-900">Appel urgent</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+            <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-calendar-times text-red-500 mr-3"></i>
+                <span class="text-sm font-medium text-gray-900">Annuler un RDV</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Agent Availability -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Disponibilités des agents</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Marie" class="w-8 h-8 rounded-full mr-3">
+                <span class="text-sm font-medium text-gray-900">Marie Dubois</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                <span class="text-xs text-green-600">Disponible</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg" alt="Julien" class="w-8 h-8 rounded-full mr-3">
+                <span class="text-sm font-medium text-gray-900">Julien Martin</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                <span class="text-xs text-orange-600">Occupé</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg" alt="Sophie" class="w-8 h-8 rounded-full mr-3">
+                <span class="text-sm font-medium text-gray-900">Sophie Laurent</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                <span class="text-xs text-green-600">Disponible</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+          <h3 class="text-lg font-bold text-yellow-900 mb-4">Conseils</h3>
+          <div class="space-y-3">
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-lightbulb text-yellow-600 mt-1"></i>
+              <div>
+                <p class="font-medium text-yellow-900 text-sm">Préparez vos questions</p>
+                <p class="text-sm text-yellow-800">Listez vos questions à l'avance pour optimiser votre temps</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-file-alt text-yellow-600 mt-1"></i>
+              <div>
+                <p class="font-medium text-yellow-900 text-sm">Apportez vos documents</p>
+                <p class="text-sm text-yellow-800">Pièce d'identité, justificatifs de revenus si nécessaire</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fa-solid fa-clock text-yellow-600 mt-1"></i>
+              <div>
+                <p class="font-medium text-yellow-900 text-sm">Arrivez à l'heure</p>
+                <p class="text-sm text-yellow-800">Prévoyez 5 minutes d'avance pour être ponctuel</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upcoming Appointments -->
+  <div class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Mes rendez-vous à venir</h2>
+        <div class="flex space-x-4">
+          <button (click)="onCalendarView()" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-calendar-alt mr-2"></i>
+            Vue calendrier
+          </button>
+          <button (click)="onExportAppointments()" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-download mr-2"></i>
+            Exporter
+          </button>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div *ngFor="let appointment of upcomingAppointments" 
+             class="border border-gray-200 rounded-lg p-6 hover:border-orange-300 transition-colors">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div [class]="'w-12 h-12 ' + appointment.iconBg + ' rounded-lg flex items-center justify-center'">
+                <i [class]="'fa-solid ' + appointment.icon + ' ' + appointment.iconColor"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900">{{ appointment.type }}</h3>
+                <p class="text-sm text-gray-600">{{ appointment.date }}</p>
+                <div class="flex items-center mt-1">
+                  <img [src]="appointment.agentAvatar" [alt]="appointment.agent" class="w-6 h-6 rounded-full mr-2">
+                  <span class="text-sm text-gray-600">Avec {{ appointment.agent }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span [class]="'px-3 py-1 rounded-full text-sm ' + appointment.statusColor">{{ appointment.status }}</span>
+              <button (click)="onModifyAppointment(appointment)" class="p-2 text-gray-600 hover:text-orange-600 transition-colors">
+                <i class="fa-solid fa-edit"></i>
+              </button>
+              <button (click)="onCancelAppointment(appointment)" class="p-2 text-gray-600 hover:text-red-600 transition-colors">
+                <i class="fa-solid fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appointment History Section -->
+  <div class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Historique des rendez-vous</h2>
+        <div class="flex space-x-4">
+          <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option value="all">Tous les rendez-vous</option>
+            <option value="completed">Terminés</option>
+            <option value="cancelled">Annulés</option>
+            <option value="missed">Manqués</option>
+          </select>
+          <button class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-filter mr-2"></i>
+            Filtrer
+          </button>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Date</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Type</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Agent</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Durée</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Statut</th>
+              <th class="text-left py-3 px-4 font-semibold text-gray-900">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let appointment of appointmentHistory" 
+                class="border-b border-gray-100 hover:bg-gray-50">
+              <td class="py-4 px-4 text-sm text-gray-900">{{ appointment.date }}</td>
+              <td class="py-4 px-4">
+                <div class="flex items-center">
+                  <i [class]="'fa-solid ' + appointment.typeIcon + ' ' + appointment.typeColor + ' mr-2'"></i>
+                  <span class="text-sm text-gray-900">{{ appointment.type }}</span>
+                </div>
+              </td>
+              <td class="py-4 px-4">
+                <div class="flex items-center">
+                  <img [src]="appointment.agentAvatar" [alt]="appointment.agent" class="w-6 h-6 rounded-full mr-2">
+                  <span class="text-sm text-gray-900">{{ appointment.agent }}</span>
+                </div>
+              </td>
+              <td class="py-4 px-4 text-sm text-gray-900">{{ appointment.duration }}</td>
+              <td class="py-4 px-4">
+                <span [class]="'px-3 py-1 rounded-full text-sm ' + appointment.statusColor">{{ appointment.status }}</span>
+              </td>
+              <td class="py-4 px-4">
+                <button (click)="onViewAppointment(appointment)" class="text-orange-600 hover:text-orange-700 mr-2">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <button (click)="onRescheduleAppointment(appointment)" class="text-blue-600 hover:text-blue-700">
+                  <i class="fa-solid fa-redo"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex items-center justify-between mt-6">
+        <div class="text-sm text-gray-600">Affichage 1-3 sur 15 rendez-vous</div>
+        <div class="flex space-x-2">
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="px-3 py-2 bg-orange-500 text-white rounded-lg">1</button>
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">2</button>
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">3</button>
+          <button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appointment Stats Section -->
+  <div class="mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-calendar-check text-green-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">12</p>
+            <p class="text-gray-600 text-sm">RDV terminés</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clock text-orange-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">3</p>
+            <p class="text-gray-600 text-sm">À venir</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-times-circle text-red-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">1</p>
+            <p class="text-gray-600 text-sm">Annulés</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-percentage text-blue-500 text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-gray-900">92%</p>
+            <p class="text-gray-600 text-sm">Taux de réussite</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur les rendez-vous</h2>
+      <div class="space-y-6">
+        <div *ngFor="let faq of faqItems; let i = index" 
+             class="border border-gray-200 rounded-lg p-6">
+          <button (click)="toggleFaq(i)" 
+                  class="flex items-center justify-between w-full text-left">
+            <h3 class="font-semibold text-gray-900">{{ faq.question }}</h3>
+            <i [class]="'fa-solid ' + (faq.expanded ? 'fa-chevron-up' : 'fa-chevron-down') + ' text-gray-400'"></i>
+          </button>
+          <div *ngIf="faq.expanded" class="mt-4 text-sm text-gray-600">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

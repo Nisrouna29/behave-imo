@@ -1,0 +1,502 @@
+<div class="bg-gray-50 min-h-screen">
+  <!-- Breadcrumb -->
+  <div class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Rendez-vous</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Mes rendez-vous</span>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Mes rendez-vous</h1>
+        <p class="text-gray-600">Gérez vos rendez-vous passés et à venir avec votre gestionnaire immobilier</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button (click)="onExportAppointments()" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-download mr-2"></i>
+          Exporter
+        </button>
+        <button (click)="onNewAppointment()" class="px-4 py-2 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+          <i class="fa-solid fa-calendar-plus mr-2"></i>
+          Nouveau RDV
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">{{ stats.total }}</p>
+            <p class="text-gray-600 text-sm">Total RDV</p>
+            <div class="flex items-center mt-2">
+              <i class="fa-solid fa-arrow-up text-green-500 text-xs mr-1"></i>
+              <span class="text-green-500 text-xs">+3 ce mois</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-calendar text-blue-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">{{ stats.upcoming }}</p>
+            <p class="text-gray-600 text-sm">À venir</p>
+            <div class="flex items-center mt-2">
+              <i class="fa-solid fa-clock text-orange-500 text-xs mr-1"></i>
+              <span class="text-orange-500 text-xs">Cette semaine</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-clock text-orange-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">{{ stats.completed }}</p>
+            <p class="text-gray-600 text-sm">Terminés</p>
+            <div class="flex items-center mt-2">
+              <i class="fa-solid fa-check text-green-500 text-xs mr-1"></i>
+              <span class="text-green-500 text-xs">92% réussite</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-check-circle text-green-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-2xl font-bold text-gray-900">{{ stats.cancelled }}</p>
+            <p class="text-gray-600 text-sm">Annulé</p>
+            <div class="flex items-center mt-2">
+              <i class="fa-solid fa-exclamation-triangle text-red-500 text-xs mr-1"></i>
+              <span class="text-red-500 text-xs">8% taux</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-times-circle text-red-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Appointment Alert -->
+  <div class="mb-8">
+    <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 text-white">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold mb-2">Prochain rendez-vous</h3>
+          <p class="text-orange-100 mb-4">{{ nextAppointment?.title || 'État des lieux d\'entrée - Mercredi 15 janvier 2025 à 14h00' }}</p>
+          <div class="flex items-center">
+            <img [src]="nextAppointment?.agentAvatar || 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg'" 
+                 [alt]="nextAppointment?.agent || 'Marie'" 
+                 class="w-8 h-8 rounded-full mr-3">
+            <span class="text-orange-100">Avec {{ nextAppointment?.agent || 'Marie Dubois' }}</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button (click)="onModifyAppointment(nextAppointment)" class="px-4 py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors">
+            <i class="fa-solid fa-edit mr-2"></i>
+            Modifier
+          </button>
+          <button (click)="onGetDirections(nextAppointment)" class="px-4 py-2 bg-white text-orange-600 rounded-lg hover:bg-gray-100 transition-colors">
+            <i class="fa-solid fa-directions mr-2"></i>
+            Itinéraire
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-900">Filtres et recherche</h2>
+        <button (click)="onClearFilters()" class="text-orange-600 hover:text-orange-700 text-sm">
+          <i class="fa-solid fa-times mr-1"></i>
+          Effacer les filtres
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Recherche</label>
+          <div class="relative">
+            <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input type="text" 
+                   [(ngModel)]="searchTerm"
+                   (input)="onSearchChange()"
+                   placeholder="Rechercher un rendez-vous..." 
+                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
+          <select [(ngModel)]="selectedStatus" (change)="onFilterChange()" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option value="">Tous les statuts</option>
+            <option value="confirmed">Confirmé</option>
+            <option value="pending">En attente</option>
+            <option value="completed">Terminé</option>
+            <option value="cancelled">Annulé</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+          <select [(ngModel)]="selectedType" (change)="onFilterChange()" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option value="">Tous les types</option>
+            <option value="visit">Visite</option>
+            <option value="consultation">Consultation</option>
+            <option value="signing">Signature</option>
+            <option value="inspection">État des lieux</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Agent</label>
+          <select [(ngModel)]="selectedAgent" (change)="onFilterChange()" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            <option value="">Tous les agents</option>
+            <option value="marie">Marie Dubois</option>
+            <option value="julien">Julien Martin</option>
+            <option value="sophie">Sophie Laurent</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button (click)="onFilterClick('all')" 
+                [class]="'filter-button px-4 py-2 rounded-lg transition-colors ' + (activeFilter === 'all' ? 'active bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')">
+          Tous
+        </button>
+        <button (click)="onFilterClick('upcoming')" 
+                [class]="'filter-button px-4 py-2 rounded-lg transition-colors ' + (activeFilter === 'upcoming' ? 'active bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')">
+          À venir
+        </button>
+        <button (click)="onFilterClick('completed')" 
+                [class]="'filter-button px-4 py-2 rounded-lg transition-colors ' + (activeFilter === 'completed' ? 'active bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')">
+          Terminés
+        </button>
+        <button (click)="onFilterClick('cancelled')" 
+                [class]="'filter-button px-4 py-2 rounded-lg transition-colors ' + (activeFilter === 'cancelled' ? 'active bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')">
+          Annulés
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-8">
+    <!-- Appointments List -->
+    <div class="col-span-8">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div class="p-6 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-bold text-gray-900">Liste des rendez-vous</h2>
+            <div class="flex items-center space-x-2">
+              <button (click)="onViewModeChange('list')" 
+                      [class]="'p-2 rounded-lg transition-colors ' + (viewMode === 'list' ? 'bg-orange-100 text-orange-600' : 'bg-gray-100 hover:bg-gray-200')">
+                <i class="fa-solid fa-th-list text-gray-600"></i>
+              </button>
+              <button (click)="onViewModeChange('grid')" 
+                      [class]="'p-2 rounded-lg transition-colors ' + (viewMode === 'grid' ? 'bg-orange-100 text-orange-600' : 'bg-gray-100 hover:bg-gray-200')">
+                <i class="fa-solid fa-th-large"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <div class="space-y-4">
+            <div *ngFor="let appointment of filteredAppointments" 
+                 class="appointment-card border border-gray-200 rounded-lg p-6 hover:border-orange-300 transition-all"
+                 [class.opacity-75]="appointment.status === 'Terminé' || appointment.status === 'Annulé'">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                  <div [class]="'w-12 h-12 rounded-lg flex items-center justify-center ' + appointment.iconBg">
+                    <i [class]="'fa-solid ' + appointment.icon + ' ' + appointment.iconColor"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="font-bold text-gray-900">{{ appointment.title }}</h3>
+                    <p class="text-sm text-gray-600">{{ appointment.description }}</p>
+                    <div class="flex items-center mt-2 space-x-4">
+                      <div class="flex items-center">
+                        <i class="fa-solid fa-calendar text-gray-400 mr-2"></i>
+                        <span class="text-sm text-gray-600">{{ appointment.date }}</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="fa-solid fa-clock text-gray-400 mr-2"></i>
+                        <span class="text-sm text-gray-600">{{ appointment.time }}</span>
+                      </div>
+                      <div class="flex items-center">
+                        <img [src]="appointment.agentAvatar" [alt]="appointment.agent" class="w-6 h-6 rounded-full mr-2">
+                        <span class="text-sm text-gray-600">{{ appointment.agent }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <span [class]="'px-3 py-1 text-white rounded-full text-sm ' + getStatusClass(appointment.status)">{{ appointment.status }}</span>
+                  <div class="flex items-center space-x-2">
+                    <button (click)="onGetDirections(appointment)" class="p-2 text-gray-600 hover:text-blue-600 transition-colors">
+                      <i class="fa-solid fa-directions"></i>
+                    </button>
+                    <button (click)="onModifyAppointment(appointment)" class="p-2 text-gray-600 hover:text-orange-600 transition-colors">
+                      <i class="fa-solid fa-edit"></i>
+                    </button>
+                    <button (click)="onCancelAppointment(appointment)" class="p-2 text-gray-600 hover:text-red-600 transition-colors">
+                      <i class="fa-solid fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
+            <div class="text-sm text-gray-600">Affichage 1-{{ filteredAppointments.length }} sur {{ appointments.length }} rendez-vous</div>
+            <div class="flex space-x-2">
+              <button (click)="onPrevPage()" class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button *ngFor="let page of getPageNumbers()" 
+                      (click)="onPageClick(page)"
+                      [class]="'px-3 py-2 rounded-lg transition-colors ' + (currentPage === page ? 'bg-orange-500 text-white' : 'bg-white border border-gray-300 hover:bg-gray-50')">
+                {{ page }}
+              </button>
+              <button (click)="onNextPage()" class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-span-4">
+      <div class="space-y-6">
+        <!-- Calendar Widget -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Calendrier</h3>
+          <div class="border border-gray-200 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-4">
+              <button (click)="onPrevMonth()" class="p-2 hover:bg-gray-100 rounded-lg">
+                <i class="fa-solid fa-chevron-left text-gray-600"></i>
+              </button>
+              <h4 class="font-semibold text-gray-900">{{ currentMonth }}</h4>
+              <button (click)="onNextMonth()" class="p-2 hover:bg-gray-100 rounded-lg">
+                <i class="fa-solid fa-chevron-right text-gray-600"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-7 gap-1">
+              <div class="text-center text-xs font-medium text-gray-500 py-2">L</div>
+              <div class="text-center text-xs font-medium text-gray-500 py-2">M</div>
+              <div class="text-center text-xs font-medium text-gray-500 py-2">M</div>
+              <div class="text-center text-xs font-medium text-gray-500 py-2">J</div>
+              <div class="text-center text-xs font-medium text-gray-500 py-2">V</div>
+              <div class="text-center text-xs font-medium text-gray-500 py-2">S</div>
+              <div class="text-center text-xs font-medium text-gray-500 py-2">D</div>
+              
+              <div *ngFor="let day of calendarDays" 
+                   (click)="onDateClick(day)"
+                   [class]="'text-center py-2 text-sm cursor-pointer hover:bg-orange-50 rounded ' + 
+                            (day.hasAppointment ? 'bg-orange-100 text-orange-700 font-semibold' : '') + 
+                            (day.isToday ? ' bg-blue-100 text-blue-700 font-semibold' : '')">
+                {{ day.day }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent Availability -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Disponibilité agents</h3>
+          <div class="space-y-4">
+            <div *ngFor="let agent of agents" class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img [src]="agent.avatar" [alt]="agent.name" class="w-10 h-10 rounded-full mr-3">
+                <div>
+                  <p class="font-medium text-gray-900">{{ agent.name }}</p>
+                  <p class="text-xs text-gray-500">{{ agent.role }}</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div [class]="'w-3 h-3 rounded-full mr-2 ' + (agent.available ? 'bg-green-500' : 'bg-orange-500')"></div>
+                <span [class]="'text-sm ' + (agent.available ? 'text-green-600' : 'text-orange-600')">
+                  {{ agent.available ? 'Disponible' : 'Occupé' }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">Actions rapides</h3>
+          <div class="space-y-3">
+            <button (click)="onNewAppointment()" class="w-full flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg hover:bg-orange-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-calendar-plus text-orange-500 mr-3"></i>
+                <span class="text-sm font-medium text-orange-900">Nouveau RDV</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-orange-400"></i>
+            </button>
+            <button (click)="onEmergencyCall()" class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-phone text-green-500 mr-3"></i>
+                <span class="text-sm font-medium text-gray-900">Appel urgent</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+            <button (click)="onCalendarView()" class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-calendar-alt text-blue-500 mr-3"></i>
+                <span class="text-sm font-medium text-gray-900">Vue calendrier</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+            <button (click)="onExportAppointments()" class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-download text-purple-500 mr-3"></i>
+                <span class="text-sm font-medium text-gray-900">Exporter PDF</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Notifications Widget -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+          <div class="flex items-start">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+              <i class="fa-solid fa-bell text-blue-600"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-blue-900 mb-2">Rappels activés</h3>
+              <p class="text-sm text-blue-800 mb-3">Vous recevrez des notifications pour vos prochains rendez-vous</p>
+              <button (click)="onManageNotifications()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                Gérer les notifications
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analytics Section -->
+  <div class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Analyse des rendez-vous</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Répartition par type</h3>
+          <div class="space-y-3">
+            <div *ngFor="let type of appointmentTypeStats" class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div [class]="'w-4 h-4 rounded mr-3 ' + type.color"></div>
+                <span class="text-sm text-gray-700">{{ type.name }}</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-sm font-medium text-gray-900 mr-2">{{ type.count }}</span>
+                <div class="w-20 bg-gray-200 rounded-full h-2">
+                  <div [class]="'h-2 rounded-full ' + type.color" [style.width.%]="type.percentage"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Évolution mensuelle</h3>
+          <div class="space-y-3">
+            <div *ngFor="let month of monthlyStats" class="flex items-center justify-between">
+              <span class="text-sm text-gray-700">{{ month.name }}</span>
+              <div class="flex items-center">
+                <span class="text-sm font-medium text-gray-900 mr-2">{{ month.count }}</span>
+                <div class="w-24 bg-gray-200 rounded-full h-2">
+                  <div [class]="'h-2 rounded-full ' + month.color" [style.width.%]="month.percentage"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Section -->
+  <div class="mt-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Évaluations et commentaires</h2>
+      <div class="space-y-6">
+        <div *ngFor="let feedback of feedbacks" class="border border-gray-200 rounded-lg p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center">
+              <img [src]="feedback.agentAvatar" [alt]="feedback.agent" class="w-10 h-10 rounded-full mr-3">
+              <div>
+                <p class="font-medium text-gray-900">{{ feedback.title }}</p>
+                <p class="text-sm text-gray-500">{{ feedback.date }} - Avec {{ feedback.agent }}</p>
+              </div>
+            </div>
+            <div class="flex text-yellow-400">
+              <i *ngFor="let star of getStars(feedback.rating)" 
+                 [class]="'fa-solid fa-star text-xs' + (star ? '' : ' fa-regular')"></i>
+            </div>
+          </div>
+          <p class="text-gray-700 text-sm">{{ feedback.comment }}</p>
+        </div>
+        
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+          <h3 class="font-medium text-yellow-900 mb-2">Rendez-vous en attente d'évaluation</h3>
+          <p class="text-sm text-yellow-800 mb-4">Vous avez {{ pendingEvaluations }} rendez-vous terminé en attente d'évaluation</p>
+          <button (click)="onEvaluateNow()" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">
+            Évaluer maintenant
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips Section -->
+  <div class="mt-8">
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8">
+      <h2 class="text-2xl font-bold text-blue-900 mb-6">Conseils pour vos rendez-vous</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <i class="fa-solid fa-clock text-blue-600 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Ponctualité</h3>
+          <p class="text-sm text-gray-600">Arrivez 5 minutes en avance pour être à l'heure et faire bonne impression.</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <i class="fa-solid fa-file-alt text-green-600 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Documents</h3>
+          <p class="text-sm text-gray-600">Préparez tous les documents nécessaires à l'avance selon le type de rendez-vous.</p>
+        </div>
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+            <i class="fa-solid fa-question-circle text-purple-600 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Questions</h3>
+          <p class="text-sm text-gray-600">Préparez une liste de questions pour optimiser votre temps avec l'agent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

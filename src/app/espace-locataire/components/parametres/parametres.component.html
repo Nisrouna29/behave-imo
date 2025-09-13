@@ -1,0 +1,348 @@
+<div class="bg-gray-50 min-h-screen">
+  <!-- Breadcrumb -->
+  <div class="mb-6">
+    <nav class="flex items-center space-x-2 text-sm">
+      <span class="text-gray-500 hover:text-orange-600 cursor-pointer">Tableau de bord</span>
+      <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+      <span class="text-orange-600 font-medium">Paramètres</span>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Paramètres</h1>
+        <p class="text-gray-600">Gérez vos préférences et vos informations de compte</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button (click)="onExportData()" 
+                [disabled]="isLoading"
+                class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50">
+          <i class="fa-solid fa-download mr-2"></i>
+          Exporter mes données
+        </button>
+        <button (click)="onDeleteAccount()" 
+                [disabled]="isLoading"
+                class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50">
+          <i class="fa-solid fa-trash mr-2"></i>
+          Supprimer le compte
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="saveSuccess" class="mb-6 bg-green-50 border border-green-200 rounded-lg p-4">
+    <div class="flex items-center">
+      <i class="fa-solid fa-check-circle text-green-600 mr-3"></i>
+      <span class="text-green-800 font-medium">Modifications sauvegardées avec succès</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-8">
+    <!-- Profile Section -->
+    <div class="col-span-4">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-8">
+        <div class="text-center mb-6">
+          <div class="relative inline-block">
+            <img [src]="userProfile.avatar" 
+                 [alt]="userProfile.firstName + ' ' + userProfile.lastName" 
+                 class="w-24 h-24 rounded-full mx-auto mb-4">
+            <button class="absolute bottom-0 right-0 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors">
+              <i class="fa-solid fa-camera text-sm"></i>
+            </button>
+          </div>
+          <h2 class="text-xl font-bold text-gray-900">{{ userProfile.firstName }} {{ userProfile.lastName }}</h2>
+          <p class="text-gray-600">{{ userProfile.email }}</p>
+          <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium mt-2">
+            <i class="fa-solid fa-check-circle mr-1"></i>
+            Compte vérifié
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center justify-between py-2">
+            <span class="text-sm text-gray-600">Membre depuis</span>
+            <span class="text-sm font-medium text-gray-900">Janvier 2024</span>
+          </div>
+          <div class="flex items-center justify-between py-2">
+            <span class="text-sm text-gray-600">Dernière connexion</span>
+            <span class="text-sm font-medium text-gray-900">Aujourd'hui</span>
+          </div>
+          <div class="flex items-center justify-between py-2">
+            <span class="text-sm text-gray-600">Statut</span>
+            <span class="text-sm font-medium text-green-600">Actif</span>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-gray-200">
+          <button (click)="onEditProfile()" 
+                  [disabled]="isLoading"
+                  class="w-full px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50">
+            <i class="fa-solid fa-edit mr-2"></i>
+            Modifier le profil
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Content -->
+    <div class="col-span-8">
+      <div class="space-y-6">
+        <!-- Profile Edit Form -->
+        <div *ngIf="isEditingProfile" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-bold text-gray-900">Modifier le profil</h3>
+            <div class="flex space-x-2">
+              <button (click)="onCancelEdit()" 
+                      class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                Annuler
+              </button>
+              <button (click)="onSaveProfile()" 
+                      [disabled]="isLoading"
+                      class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50">
+                <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin mr-2"></i>
+                <i *ngIf="!isLoading" class="fa-solid fa-save mr-2"></i>
+                Sauvegarder
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Prénom</label>
+              <input type="text" 
+                     [(ngModel)]="userProfile.firstName"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Nom</label>
+              <input type="text" 
+                     [(ngModel)]="userProfile.lastName"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Email</label>
+              <input type="email" 
+                     [(ngModel)]="userProfile.email"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Téléphone</label>
+              <input type="tel" 
+                     [(ngModel)]="userProfile.phone"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Adresse</label>
+              <input type="text" 
+                     [(ngModel)]="userProfile.address"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Date de naissance</label>
+              <input type="date" 
+                     [(ngModel)]="userProfile.birthDate"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Profession</label>
+              <input type="text" 
+                     [(ngModel)]="userProfile.occupation"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Contact d'urgence</label>
+              <input type="text" 
+                     [(ngModel)]="userProfile.emergencyContact"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Change Form -->
+        <div *ngIf="isChangingPassword" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-bold text-gray-900">Changer le mot de passe</h3>
+            <div class="flex space-x-2">
+              <button (click)="onCancelPasswordChange()" 
+                      class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                Annuler
+              </button>
+              <button (click)="onSavePassword()" 
+                      [disabled]="isLoading"
+                      class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50">
+                <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin mr-2"></i>
+                <i *ngIf="!isLoading" class="fa-solid fa-save mr-2"></i>
+                Sauvegarder
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Mot de passe actuel</label>
+              <input type="password" 
+                     [(ngModel)]="passwordForm.currentPassword"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Nouveau mot de passe</label>
+              <input type="password" 
+                     [(ngModel)]="passwordForm.newPassword"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">Confirmer le nouveau mot de passe</label>
+              <input type="password" 
+                     [(ngModel)]="passwordForm.confirmPassword"
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Sections -->
+        <div *ngFor="let section of settingsSections" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-center mb-6">
+            <div [class]="'w-12 h-12 rounded-lg flex items-center justify-center mr-4 ' + section.iconBg">
+              <i [class]="'fa-solid ' + section.icon + ' ' + section.iconColor + ' text-xl'"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900">{{ section.title }}</h3>
+              <p class="text-sm text-gray-600">{{ section.description }}</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div *ngFor="let item of section.items" class="flex items-center justify-between py-4 border-b border-gray-100 last:border-b-0">
+              <div class="flex-1">
+                <h4 class="font-semibold text-gray-900">{{ item.label }}</h4>
+                <p class="text-sm text-gray-600">{{ item.description }}</p>
+              </div>
+              <div class="ml-4">
+                <!-- Toggle Switch -->
+                <div *ngIf="item.type === 'toggle'" 
+                     (click)="onToggleSetting(section.id, item.id)"
+                     [class]="'relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ' + (item.value ? 'bg-orange-500' : 'bg-gray-200')">
+                  <span [class]="'inline-block h-4 w-4 transform rounded-full bg-white transition-transform ' + (item.value ? 'translate-x-6' : 'translate-x-1')"></span>
+                </div>
+
+                <!-- Select Dropdown -->
+                <select *ngIf="item.type === 'select'" 
+                        [value]="item.value"
+                        (change)="onSelectChange(section.id, item.id, $any($event.target).value)"
+                        class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                  <option *ngFor="let option of item.options" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security Actions -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+              <i class="fa-solid fa-shield-halved text-red-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900">Sécurité</h3>
+              <p class="text-sm text-gray-600">Actions de sécurité pour votre compte</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <button (click)="onChangePassword()" 
+                    class="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-key text-orange-500 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Changer le mot de passe</h4>
+                  <p class="text-sm text-gray-600">Mettez à jour votre mot de passe pour plus de sécurité</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+
+            <button class="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-mobile-screen text-blue-500 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Authentification à deux facteurs</h4>
+                  <p class="text-sm text-gray-600">Ajoutez une couche de sécurité supplémentaire</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+
+            <button class="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-desktop text-green-500 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Sessions actives</h4>
+                  <p class="text-sm text-gray-600">Gérez vos sessions de connexion</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Data Management -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+              <i class="fa-solid fa-database text-purple-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900">Gestion des données</h3>
+              <p class="text-sm text-gray-600">Contrôlez vos données personnelles</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <button (click)="onExportData()" 
+                    [disabled]="isLoading"
+                    class="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50">
+              <div class="flex items-center">
+                <i class="fa-solid fa-download text-green-500 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Exporter mes données</h4>
+                  <p class="text-sm text-gray-600">Téléchargez une copie de toutes vos données</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+
+            <button class="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="flex items-center">
+                <i class="fa-solid fa-eye-slash text-yellow-500 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Demander l'anonymisation</h4>
+                  <p class="text-sm text-gray-600">Supprimez vos données personnelles tout en gardant le compte</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </button>
+
+            <button (click)="onDeleteAccount()" 
+                    [disabled]="isLoading"
+                    class="w-full flex items-center justify-between p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors disabled:opacity-50">
+              <div class="flex items-center">
+                <i class="fa-solid fa-trash text-red-500 mr-3"></i>
+                <div>
+                  <h4 class="font-semibold text-red-900">Supprimer le compte</h4>
+                  <p class="text-sm text-red-600">Supprimez définitivement votre compte et toutes vos données</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-red-400"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

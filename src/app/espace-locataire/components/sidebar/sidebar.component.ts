@@ -45,15 +45,13 @@ export class LocataireSidebarComponent implements OnInit, OnDestroy {
       title: 'Documents',
       items: [
         { id: 'quittances', label: 'Quittances de Loyer', icon: 'fa-receipt', route: 'quittances' },
-        { id: 'contrats', label: 'Mes Contrats', icon: 'fa-file-contract', route: 'mes-contrats' },
-        { id: 'documents', label: 'Documents Divers', icon: 'fa-folder', route: 'documents' }
+        { id: 'contrats', label: 'Mes Contrats', icon: 'fa-file-contract', route: 'mes-contrats' }
       ]
     },
     {
       title: 'Communication',
       items: [
-        { id: 'messages', label: 'Messages', icon: 'fa-comment', route: 'messages', badge: '2' },
-        { id: 'notifications', label: 'Notifications', icon: 'fa-bell', route: 'notifications' }
+        { id: 'messages', label: 'Messages', icon: 'fa-comment', route: 'messages', badge: '2' }
       ]
     },
     {
@@ -61,14 +59,14 @@ export class LocataireSidebarComponent implements OnInit, OnDestroy {
       items: [
         { id: 'maintenance', label: 'Demandes Maintenance', icon: 'fa-tools', route: 'maintenance' },
         { id: 'paiements', label: 'Paiements', icon: 'fa-credit-card', route: 'paiements' },
-        { id: 'rendez-vous', label: 'Rendez-vous', icon: 'fa-calendar', route: 'rendez-vous' }
+        { id: 'prendre-rendez-vous', label: 'Prendre RDV', icon: 'fa-calendar-plus', route: 'prendre-rendez-vous' },
+        { id: 'rendez-vous', label: 'Mes Rendez-vous', icon: 'fa-calendar', route: 'rendez-vous' }
       ]
     },
     {
       title: 'Compte',
       items: [
-        { id: 'parametres', label: 'Paramètres', icon: 'fa-cog', route: 'parametres' },
-        { id: 'aide', label: 'Aide & Support', icon: 'fa-question-circle', route: 'aide' }
+        { id: 'parametres', label: 'Paramètres', icon: 'fa-cog', route: 'parametres' }
       ]
     }
   ];
