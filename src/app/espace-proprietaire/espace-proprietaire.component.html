@@ -1,10 +1,5 @@
-<!-- Chat Layout - Full Screen -->
-<div *ngIf="currentView === 'chat'" class="h-screen overflow-hidden">
-  <router-outlet></router-outlet>
-</div>
-
-<!-- Default Layout -->
-<div *ngIf="currentView !== 'chat'" class="bg-gray-50 min-h-screen">
+<!-- Layout with Sidebar -->
+<div class="bg-gray-50 min-h-screen">
   <!-- Header -->
   <app-proprietaire-header (toggleMobileMenu)="toggleMobileMenu()" (logout)="onLogout()"></app-proprietaire-header>
 

@@ -1,7 +1,7 @@
 /* Chat Layout Styles */
 :host {
   display: block;
-  height: 100vh;
+  height: calc(100vh - 80px);
   overflow: visible;
   width: 100%;
 }
@@ -104,7 +104,7 @@
 #chat-main-area {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 80px);
+  height: 100%;
 }
 
 #chat-messages {

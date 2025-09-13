@@ -43,6 +43,8 @@ export class EspaceProprietaireComponent {
             this.currentView = 'gestion-paye';
           } else if (lastSegment === 'etat-lieux') {
             this.currentView = 'etat-lieux';
+          } else if (lastSegment === 'chat') {
+            this.currentView = 'chat';
           } else {
             this.currentView = lastSegment || 'accueil';
           }
