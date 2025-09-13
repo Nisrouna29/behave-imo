@@ -56,23 +56,17 @@ export class AccueilComponent implements OnInit, AfterViewInit {
 
   private async loadHighchartsAndInitialize(): Promise<void> {
     try {
-      // Charger Highcharts et ses modules
-      const [Highcharts, HighchartsMore, SolidGauge] = await Promise.all([
-        import('highcharts'),
-        import('highcharts/highcharts-more'),
-        import('highcharts/modules/solid-gauge')
-      ]);
+      // Charger Highcharts de manière plus simple
+      const Highcharts = await import('highcharts');
+      
+      // Charger les modules un par un
+      await import('highcharts/highcharts-more');
+      await import('highcharts/modules/solid-gauge');
 
-      // Initialiser les modules
-      if (HighchartsMore.default) {
-        (HighchartsMore.default as any)(Highcharts.default);
-      }
-      if (SolidGauge.default) {
-        (SolidGauge.default as any)(Highcharts.default);
-      }
-
-      // Initialiser les graphiques
-      this.initCharts(Highcharts.default);
+      // Attendre que tout soit chargé
+      setTimeout(() => {
+        this.initCharts(Highcharts.default);
+      }, 200);
     } catch (error) {
       console.error('Erreur lors du chargement de Highcharts:', error);
     }

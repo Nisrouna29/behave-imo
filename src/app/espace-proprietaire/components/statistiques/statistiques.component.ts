@@ -22,27 +22,18 @@ export class StatistiquesComponent implements OnInit, AfterViewInit {
 
   private async loadHighchartsAndInitialize(): Promise<void> {
     try {
-      // Charger Highcharts et ses modules
-      const [Highcharts, HighchartsMore, SolidGauge, Treemap] = await Promise.all([
-        import('highcharts'),
-        import('highcharts/highcharts-more'),
-        import('highcharts/modules/solid-gauge'),
-        import('highcharts/modules/treemap')
-      ]);
+      // Charger Highcharts de manière plus simple
+      const Highcharts = await import('highcharts');
+      
+      // Charger les modules un par un
+      await import('highcharts/highcharts-more');
+      await import('highcharts/modules/solid-gauge');
+      await import('highcharts/modules/treemap');
 
-      // Initialiser les modules
-      if (HighchartsMore.default) {
-        (HighchartsMore.default as any)(Highcharts.default);
-      }
-      if (SolidGauge.default) {
-        (SolidGauge.default as any)(Highcharts.default);
-      }
-      if (Treemap.default) {
-        (Treemap.default as any)(Highcharts.default);
-      }
-
-      // Initialiser les graphiques
-      this.initializeCharts(Highcharts.default);
+      // Attendre que tout soit chargé
+      setTimeout(() => {
+        this.initializeCharts(Highcharts.default);
+      }, 200);
     } catch (error) {
       console.error('Erreur lors du chargement de Highcharts:', error);
     }
