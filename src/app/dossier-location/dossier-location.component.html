@@ -1,0 +1,336 @@
+<app-shared-header [activeRoute]="activeRoute"></app-shared-header>
+
+<div id="document-submission" class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+    <!-- Breadcrumb -->
+    <div id="breadcrumb" class="mb-8">
+        <nav class="flex items-center space-x-2 text-gray-600">
+            <span class="hover:text-orange-600 cursor-pointer" (click)="onBackToProperties()">Accueil</span>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span class="hover:text-orange-600 cursor-pointer" (click)="onBackToProperties()">Propriétés</span>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span class="text-orange-600">Soumission de documents</span>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <div id="page-header" class="mb-8">
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Dossier de candidature</h1>
+                    <p class="text-gray-600">{{ dossierData().propertyTitle }} - {{ dossierData().propertyAddress }}</p>
+                    <div class="flex items-center mt-4 space-x-4">
+                        <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">{{ dossierData().propertyType }}</span>
+                        <span class="text-gray-500 text-sm">{{ dossierData().propertyPrice }}</span>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm text-gray-500 mb-1">Progression</div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-32 bg-gray-200 rounded-full h-2">
+                            <div
+                                class="bg-orange-500 h-2 rounded-full transition-all duration-300"
+                                [style.width.%]="dossierData().progress"
+                            ></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">{{ dossierData().progress }}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documents Section -->
+    <div id="documents-section" class="grid grid-cols-1 gap-6">
+        <!-- Identity Documents -->
+        <div id="identity-docs" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fa-solid fa-id-card text-orange-600 text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Pièces d'identité</h2>
+                    <p class="text-gray-600">Documents requis pour votre identification</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- ID Document -->
+                <div class="border border-gray-200 rounded-xl p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-passport text-gray-400"></i>
+                            <span class="font-semibold text-gray-800">Carte d'identité ou Passeport</span>
+                            <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-medium">Obligatoire</span>
+                        </div>
+                        <div class="text-sm text-gray-500">Recto/Verso</div>
+                    </div>
+
+                    <div
+                        class="upload-zone rounded-lg p-6 sm:p-8 text-center cursor-pointer"
+                        [class.dragover]="isDragOver()"
+                        (dragover)="onDragOver($event)"
+                        (dragleave)="onDragLeave($event)"
+                        (drop)="onDrop($event, 'identity', 'id')"
+                        (click)="triggerFileInput('identity-upload')"
+                    >
+                        <input
+                            type="file"
+                            id="identity-upload"
+                            class="hidden"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            multiple
+                            (change)="onFileUpload($event, 'identity', 'id')"
+                        >
+                        <i class="fa-solid fa-cloud-upload text-orange-400 text-2xl sm:text-3xl mb-3"></i>
+                        <p class="text-gray-600 mb-2">Glissez vos fichiers ici ou cliquez pour parcourir</p>
+                        <p class="text-sm text-gray-500">PDF, JPG, PNG (max 5MB par fichier)</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Numéro de pièce d'identité</label>
+                        <input
+                            type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                            placeholder="Ex: 123456789"
+                            [(ngModel)]="dossierData().identity.idNumber"
+                            (input)="updateProgress()"
+                        >
+                    </div>
+                </div>
+
+                <!-- Address Document -->
+                <div class="border border-gray-200 rounded-xl p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-file-contract text-gray-400"></i>
+                            <span class="font-semibold text-gray-800">Justificatif de domicile</span>
+                            <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-medium">Obligatoire</span>
+                        </div>
+                        <div class="text-sm text-gray-500">Moins de 3 mois</div>
+                    </div>
+
+                    <div
+                        class="upload-zone rounded-lg p-6 sm:p-8 text-center cursor-pointer"
+                        [class.dragover]="isDragOver()"
+                        (dragover)="onDragOver($event)"
+                        (dragleave)="onDragLeave($event)"
+                        (drop)="onDrop($event, 'identity', 'address')"
+                        (click)="triggerFileInput('address-upload')"
+                    >
+                        <input
+                            type="file"
+                            id="address-upload"
+                            class="hidden"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            (change)="onFileUpload($event, 'identity', 'address')"
+                        >
+                        <i class="fa-solid fa-cloud-upload text-orange-400 text-2xl sm:text-3xl mb-3"></i>
+                        <p class="text-gray-600 mb-2">Facture électricité, gaz, téléphone ou internet</p>
+                        <p class="text-sm text-gray-500">PDF, JPG, PNG (max 5MB)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Documents -->
+        <div id="financial-docs" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fa-solid fa-euro-sign text-green-600 text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Justificatifs financiers</h2>
+                    <p class="text-gray-600">Preuves de vos revenus et situation financière</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Salary Documents -->
+                <div class="border border-gray-200 rounded-xl p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-file-invoice text-gray-400"></i>
+                            <span class="font-semibold text-gray-800">Bulletins de salaire</span>
+                            <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-medium">Obligatoire</span>
+                        </div>
+                        <div class="text-sm text-gray-500">3 derniers mois</div>
+                    </div>
+
+                    <div
+                        class="upload-zone rounded-lg p-6 sm:p-8 text-center cursor-pointer"
+                        [class.dragover]="isDragOver()"
+                        (dragover)="onDragOver($event)"
+                        (dragleave)="onDragLeave($event)"
+                        (drop)="onDrop($event, 'financial', 'salary')"
+                        (click)="triggerFileInput('salary-upload')"
+                    >
+                        <input
+                            type="file"
+                            id="salary-upload"
+                            class="hidden"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            multiple
+                            (change)="onFileUpload($event, 'financial', 'salary')"
+                        >
+                        <i class="fa-solid fa-cloud-upload text-orange-400 text-2xl sm:text-3xl mb-3"></i>
+                        <p class="text-gray-600 mb-2">Téléchargez vos 3 derniers bulletins de salaire</p>
+                        <p class="text-sm text-gray-500">PDF recommandé (max 5MB par fichier)</p>
+                    </div>
+
+                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Salaire net mensuel</label>
+                            <input
+                                type="text"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                                placeholder="Ex: 3500€"
+                                [(ngModel)]="dossierData().financial.monthlySalary"
+                                (input)="updateProgress()"
+                            >
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Type de contrat</label>
+                            <select
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                                [(ngModel)]="dossierData().financial.contractType"
+                            >
+                                <option value="CDI">CDI</option>
+                                <option value="CDD">CDD</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Fonctionnaire">Fonctionnaire</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bank Documents -->
+                <div class="border border-gray-200 rounded-xl p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-building-columns text-gray-400"></i>
+                            <span class="font-semibold text-gray-800">Relevés bancaires</span>
+                            <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">Recommandé</span>
+                        </div>
+                        <div class="text-sm text-gray-500">3 derniers mois</div>
+                    </div>
+
+                    <div
+                        class="upload-zone rounded-lg p-6 sm:p-8 text-center cursor-pointer"
+                        [class.dragover]="isDragOver()"
+                        (dragover)="onDragOver($event)"
+                        (dragleave)="onDragLeave($event)"
+                        (drop)="onDrop($event, 'financial', 'bank')"
+                        (click)="triggerFileInput('bank-upload')"
+                    >
+                        <input
+                            type="file"
+                            id="bank-upload"
+                            class="hidden"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            multiple
+                            (change)="onFileUpload($event, 'financial', 'bank')"
+                        >
+                        <i class="fa-solid fa-cloud-upload text-orange-400 text-2xl sm:text-3xl mb-3"></i>
+                        <p class="text-gray-600 mb-2">Relevés de compte bancaire</p>
+                        <p class="text-sm text-gray-500">PDF, JPG, PNG (max 5MB par fichier)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Documents -->
+        <div id="professional-docs" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fa-solid fa-briefcase text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Informations professionnelles</h2>
+                    <p class="text-gray-600">Détails sur votre situation professionnelle</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nom de l'employeur</label>
+                        <input
+                            type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                            placeholder="Ex: Société ABC"
+                            [(ngModel)]="dossierData().professional.employerName"
+                            (input)="updateProgress()"
+                        >
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Poste occupé</label>
+                        <input
+                            type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                            placeholder="Ex: Développeur Senior"
+                            [(ngModel)]="dossierData().professional.position"
+                            (input)="updateProgress()"
+                        >
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-xl p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-certificate text-gray-400"></i>
+                            <span class="font-semibold text-gray-800">Attestation employeur</span>
+                            <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-medium">Recommandé</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="upload-zone rounded-lg p-6 sm:p-8 text-center cursor-pointer"
+                        [class.dragover]="isDragOver()"
+                        (dragover)="onDragOver($event)"
+                        (dragleave)="onDragLeave($event)"
+                        (drop)="onDrop($event, 'professional', 'employer')"
+                        (click)="triggerFileInput('employer-upload')"
+                    >
+                        <input
+                            type="file"
+                            id="employer-upload"
+                            class="hidden"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            (change)="onFileUpload($event, 'professional', 'employer')"
+                        >
+                        <i class="fa-solid fa-cloud-upload text-orange-400 text-2xl sm:text-3xl mb-3"></i>
+                        <p class="text-gray-600 mb-2">Attestation de travail ou contrat</p>
+                        <p class="text-sm text-gray-500">PDF, JPG, PNG (max 5MB)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submission Actions -->
+    <div id="submission-actions" class="mt-8 bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+                <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Finaliser votre dossier</h3>
+                <p class="text-gray-600">Vérifiez que tous les documents requis sont téléchargés</p>
+            </div>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                <button
+                    class="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-medium"
+                    (click)="onSaveDraft()"
+                >
+                    <i class="fa-solid fa-save mr-2"></i>
+                    Sauvegarder le brouillon
+                </button>
+                <button
+                    class="gradient-bg text-white px-6 sm:px-8 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-semibold"
+                    (click)="onSubmitDossier()"
+                >
+                    <i class="fa-solid fa-paper-plane mr-2"></i>
+                    Soumettre le dossier
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

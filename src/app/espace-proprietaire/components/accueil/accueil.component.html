@@ -1,0 +1,192 @@
+<main class="flex-1">
+    <section id="hero-section" class="gradient-bg h-[400px] relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+            <div class="flex items-center justify-between">
+                <div class="text-white">
+                    <h1 class="text-5xl font-bold mb-4">Bienvenue sur ImmoPro</h1>
+                    <p class="text-xl mb-8 opacity-90">Gérez votre patrimoine immobilier avec simplicité et efficacité</p>
+                    <div class="flex space-x-4">
+                        <button (click)="addNewProperty()" class="bg-white text-orange-600 px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+                            <i class="fa-solid fa-plus mr-2"></i>
+                            Nouvelle propriété
+                        </button>
+                        <button (click)="viewReports()" class="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-orange-600 transition-all">
+                            <i class="fa-solid fa-chart-line mr-2"></i>
+                            Voir les rapports
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <img class="w-80 h-80 rounded-2xl shadow-2xl object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ade0d71f84-d18b919f627e3fa2f086.png" alt="modern real estate office interior with glass walls and orange accents">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard-overview" class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
+            <div id="total-properties-card" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-building text-orange-600 text-xl"></i>
+                    </div>
+                    <span class="text-green-600 text-sm font-semibold">+12%</span>
+                </div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-1">24</h3>
+                <p class="text-gray-600">Propriétés totales</p>
+            </div>
+
+            <div id="occupied-properties-card" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-home text-green-600 text-xl"></i>
+                    </div>
+                    <span class="text-green-600 text-sm font-semibold">+5%</span>
+                </div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-1">21</h3>
+                <p class="text-gray-600">Propriétés occupées</p>
+            </div>
+
+            <div id="monthly-revenue-card" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-euro-sign text-blue-600 text-xl"></i>
+                    </div>
+                    <span class="text-green-600 text-sm font-semibold">+8%</span>
+                </div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-1">45,230€</h3>
+                <p class="text-gray-600">Revenus mensuels</p>
+            </div>
+
+            <div id="pending-applications-card" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-clock text-orange-600 text-xl"></i>
+                    </div>
+                    <span class="text-orange-600 text-sm font-semibold">7 nouvelles</span>
+                </div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-1">18</h3>
+                <p class="text-gray-600">Candidatures en attente</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="charts-section" class="max-w-7xl mx-auto px-6 mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div id="revenue-chart-container" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-6">Évolution des revenus</h3>
+                <div id="revenue-chart" class="h-80"></div>
+            </div>
+
+            <div id="occupancy-chart-container" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-6">Taux d'occupation</h3>
+                <div id="occupancy-chart" class="h-80"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recent-activities" class="max-w-7xl mx-auto px-6 mb-12">
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800">Activités récentes</h3>
+                <button class="text-orange-600 hover:text-orange-700 font-medium">Voir tout</button>
+            </div>
+            <div class="space-y-4">
+                <div id="activity-1" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-check text-green-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-medium">Nouveau locataire validé</p>
+                        <p class="text-gray-600 text-sm">Pierre Martin - Villa Neuilly</p>
+                    </div>
+                    <span class="text-gray-500 text-sm">Il y a 2h</span>
+                </div>
+
+                <div id="activity-2" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-euro-sign text-blue-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-medium">Paiement reçu</p>
+                        <p class="text-gray-600 text-sm">Loyer Mars 2024 - Apt Paris 16</p>
+                    </div>
+                    <span class="text-gray-500 text-sm">Il y a 5h</span>
+                </div>
+
+                <div id="activity-3" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-file text-orange-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-medium">Nouvelle candidature</p>
+                        <p class="text-gray-600 text-sm">Sophie Dubois - Maison Boulogne</p>
+                    </div>
+                    <span class="text-gray-500 text-sm">Il y a 1 jour</span>
+                </div>
+
+                <div id="activity-4" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-wrench text-purple-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-medium">Demande de maintenance</p>
+                        <p class="text-gray-600 text-sm">Réparation plomberie - Studio Montmartre</p>
+                    </div>
+                    <span class="text-gray-500 text-sm">Il y a 2 jours</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calendar-section" class="max-w-7xl mx-auto px-6 mb-12">
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800">Planning de la semaine</h3>
+                <button (click)="addEvent()" class="text-orange-600 hover:text-orange-700 font-medium">
+                    <i class="fa-solid fa-calendar-plus mr-2"></i>
+                    Ajouter un événement
+                </button>
+            </div>
+            <div class="grid grid-cols-7 gap-4">
+                <div id="calendar-day-1" class="text-center">
+                    <div class="text-sm font-medium text-gray-600 mb-2">Lun 18</div>
+                    <div class="space-y-2">
+                        <div class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded">Visite 14h</div>
+                    </div>
+                </div>
+                <div id="calendar-day-2" class="text-center">
+                    <div class="text-sm font-medium text-gray-600 mb-2">Mar 19</div>
+                    <div class="space-y-2">
+                        <div class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Maintenance</div>
+                    </div>
+                </div>
+                <div id="calendar-day-3" class="text-center">
+                    <div class="text-sm font-medium text-gray-600 mb-2">Mer 20</div>
+                    <div class="space-y-2">
+                        <div class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Signature</div>
+                    </div>
+                </div>
+                <div id="calendar-day-4" class="text-center">
+                    <div class="text-sm font-medium text-gray-600 mb-2">Jeu 21</div>
+                    <div class="space-y-2"></div>
+                </div>
+                <div id="calendar-day-5" class="text-center">
+                    <div class="text-sm font-medium text-gray-600 mb-2">Ven 22</div>
+                    <div class="space-y-2">
+                        <div class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Rapport</div>
+                    </div>
+                </div>
+                <div id="calendar-day-6" class="text-center">
+                    <div class="text-sm font-medium text-gray-600 mb-2">Sam 23</div>
+                    <div class="space-y-2"></div>
+                </div>
+                <div id="calendar-day-7" class="text-center">
+                    <div class="text-sm font-medium text-gray-600 mb-2">Dim 24</div>
+                    <div class="space-y-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

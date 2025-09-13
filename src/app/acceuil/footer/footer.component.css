@@ -1,0 +1,19 @@
+/* Footer specific styles */
+.gradient-bg {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+/* Hover effects for better UX */
+footer a:hover {
+  transform: translateY(-1px);
+}
+
+/* Newsletter input focus */
+footer input:focus {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* Social icons hover effect */
+footer .social-links a:hover {
+  transform: translateY(-2px);
+}

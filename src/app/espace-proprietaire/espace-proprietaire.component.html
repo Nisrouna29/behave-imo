@@ -1,0 +1,26 @@
+<!-- Chat Layout - Full Screen -->
+<div *ngIf="currentView === 'chat'" class="h-screen overflow-hidden">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Default Layout -->
+<div *ngIf="currentView !== 'chat'" class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <app-proprietaire-header (toggleMobileMenu)="toggleMobileMenu()" (logout)="onLogout()"></app-proprietaire-header>
+
+  <div class="flex">
+      <!-- Sidebar -->
+      <app-proprietaire-sidebar
+          [isSidebarCollapsed]="isSidebarCollapsed"
+          [isMobileMenuOpen]="isMobileMenuOpen"
+          [currentView]="currentView"
+          (toggleSidebar)="toggleSidebar()"
+          (toggleMobileMenu)="toggleMobileMenu()"
+          (closeMobileMenu)="closeMobileMenu()"
+          (menuItemClick)="onMenuItemClick($event)">
+      </app-proprietaire-sidebar>
+
+      <!-- Main Content -->
+      <router-outlet></router-outlet>
+  </div>
+</div>

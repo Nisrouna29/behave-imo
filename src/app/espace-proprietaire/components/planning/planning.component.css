@@ -1,0 +1,304 @@
+/* Styles globaux pour le composant planning */
+.gradient-bg {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Styles pour les cellules du calendrier */
+.calendar-cell {
+  height: 4rem;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.calendar-cell:hover {
+  background-color: #fff7ed;
+}
+
+.calendar-cell.time-cell {
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Styles pour les rendez-vous */
+.appointment-block {
+  position: absolute;
+  inset: 0.25rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: white;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.appointment-block.visite {
+  background-color: #f97316;
+}
+
+.appointment-block.maintenance {
+  background-color: #3b82f6;
+}
+
+.appointment-block.signature {
+  background-color: #10b981;
+}
+
+.appointment-block.autre {
+  background-color: #8b5cf6;
+}
+
+/* Styles pour les formulaires */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #f97316;
+  border-color: #f97316;
+}
+
+/* Styles pour les boutons */
+.btn-primary {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #f9fafb;
+}
+
+/* Styles pour les cartes */
+.card {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+/* Styles pour les statistiques */
+.stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.stat-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon.green {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.stat-icon.blue {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.stat-icon.orange {
+  background-color: #fed7aa;
+  color: #ea580c;
+}
+
+.stat-icon.purple {
+  background-color: #e9d5ff;
+  color: #9333ea;
+}
+
+/* Styles pour les conseils */
+.tip-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.tip-card.green {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.tip-card.blue {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.tip-card.orange {
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+.tip-card.purple {
+  background-color: #faf5ff;
+  border: 1px solid #e9d5ff;
+}
+
+/* Styles pour les templates */
+.template-card {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.template-card:hover {
+  border-color: #fb923c;
+}
+
+/* Styles pour les intégrations */
+.integration-card {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.integration-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+}
+
+.integration-icon.blue {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.integration-icon.purple {
+  background-color: #e9d5ff;
+  color: #9333ea;
+}
+
+.integration-icon.green {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+/* Styles pour les rendez-vous */
+.appointment-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.appointment-card.confirmed {
+  border: 1px solid #fed7aa;
+  background-color: #fff7ed;
+}
+
+.appointment-card.scheduled {
+  border: 1px solid #bfdbfe;
+  background-color: #eff6ff;
+}
+
+.appointment-card.pending {
+  border: 1px solid #e9d5ff;
+  background-color: #faf5ff;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  color: white;
+  font-weight: 500;
+}
+
+.status-badge.confirmed {
+  background-color: #f97316;
+}
+
+.status-badge.scheduled {
+  background-color: #3b82f6;
+}
+
+.status-badge.pending {
+  background-color: #8b5cf6;
+}
+
+/* Styles pour les jours de la semaine */
+.day-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.day-checkbox:hover {
+  background-color: #fff7ed;
+}
+
+.day-checkbox input[type="checkbox"] {
+  margin-bottom: 0.25rem;
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+  .calendar-grid {
+    font-size: 0.75rem;
+  }
+  
+  .appointment-block {
+    font-size: 0.625rem;
+    padding: 0.25rem;
+  }
+  
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}

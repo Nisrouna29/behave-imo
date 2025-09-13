@@ -1,0 +1,163 @@
+<app-shared-header [activeRoute]="activeRoute"></app-shared-header>
+
+<section class="min-h-screen bg-gradient-to-b from-orange-50/50 to-white">
+  <!-- Header Section -->
+  <div class="bg-white border-b border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="text-center">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+          À <span class="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">propos</span> de nous
+        </h1>
+        <p class="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
+          ImmoPro est une nouvelle agence immobilière spécialisée dans la vente, la location et la gestion des dossiers locatifs.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6">Notre histoire</h2>
+        <div class="space-y-4 text-gray-600">
+          <p class="text-base sm:text-lg leading-relaxed">
+            ImmoPro est une nouvelle agence immobilière créée avec l'ambition de révolutionner l'expérience immobilière grâce à une approche moderne et personnalisée.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed">
+            Notre mission est d'accompagner nos clients dans leurs projets immobiliers les plus importants avec expertise, transparence et innovation. Que vous souhaitiez acheter, vendre, louer ou gérer vos biens, nous mettons notre savoir-faire à votre service.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed">
+            Spécialisés dans la vente, la location et la gestion des dossiers locatifs, nous offrons des services complets pour répondre à tous vos besoins immobiliers.
+          </p>
+        </div>
+      </div>
+      <div class="relative">
+        <img class="w-full h-64 sm:h-80 lg:h-96 rounded-2xl object-cover shadow-xl" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/a26074fe6b-9751b1be2577e3553818.png" alt="Notre équipe ImmoPro">
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 gradient-bg rounded-2xl opacity-20"></div>
+        <div class="absolute -top-6 -right-6 w-16 h-16 bg-orange-300 rounded-xl opacity-30"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Values Section -->
+  <div class="bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+          Nos <span class="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">valeurs</span>
+        </h2>
+        <p class="text-base sm:text-lg text-gray-600">Les principes qui guident notre action au quotidien</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        @for (value of values(); track value.title) {
+          <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-xl border border-orange-200">
+            <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i [class]="value.icon + ' text-white text-xl'"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800 mb-3">{{ value.title }}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">{{ value.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="text-center mb-8 sm:mb-12">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+        Notre <span class="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">équipe</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-600">Des professionnels passionnés à votre service</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      @for (member of teamMembers(); track member.id) {
+        <div class="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100">
+          <img [src]="member.avatar" [alt]="member.name" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 sm:mb-6 border-4 border-orange-200">
+          <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-2">{{ member.name }}</h3>
+          <p class="text-orange-600 font-medium mb-2 sm:mb-3 text-sm sm:text-base">{{ member.position }}</p>
+          <p class="text-gray-600 text-xs sm:text-sm mb-4">{{ member.experience }} d'expérience</p>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4 sm:mb-6">{{ member.bio }}</p>
+          <div class="flex justify-center space-x-3 sm:space-x-4">
+            @for (social of member.socialLinks; track social.platform) {
+              <a [href]="social.url" class="text-orange-400 hover:text-orange-600 transition-colors">
+                <i [class]="social.icon + ' text-lg sm:text-xl'"></i>
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Timeline Section -->
+  <div class="bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+          Notre <span class="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">parcours</span>
+        </h2>
+        <p class="text-base sm:text-lg text-gray-600">Les étapes clés de notre développement</p>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-4 sm:left-1/2 transform sm:-translate-x-1/2 w-0.5 h-full bg-orange-200"></div>
+
+        <div class="space-y-8">
+          @for (achievement of achievements(); track achievement.year; let i = $index) {
+            <div class="relative flex items-center">
+              <!-- Timeline dot -->
+              <div class="absolute left-4 sm:left-1/2 transform sm:-translate-x-1/2 w-8 h-8 gradient-bg rounded-full flex items-center justify-center z-10">
+                <span class="text-white font-bold text-sm">{{ i + 1 }}</span>
+              </div>
+
+              <!-- Content -->
+              <div class="ml-12 sm:ml-0 sm:w-1/2" [class.sm:pr-8]="i % 2 === 0" [class.sm:pl-8]="i % 2 === 1" [class.sm:text-right]="i % 2 === 0">
+                <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-orange-100">
+                  <div class="text-orange-600 font-bold text-sm mb-2">{{ achievement.year }}</div>
+                  <h3 class="text-lg font-bold text-gray-800 mb-2">{{ achievement.title }}</h3>
+                  <p class="text-gray-600 text-sm">{{ achievement.description }}</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="bg-gradient-to-r from-orange-500 to-orange-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="text-center text-white mb-8">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Nos résultats en chiffres</h2>
+        <p class="text-lg sm:text-xl opacity-90">La preuve de notre expertise et de notre engagement</p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div class="text-center">
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">0+</div>
+          <div class="text-orange-100 font-medium">Propriétés vendues</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">1</div>
+          <div class="text-orange-100 font-medium">Année d'expérience</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">100%</div>
+          <div class="text-orange-100 font-medium">Engagement client</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">24/7</div>
+          <div class="text-orange-100 font-medium">Support client</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

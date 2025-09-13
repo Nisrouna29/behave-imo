@@ -1,0 +1,76 @@
+<footer class="bg-gray-900 text-white">
+  <!-- Main Footer Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8">
+
+      <!-- Company Info -->
+      <div class="text-center lg:text-left">
+        <div class="flex items-center justify-center lg:justify-start space-x-3 mb-6">
+          <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-building text-white text-lg"></i>
+          </div>
+          <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 max-w-md">
+          Votre nouvelle agence immobilière spécialisée dans la vente, la location et la gestion des dossiers locatifs.
+        </p>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="text-center lg:text-right">
+        <div class="space-y-3">
+          <div class="flex items-center justify-center lg:justify-end text-gray-300 w-[350px]">
+            <i class="fa-solid fa-phone text-orange-500 mr-3 w-4"></i>
+            <a [href]="'tel:' + contactInfo.phone" class="hover:text-orange-400 transition-colors">{{ contactInfo.phone }}</a>
+          </div>
+          <div class="flex items-center justify-center lg:justify-end text-gray-300 w-[350px]">
+            <i class="fa-solid fa-envelope text-orange-500 mr-3 w-4"></i>
+            <a [href]="'mailto:' + contactInfo.email" class="hover:text-orange-400 transition-colors">{{ contactInfo.email }}</a>
+          </div>
+          <div class="flex items-start justify-center lg:justify-end text-gray-300 w-[350px]">
+            <i class="fa-solid fa-map-marker-alt text-orange-500 mr-3 w-4 mt-1"></i>
+            <span class="text-left lg:text-right">{{ contactInfo.address }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="border-t border-gray-700 mt-12 pt-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-3">Restez informé</h3>
+          <p class="text-gray-300">Recevez nos dernières offres et actualités immobilières directement dans votre boîte mail.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            placeholder="Votre adresse email"
+            class="flex-1 px-4 py-3 rounded-xl bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none transition-colors"
+          >
+          <button class="gradient-bg text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium whitespace-nowrap">
+            <i class="fa-solid fa-paper-plane mr-2"></i>
+            S'abonner
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+        <div>
+          <p>&copy; {{ currentYear }} ImmoPro. Tous droits réservés.</p>
+        </div>
+        <div class="flex space-x-6">
+          <a routerLink="/mentions-legales" class="hover:text-orange-400 transition-colors">Mentions légales</a>
+          <a routerLink="/politique-confidentialite" class="hover:text-orange-400 transition-colors">Politique de confidentialité</a>
+          <a routerLink="/cgv" class="hover:text-orange-400 transition-colors">CGV</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

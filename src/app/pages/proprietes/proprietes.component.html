@@ -1,0 +1,22 @@
+<app-shared-header [activeRoute]="activeRoute"></app-shared-header>
+
+<app-property-header></app-property-header>
+
+<app-property-filters
+    (filterChange)="onFilterChange($event)"
+    (search)="onSearch()"
+></app-property-filters>
+
+<app-property-grid
+    [properties]="filteredProperties()"
+    [totalProperties]="totalProperties()"
+    [viewMode]="viewMode()"
+    [currentPage]="currentPage()"
+    [itemsPerPage]="itemsPerPage()"
+    (toggleFavorite)="onToggleFavorite($event)"
+    (viewDetails)="onViewDetails($event)"
+    (toggleViewMode)="onToggleViewMode()"
+    (pageChange)="onPageChange($event)"
+></app-property-grid>
+
+<app-footer></app-footer>

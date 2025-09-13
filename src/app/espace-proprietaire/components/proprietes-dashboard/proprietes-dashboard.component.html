@@ -1,0 +1,226 @@
+<main class="flex-1">
+    <div id="properties-dashboard" class="max-w-6xl mx-auto px-6 py-8">
+        <div id="dashboard-header" class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">Mes Propriétés</h1>
+                <p class="text-gray-600">Gérez vos biens en vente et en location</p>
+            </div>
+            <button (click)="addProperty()" class="gradient-bg text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium">
+                <i class="fa-solid fa-plus mr-2"></i>
+                Ajouter une propriété
+            </button>
+        </div>
+
+        <!-- Stats Overview -->
+        <div id="stats-overview" class="grid grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">Total des biens</p>
+                        <p class="text-3xl font-bold text-gray-800">24</p>
+                    </div>
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-building text-orange-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">En vente</p>
+                        <p class="text-3xl font-bold text-green-600">16</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-tag text-green-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">En location</p>
+                        <p class="text-3xl font-bold text-blue-600">8</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-key text-blue-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">Revenus mensuels</p>
+                        <p class="text-3xl font-bold text-orange-600">12 450€</p>
+                    </div>
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-euro-sign text-orange-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div id="filters-section" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Filtres</h2>
+                <button class="text-orange-600 hover:text-orange-700 font-medium">Réinitialiser</button>
+            </div>
+            <div class="grid grid-cols-6 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+                    <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                        <option>Tous</option>
+                        <option>Appartement</option>
+                        <option>Maison</option>
+                        <option>Villa</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Statut</label>
+                    <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                        <option>Tous</option>
+                        <option>Vente</option>
+                        <option>Location</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Ville</label>
+                    <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                        <option>Toutes</option>
+                        <option>Paris</option>
+                        <option>Neuilly</option>
+                        <option>Boulogne</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Prix min</label>
+                    <input type="text" placeholder="0€" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Prix max</label>
+                    <input type="text" placeholder="∞" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                </div>
+                <div class="flex items-end">
+                    <button class="w-full gradient-bg text-white py-2 rounded-lg hover:shadow-lg transition-all duration-300">
+                        <i class="fa-solid fa-search mr-2"></i>
+                        Filtrer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Properties Grid -->
+        <div id="properties-grid" class="grid grid-cols-3 gap-6">
+            <div id="property-card-1" class="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/4f2decf4a8-d28aa0d910f3341e91d4.png" alt="modern villa exterior luxury architecture">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">À vendre</span>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <button class="bg-white/80 backdrop-blur-sm p-2 rounded-lg hover:bg-white transition-colors">
+                            <i class="fa-solid fa-heart text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Villa contemporaine</h3>
+                    <p class="text-gray-600 mb-4 flex items-center">
+                        <i class="fa-solid fa-location-dot text-orange-500 mr-2"></i>
+                        Neuilly-sur-Seine
+                    </p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-2xl font-bold text-gray-800">1 250 000€</div>
+                        <div class="flex items-center space-x-4 text-sm text-gray-600">
+                            <span><i class="fa-solid fa-bed mr-1"></i>4</span>
+                            <span><i class="fa-solid fa-bath mr-1"></i>3</span>
+                            <span><i class="fa-solid fa-ruler-combined mr-1"></i>250m²</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 gradient-bg text-white py-2 rounded-lg hover:shadow-lg transition-all duration-300 text-sm">
+                            <i class="fa-solid fa-eye mr-2"></i>Voir
+                        </button>
+                        <button class="flex-1 border border-orange-500 text-orange-500 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300 text-sm">
+                            <i class="fa-solid fa-edit mr-2"></i>Modifier
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="property-card-2" class="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/48bd4b7111-c1b7c5887924d8e4a369.png" alt="modern apartment living room interior">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">En location</span>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <button class="bg-white/80 backdrop-blur-sm p-2 rounded-lg hover:bg-white transition-colors">
+                            <i class="fa-solid fa-heart text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Appartement moderne</h3>
+                    <p class="text-gray-600 mb-4 flex items-center">
+                        <i class="fa-solid fa-location-dot text-orange-500 mr-2"></i>
+                        Paris 16ème
+                    </p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-2xl font-bold text-gray-800">2 800€/mois</div>
+                        <div class="flex items-center space-x-4 text-sm text-gray-600">
+                            <span><i class="fa-solid fa-bed mr-1"></i>3</span>
+                            <span><i class="fa-solid fa-bath mr-1"></i>2</span>
+                            <span><i class="fa-solid fa-ruler-combined mr-1"></i>95m²</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 gradient-bg text-white py-2 rounded-lg hover:shadow-lg transition-all duration-300 text-sm">
+                            <i class="fa-solid fa-eye mr-2"></i>Voir
+                        </button>
+                        <button class="flex-1 border border-orange-500 text-orange-500 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300 text-sm">
+                            <i class="fa-solid fa-edit mr-2"></i>Modifier
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="property-card-3" class="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/eb9cb5b9d6-d1aae140e318e80f1349.png" alt="luxury house exterior garden">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">À vendre</span>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <button class="bg-white/80 backdrop-blur-sm p-2 rounded-lg hover:bg-white transition-colors">
+                            <i class="fa-solid fa-heart text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Maison familiale</h3>
+                    <p class="text-gray-600 mb-4 flex items-center">
+                        <i class="fa-solid fa-location-dot text-orange-500 mr-2"></i>
+                        Boulogne-Billancourt
+                    </p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-2xl font-bold text-gray-800">890 000€</div>
+                        <div class="flex items-center space-x-4 text-sm text-gray-600">
+                            <span><i class="fa-solid fa-bed mr-1"></i>5</span>
+                            <span><i class="fa-solid fa-bath mr-1"></i>3</span>
+                            <span><i class="fa-solid fa-ruler-combined mr-1"></i>180m²</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 gradient-bg text-white py-2 rounded-lg hover:shadow-lg transition-all duration-300 text-sm">
+                            <i class="fa-solid fa-eye mr-2"></i>Voir
+                        </button>
+                        <button class="flex-1 border border-orange-500 text-orange-500 py-2 rounded-lg hover:bg-orange-50 transition-all duration-300 text-sm">
+                            <i class="fa-solid fa-edit mr-2"></i>Modifier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

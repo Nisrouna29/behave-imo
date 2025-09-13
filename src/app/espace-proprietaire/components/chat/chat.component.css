@@ -1,0 +1,149 @@
+/* Chat Layout Styles */
+:host {
+  display: block;
+  height: 100vh;
+  overflow: visible;
+}
+
+/* Chat-specific styles */
+.chat-bubble-sent {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.chat-bubble-received {
+  background: #f3f4f6;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Custom scrollbar for chat messages */
+#chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Custom scrollbar for users list */
+#chat-users-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-users-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+#chat-users-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+#chat-users-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Animation for typing indicator */
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Message hover effects */
+.chat-bubble-sent:hover,
+.chat-bubble-received:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* User list item hover effects */
+[id^="chat-user-"]:hover {
+  transform: translateX(2px);
+  transition: transform 0.2s ease;
+}
+
+/* Input focus effects */
+#chat-input-area input:focus {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* Ensure chat main area has proper flex layout */
+#chat-main-area {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Ensure chat input area is visible */
+#chat-input-area {
+  position: relative;
+  z-index: 10;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+#chat-input-area input {
+  background: white;
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  padding: 12px 16px;
+}
+
+#chat-input-area button {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+/* Status indicator animation */
+.w-2.h-2.bg-green-400 {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}

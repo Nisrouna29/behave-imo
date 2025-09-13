@@ -1,0 +1,19 @@
+::-webkit-scrollbar { display: none;}
+* { font-family: 'Inter', sans-serif; }
+.gradient-bg { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+.glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95); }
+.image-upload-area {
+    border: 2px dashed #fed7aa;
+    transition: all 0.3s ease;
+}
+.image-upload-area:hover {
+    border-color: #f97316;
+    background-color: #fff7ed;
+}
+.image-upload-area.dragover {
+    border-color: #f97316;
+    background-color: #fff7ed;
+}
+.step-active { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+.step-completed { background: #10b981; }
+.step-inactive { background: #e5e7eb; }

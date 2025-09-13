@@ -1,0 +1,41 @@
+<div class="bg-gray-50 min-h-screen">
+  <header id="header" class="glass-effect border-b border-orange-100 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-full mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-building text-white text-lg"></i>
+          </div>
+          <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <button class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+              <i class="fa-solid fa-bell text-gray-600"></i>
+            </button>
+            <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+              <span class="text-xs text-white font-bold">3</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+            <span class="text-gray-700 font-medium">Pierre Martin</span>
+            <i class="fa-solid fa-chevron-down text-gray-400 text-sm"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex">
+    <app-locataire-sidebar
+      [isCollapsed]="isSidebarCollapsed"
+      (toggleCollapse)="onToggleSidebar()"
+      (navigateTo)="onSidebarNavigate($event)">
+    </app-locataire-sidebar>
+
+    <main class="flex-1 p-8">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

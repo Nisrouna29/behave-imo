@@ -1,0 +1,281 @@
+<div id="auth-container" class="min-h-screen flex items-center justify-center p-4 sm:p-6">
+    <div class="w-full max-w-6xl grid grid-cols-12 gap-6 lg:gap-8">
+
+        <!-- Visual Section -->
+        <div id="auth-visual" class="col-span-12 lg:col-span-7 hidden lg:block">
+            <div class="h-full flex flex-col justify-center">
+                <div class="mb-8 lg:mb-12">
+                    <div class="flex items-center space-x-3 mb-6 lg:mb-8">
+                        <div class="w-10 h-10 lg:w-12 lg:h-12 gradient-bg rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-building text-white text-lg lg:text-xl"></i>
+                        </div>
+                        <span class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
+                    </div>
+                    <h1 class="text-3xl lg:text-5xl font-bold text-gray-800 mb-4 lg:mb-6">Rejoignez notre plateforme immobilière</h1>
+                    <p class="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8">Que vous soyez propriétaire ou locataire, trouvez votre espace idéal avec ImmoPro.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-4 lg:p-6 border border-orange-100">
+                        <div class="w-10 h-10 lg:w-12 lg:h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3 lg:mb-4">
+                            <i class="fa-solid fa-home text-orange-600 text-lg lg:text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Pour les Propriétaires</h3>
+                        <p class="text-gray-600 text-sm">Gérez vos biens, trouvez des locataires qualifiés et optimisez vos revenus.</p>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-4 lg:p-6 border border-orange-100">
+                        <div class="w-10 h-10 lg:w-12 lg:h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3 lg:mb-4">
+                            <i class="fa-solid fa-key text-orange-600 text-lg lg:text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Pour les Locataires</h3>
+                        <p class="text-gray-600 text-sm">Découvrez des propriétés exceptionnelles et simplifiez vos démarches.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 lg:mt-12">
+                    <img class="w-full h-60 lg:h-80 object-cover rounded-2xl shadow-lg" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ade0d71f84-f86e841ca908f8649b07.png" alt="modern real estate office interior">
+                </div>
+            </div>
+        </div>
+
+        <!-- Forms Section -->
+        <div id="auth-forms" class="col-span-12 lg:col-span-5">
+            <div class="form-card rounded-3xl p-6 lg:p-8 border border-white/20">
+
+                <!-- Auth Tabs -->
+                <div id="auth-tabs" class="flex bg-gray-100 rounded-2xl p-1 mb-6 lg:mb-8">
+                    <button
+                        class="flex-1 py-3 px-4 lg:px-6 rounded-xl font-semibold transition-all duration-300"
+                        [class.tab-active]="activeTab() === 'signin'"
+                        [class.text-gray-600]="activeTab() !== 'signin'"
+                        (click)="switchTab('signin')"
+                    >
+                        Se connecter
+                    </button>
+                    <button
+                        class="flex-1 py-3 px-4 lg:px-6 rounded-xl font-semibold transition-all duration-300"
+                        [class.tab-active]="activeTab() === 'register'"
+                        [class.text-gray-600]="activeTab() !== 'register'"
+                        (click)="switchTab('register')"
+                    >
+                        S'inscrire
+                    </button>
+                </div>
+
+                <!-- Sign In Form -->
+                @if (activeTab() === 'signin') {
+                    <div id="signin-form" class="auth-form">
+                        <div class="text-center mb-6 lg:mb-8">
+                            <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Bon retour !</h2>
+                            <p class="text-gray-600">Connectez-vous à votre compte ImmoPro</p>
+                        </div>
+
+                        <form class="space-y-4 lg:space-y-6" (ngSubmit)="onLoginSubmit()">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input
+                                        type="email"
+                                        class="w-full pl-12 pr-4 py-3 lg:py-4 border border-gray-200 rounded-xl focus:outline-none input-focus transition-all duration-300"
+                                        placeholder="votre@email.com"
+                                        [(ngModel)]="loginForm().email"
+                                        name="loginEmail"
+                                    >
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Mot de passe</label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input
+                                        [type]="showPassword() ? 'text' : 'password'"
+                                        class="w-full pl-12 pr-12 py-3 lg:py-4 border border-gray-200 rounded-xl focus:outline-none input-focus transition-all duration-300"
+                                        placeholder="••••••••"
+                                        [(ngModel)]="loginForm().password"
+                                        name="loginPassword"
+                                    >
+                                    <button
+                                        type="button"
+                                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                        (click)="togglePasswordVisibility()"
+                                    >
+                                        <i class="fa-solid" [class.fa-eye]="!showPassword()" [class.fa-eye-slash]="showPassword()"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                                <label class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500"
+                                        [(ngModel)]="loginForm().rememberMe"
+                                        name="rememberMe"
+                                    >
+                                    <span class="ml-2 text-sm text-gray-600">Se souvenir de moi</span>
+                                </label>
+                                <span class="text-sm text-orange-600 hover:text-orange-700 font-medium cursor-pointer" (click)="onForgotPassword()">
+                                    Mot de passe oublié ?
+                                </span>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="w-full gradient-bg text-white py-3 lg:py-4 rounded-xl hover:shadow-lg transition-all duration-300 font-semibold disabled:opacity-50"
+                                [disabled]="!isLoginFormValid() || isLoading()"
+                            >
+                                @if (isLoading()) {
+                                    <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                                    Connexion...
+                                } @else {
+                                    Se connecter
+                                }
+                            </button>
+                        </form>
+                    </div>
+                }
+
+                <!-- Register Form -->
+                @if (activeTab() === 'register') {
+                    <div id="register-form" class="auth-form">
+                        <div class="text-center mb-6 lg:mb-8">
+                            <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Créer un compte</h2>
+                            <p class="text-gray-600">Rejoignez la communauté ImmoPro dès aujourd'hui</p>
+                        </div>
+
+                        <form class="space-y-4 lg:space-y-6" (ngSubmit)="onRegisterSubmit()">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input
+                                        type="email"
+                                        class="w-full pl-12 pr-4 py-3 lg:py-4 border border-gray-200 rounded-xl focus:outline-none input-focus transition-all duration-300"
+                                        placeholder="votre@email.com"
+                                        [(ngModel)]="registerForm().email"
+                                        name="registerEmail"
+                                    >
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Mot de passe</label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input
+                                        [type]="showPassword() ? 'text' : 'password'"
+                                        class="w-full pl-12 pr-12 py-3 lg:py-4 border border-gray-200 rounded-xl focus:outline-none input-focus transition-all duration-300"
+                                        placeholder="••••••••"
+                                        [(ngModel)]="registerForm().password"
+                                        name="registerPassword"
+                                    >
+                                    <button
+                                        type="button"
+                                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                        (click)="togglePasswordVisibility()"
+                                    >
+                                        <i class="fa-solid" [class.fa-eye]="!showPassword()" [class.fa-eye-slash]="showPassword()"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Confirmer le mot de passe</label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input
+                                        [type]="showConfirmPassword() ? 'text' : 'password'"
+                                        class="w-full pl-12 pr-12 py-3 lg:py-4 border border-gray-200 rounded-xl focus:outline-none input-focus transition-all duration-300"
+                                        placeholder="••••••••"
+                                        [(ngModel)]="registerForm().confirmPassword"
+                                        name="confirmPassword"
+                                    >
+                                    <button
+                                        type="button"
+                                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                        (click)="toggleConfirmPasswordVisibility()"
+                                    >
+                                        <i class="fa-solid" [class.fa-eye]="!showConfirmPassword()" [class.fa-eye-slash]="showConfirmPassword()"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Type de compte</label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-user-tag absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <select
+                                        class="w-full pl-12 pr-10 py-3 lg:py-4 border border-gray-200 rounded-xl focus:outline-none input-focus transition-all duration-300 appearance-none bg-white"
+                                        [(ngModel)]="registerForm().accountType"
+                                        name="accountType"
+                                    >
+                                        <option value="">Sélectionnez votre profil</option>
+                                        <option value="proprietaire">Propriétaire</option>
+                                        <option value="locataire">Locataire</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <input
+                                    type="checkbox"
+                                    class="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500 mt-0.5"
+                                    [(ngModel)]="registerForm().acceptTerms"
+                                    name="acceptTerms"
+                                >
+                                <label class="text-sm text-gray-600">
+                                    J'accepte les <span class="text-orange-600 hover:text-orange-700 font-medium cursor-pointer">conditions d'utilisation</span> et la <span class="text-orange-600 hover:text-orange-700 font-medium cursor-pointer">politique de confidentialité</span>
+                                </label>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="w-full gradient-bg text-white py-3 lg:py-4 rounded-xl hover:shadow-lg transition-all duration-300 font-semibold disabled:opacity-50"
+                                [disabled]="!isRegisterFormValid() || isLoading()"
+                            >
+                                @if (isLoading()) {
+                                    <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                                    Création...
+                                } @else {
+                                    Créer mon compte
+                                }
+                            </button>
+                        </form>
+                    </div>
+                }
+
+                <!-- Social Auth -->
+                <div id="social-auth" class="mt-6 lg:mt-8">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-white text-gray-500">Ou continuer avec</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 lg:mt-6 grid grid-cols-2 gap-3 lg:gap-4">
+                        <button
+                            class="flex items-center justify-center px-3 lg:px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
+                            (click)="onGoogleAuth()"
+                        >
+                            <i class="fa-brands fa-google text-red-500 mr-2"></i>
+                            <span class="text-gray-700 font-medium text-sm lg:text-base">Google</span>
+                        </button>
+                        <button
+                            class="flex items-center justify-center px-3 lg:px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
+                            (click)="onFacebookAuth()"
+                        >
+                            <i class="fa-brands fa-facebook text-blue-600 mr-2"></i>
+                            <span class="text-gray-700 font-medium text-sm lg:text-base">Facebook</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

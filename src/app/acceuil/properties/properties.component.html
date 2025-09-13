@@ -1,0 +1,45 @@
+<section id="properties" class="bg-gradient-to-b from-orange-50/50 to-white py-12 sm:py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">Propriétés <span class="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">en vedette</span></h2>
+            <p class="text-base sm:text-lg lg:text-xl text-gray-600">Découvrez notre sélection de biens d'exception</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+            @for (property of properties; track property.id) {
+                <div class="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-orange-100 group">
+                    <div class="relative">
+                        <img class="w-full h-48 sm:h-56 lg:h-64 object-cover" [src]="property.image" [alt]="property.title">
+                        <div class="absolute top-3 sm:top-4 right-3 sm:right-4">
+                            <span [class]="property.status === 'À vendre' ? 'bg-orange-500' : 'bg-blue-500'" class="text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">{{ property.status }}</span>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-6 lg:p-8">
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">{{ property.title }}</h3>
+                        <p class="text-gray-600 mb-4 sm:mb-6 flex items-center text-sm sm:text-base">
+                            <i class="fa-solid fa-location-dot text-orange-500 mr-2 sm:mr-3"></i>
+                            {{ property.location }}
+                        </p>
+                        <div class="flex flex-wrap items-center gap-3 sm:gap-6 mb-4 sm:mb-6 text-gray-600 text-xs sm:text-sm">
+                            <span class="flex items-center"><i class="fa-solid fa-bed text-orange-500 mr-1 sm:mr-2"></i>{{ property.bedrooms }} chambres</span>
+                            <span class="flex items-center"><i class="fa-solid fa-bath text-orange-500 mr-1 sm:mr-2"></i>{{ property.bathrooms }} SDB</span>
+                            <span class="flex items-center"><i class="fa-solid fa-ruler-combined text-orange-500 mr-1 sm:mr-2"></i>{{ property.area }}m²</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
+                            <span class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800">{{ property.price }}</span>
+                            <button class="gradient-bg text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium text-sm sm:text-base w-full sm:w-auto">
+                                Voir détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="text-center mt-8 sm:mt-12 lg:mt-16">
+            <button class="gradient-bg text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl hover:shadow-lg transition-all duration-300 font-semibold text-base sm:text-lg">
+                Voir toutes les propriétés
+            </button>
+        </div>
+    </div>
+</section>

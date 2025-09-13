@@ -1,0 +1,40 @@
+/* Property detail component styles */
+.viewer-3d {
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.viewer-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(249, 115, 22, 0.3), transparent 50%);
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Image hover effects */
+.group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .viewer-3d {
+        height: 300px !important;
+    }
+}

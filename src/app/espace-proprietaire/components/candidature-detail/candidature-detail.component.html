@@ -1,0 +1,308 @@
+<header id="header" class="glass-effect border-b border-orange-100 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-full mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-building text-white text-lg"></i>
+                </div>
+                <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button (click)="goBack()" class="text-gray-600 hover:text-orange-600 transition-colors">
+                    <i class="fa-solid fa-arrow-left text-lg"></i>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+                    <span class="text-gray-700 font-medium">Marie Dubois</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="flex-1">
+    <div id="application-detail" class="max-w-7xl mx-auto px-6 py-8">
+        <div id="breadcrumb" class="flex items-center space-x-2 mb-6 text-sm">
+            <span class="text-gray-500">Candidatures</span>
+            <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+            <span class="text-orange-600 font-medium">Pierre Martin - Villa Neuilly</span>
+        </div>
+
+        <div id="application-header" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-8 mb-8">
+            <div class="flex items-start justify-between">
+                <div class="flex items-center space-x-6">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Profile" class="w-20 h-20 rounded-full border-4 border-orange-100">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800 mb-2">Pierre Martin</h1>
+                        <p class="text-gray-600 mb-3">pierre.martin&#64;email.com • +33 6 12 34 56 78</p>
+                        <div class="flex items-center space-x-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Location</span>
+                            <span class="px-3 py-1 text-sm font-medium rounded-full" [ngClass]="getStatusClass()">{{ currentStatus }}</span>
+                            <span class="text-sm text-gray-500">Candidature déposée le 15/03/2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button (click)="contactCandidate()" class="border border-orange-500 text-orange-500 px-6 py-3 rounded-xl hover:bg-orange-50 transition-all duration-300 font-medium">
+                        <i class="fa-solid fa-envelope mr-2"></i>
+                        Contacter
+                    </button>
+                    <div class="relative">
+                        <button (click)="modifyStatus()"
+                                [disabled]="isStatusModified"
+                                [class]="isStatusModified ? 'bg-gray-400 text-white px-6 py-3 rounded-xl cursor-not-allowed font-medium' : 'gradient-bg text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium'">
+                            <i class="fa-solid fa-edit mr-2"></i>
+                            {{ isStatusModified ? 'Statut défini' : 'Modifier statut' }}
+                        </button>
+
+                        <!-- Dropdown pour sélectionner le statut -->
+                        <div *ngIf="showStatusDropdown && !isStatusModified"
+                             class="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                            <div class="py-2">
+                                <button (click)="selectStatus('Acceptée')"
+                                        class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-800 flex items-center">
+                                    <i class="fa-solid fa-check mr-2 text-green-600"></i>
+                                    Accepter
+                                </button>
+                                <button (click)="selectStatus('Refusée')"
+                                        class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-800 flex items-center">
+                                    <i class="fa-solid fa-times mr-2 text-red-600"></i>
+                                    Refuser
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-8">
+            <div class="col-span-2 space-y-8">
+                <div id="property-info" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-solid fa-building mr-3 text-orange-600"></i>
+                        Propriété concernée
+                    </h2>
+                    <div class="flex items-start space-x-6">
+                        <img class="w-32 h-24 rounded-lg object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/1927d1d130-53f04a1aa5181e222dcd.png" alt="luxury villa exterior with garden modern architecture">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Villa Neuilly</h3>
+                            <p class="text-gray-600 mb-3">123 Avenue Charles de Gaulle, 92200 Neuilly-sur-Seine</p>
+                            <div class="grid grid-cols-4 gap-4 text-sm">
+                                <div>
+                                    <span class="text-gray-500">Surface:</span>
+                                    <p class="font-medium">180 m²</p>
+                                </div>
+                                <div>
+                                    <span class="text-gray-500">Chambres:</span>
+                                    <p class="font-medium">4</p>
+                                </div>
+                                <div>
+                                    <span class="text-gray-500">Loyer:</span>
+                                    <p class="font-medium text-orange-600">4 200€/mois</p>
+                                </div>
+                                <div>
+                                    <span class="text-gray-500">Charges:</span>
+                                    <p class="font-medium">300€/mois</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="candidate-profile" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-solid fa-user mr-3 text-orange-600"></i>
+                        Profil du candidat
+                    </h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-3">Informations personnelles</h3>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Âge:</span>
+                                    <span class="font-medium">32 ans</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Situation familiale:</span>
+                                    <span class="font-medium">Célibataire</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Nationalité:</span>
+                                    <span class="font-medium">Française</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Animaux:</span>
+                                    <span class="font-medium">Aucun</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-3">Situation professionnelle</h3>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Profession:</span>
+                                    <span class="font-medium">Ingénieur logiciel</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Employeur:</span>
+                                    <span class="font-medium">Tech Solutions SA</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Type contrat:</span>
+                                    <span class="font-medium">CDI</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Ancienneté:</span>
+                                    <span class="font-medium">3 ans</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="documents-list" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-solid fa-folder-open mr-3 text-orange-600"></i>
+                        Documents fournis
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-file-pdf text-red-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Pièce d'identité</p>
+                                    <p class="text-sm text-gray-500">CNI_Pierre_Martin.pdf • 2.1 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button (click)="downloadDocument('doc-1')" class="text-orange-600 hover:text-orange-700">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-file-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Contrat de travail</p>
+                                    <p class="text-sm text-gray-500">Contrat_CDI_TechSolutions.pdf • 1.8 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button (click)="downloadDocument('doc-2')" class="text-orange-600 hover:text-orange-700">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-euro-sign text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Bulletins de salaire (3 derniers)</p>
+                                    <p class="text-sm text-gray-500">Bulletins_Jan_Fev_Mar_2024.pdf • 4.2 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button (click)="downloadDocument('doc-3')" class="text-orange-600 hover:text-orange-700">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-landmark text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Relevés bancaires (3 derniers mois)</p>
+                                    <p class="text-sm text-gray-500">RIB_BNP_Jan_Mar_2024.pdf • 3.5 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button (click)="downloadDocument('doc-4')" class="text-orange-600 hover:text-orange-700">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-home text-orange-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Justificatif de domicile</p>
+                                    <p class="text-sm text-gray-500">Facture_EDF_Mars_2024.pdf • 0.8 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button (click)="downloadDocument('doc-5')" class="text-orange-600 hover:text-orange-700">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-shield-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Attestation assurance habitation</p>
+                                    <p class="text-sm text-gray-500">Assurance_Maif_2024.pdf • 1.2 MB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button (click)="downloadDocument('doc-6')" class="text-orange-600 hover:text-orange-700">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div id="financial-summary" class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-calculator mr-3 text-orange-600"></i>
+                        Résumé financier
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Revenus nets mensuels</span>
+                            <span class="font-bold text-gray-800">4 500€</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Loyer demandé</span>
+                            <span class="font-bold text-gray-800">4 200€</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Charges</span>
+                            <span class="font-bold text-gray-800">300€</span>
+                        </div>
+                        <hr class="border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Total mensuel</span>
+                            <span class="font-bold text-gray-800">4 500€</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Ratio loyer/revenus</span>
+                            <span class="font-bold text-green-600">93%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

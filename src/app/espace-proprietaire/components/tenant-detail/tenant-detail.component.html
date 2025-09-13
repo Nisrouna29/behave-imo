@@ -1,0 +1,269 @@
+<main class="flex-1">
+        <div id="tenant-profile" class="max-w-7xl mx-auto px-6 py-8">
+            <div id="profile-header" class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-4">
+                    <button (click)="goBack()" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="fa-solid fa-arrow-left text-gray-600"></i>
+                    </button>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Profile" class="w-16 h-16 rounded-full">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-800">Pierre Martin</h1>
+                            <p class="text-gray-600">pierre.martin&#64;email.com • +33 6 12 34 56 78</p>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Validé</span>
+                                <span class="text-sm text-gray-500">Villa Neuilly - Neuilly-sur-Seine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button (click)="downloadDossier()" class="border border-orange-500 text-orange-500 px-6 py-3 rounded-xl hover:bg-orange-50 transition-all duration-300 font-medium">
+                        <i class="fa-solid fa-download mr-2"></i>
+                        Télécharger dossier
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-8">
+                <div class="col-span-2">
+                    <div id="documents-section" class="bg-white rounded-2xl border border-gray-200 shadow-lg mb-8">
+                        <div class="p-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-xl font-bold text-gray-800">Documents du dossier</h2>
+                                <button (click)="addDocument()" class="text-orange-600 hover:text-orange-700 font-medium">
+                                    <i class="fa-solid fa-plus mr-1"></i>
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div id="doc-1" class="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors cursor-pointer">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-file-pdf text-red-600 text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-gray-800">Pièce d'identité</h3>
+                                            <p class="text-sm text-gray-500">CNI_Pierre_Martin.pdf</p>
+                                            <p class="text-xs text-gray-400">2.1 MB • Ajouté le 15/03/2024</p>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button (click)="viewDocument('doc-1')" class="text-gray-500 hover:text-orange-600">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button (click)="downloadDocument('doc-1')" class="text-gray-500 hover:text-blue-600">
+                                                <i class="fa-solid fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="doc-2" class="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors cursor-pointer">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-file-alt text-blue-600 text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-gray-800">Contrat de travail</h3>
+                                            <p class="text-sm text-gray-500">Contrat_CDI_TechCorp.pdf</p>
+                                            <p class="text-xs text-gray-400">1.8 MB • Ajouté le 15/03/2024</p>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button (click)="viewDocument('doc-2')" class="text-gray-500 hover:text-orange-600">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button (click)="downloadDocument('doc-2')" class="text-gray-500 hover:text-blue-600">
+                                                <i class="fa-solid fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="doc-3" class="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors cursor-pointer">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-file-invoice text-green-600 text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-gray-800">Bulletins de salaire</h3>
+                                            <p class="text-sm text-gray-500">Bulletins_3_derniers_mois.pdf</p>
+                                            <p class="text-xs text-gray-400">3.2 MB • Ajouté le 15/03/2024</p>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button (click)="viewDocument('doc-3')" class="text-gray-500 hover:text-orange-600">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button (click)="downloadDocument('doc-3')" class="text-gray-500 hover:text-blue-600">
+                                                <i class="fa-solid fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="doc-4" class="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors cursor-pointer">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-file-text text-purple-600 text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-gray-800">Justificatif de domicile</h3>
+                                            <p class="text-sm text-gray-500">Facture_EDF_fevrier_2024.pdf</p>
+                                            <p class="text-xs text-gray-400">1.1 MB • Ajouté le 15/03/2024</p>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button (click)="viewDocument('doc-4')" class="text-gray-500 hover:text-orange-600">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button (click)="downloadDocument('doc-4')" class="text-gray-500 hover:text-blue-600">
+                                                <i class="fa-solid fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="doc-5" class="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors cursor-pointer">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-university text-orange-600 text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-gray-800">RIB</h3>
+                                            <p class="text-sm text-gray-500">RIB_BNP_Paribas.pdf</p>
+                                            <p class="text-xs text-gray-400">0.8 MB • Ajouté le 15/03/2024</p>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button (click)="viewDocument('doc-5')" class="text-gray-500 hover:text-orange-600">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button (click)="downloadDocument('doc-5')" class="text-gray-500 hover:text-blue-600">
+                                                <i class="fa-solid fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="doc-6" class="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors cursor-pointer">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-shield-alt text-yellow-600 text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-gray-800">Attestation assurance</h3>
+                                            <p class="text-sm text-gray-500">Assurance_habitation_AXA.pdf</p>
+                                            <p class="text-xs text-gray-400">1.5 MB • Ajouté le 15/03/2024</p>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button (click)="viewDocument('doc-6')" class="text-gray-500 hover:text-orange-600">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <button (click)="downloadDocument('doc-6')" class="text-gray-500 hover:text-blue-600">
+                                                <i class="fa-solid fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="notes-section" class="bg-white rounded-2xl border border-gray-200 shadow-lg">
+                        <div class="p-6 border-b border-gray-200">
+                            <h2 class="text-xl font-bold text-gray-800">Notes et commentaires</h2>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div id="note-1" class="border-l-4 border-orange-500 bg-orange-50 p-4 rounded-r-lg">
+                                    <div class="flex items-start justify-between">
+                                        <div>
+                                            <p class="text-gray-800 font-medium">Dossier complet et conforme</p>
+                                            <p class="text-sm text-gray-600 mt-1">Tous les documents requis ont été fournis. Revenus stables et suffisants pour le loyer demandé.</p>
+                                        </div>
+                                        <span class="text-xs text-gray-500">15/03/2024</span>
+                                    </div>
+                                </div>
+                                <div id="note-2" class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded-r-lg">
+                                    <div class="flex items-start justify-between">
+                                        <div>
+                                            <p class="text-gray-800 font-medium">Entretien téléphonique réalisé</p>
+                                            <p class="text-sm text-gray-600 mt-1">Candidat motivé et sérieux. Souhaite emménager rapidement.</p>
+                                        </div>
+                                        <span class="text-xs text-gray-500">16/03/2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <textarea placeholder="Ajouter une note..." class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none" rows="3"></textarea>
+                                <div class="flex justify-end mt-2">
+                                    <button (click)="addNote()" class="gradient-bg text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-300 text-sm">
+                                        Ajouter note
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <div id="tenant-info" class="bg-white rounded-2xl border border-gray-200 shadow-lg mb-6">
+                        <div class="p-6 border-b border-gray-200">
+                            <h2 class="text-xl font-bold text-gray-800">Informations personnelles</h2>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Âge</label>
+                                <p class="text-gray-800 font-medium">32 ans</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Profession</label>
+                                <p class="text-gray-800 font-medium">Ingénieur logiciel</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Employeur</label>
+                                <p class="text-gray-800 font-medium">TechCorp Solutions</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Revenus mensuels</label>
+                                <p class="text-gray-800 font-medium">4 500€ net</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Type de contrat</label>
+                                <p class="text-gray-800 font-medium">CDI</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Ancienneté</label>
+                                <p class="text-gray-800 font-medium">3 ans</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="property-info" class="bg-white rounded-2xl border border-gray-200 shadow-lg mb-6">
+                        <div class="p-6 border-b border-gray-200">
+                            <h2 class="text-xl font-bold text-gray-800">Propriété demandée</h2>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Adresse</label>
+                                <p class="text-gray-800 font-medium">Villa Neuilly</p>
+                                <p class="text-sm text-gray-600">15 Avenue de la République, Neuilly-sur-Seine</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Loyer mensuel</label>
+                                <p class="text-gray-800 font-medium">2 800€</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Caution</label>
+                                <p class="text-gray-800 font-medium">5 600€</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Date d'entrée souhaitée</label>
+                                <p class="text-gray-800 font-medium">1er avril 2024</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</main>

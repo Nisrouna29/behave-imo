@@ -1,0 +1,281 @@
+<app-shared-header [activeRoute]="activeRoute"></app-shared-header>
+
+@if (isLoading()) {
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gray-600">Chargement des détails...</p>
+        </div>
+    </div>
+} @else {
+    @if (property()) {
+        <div id="property-detail" class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+            <!-- Breadcrumb -->
+            <div class="mb-6">
+                <nav class="flex items-center space-x-2 text-gray-600">
+                    <span class="hover:text-orange-600 cursor-pointer" (click)="onBackToProperties()">Accueil</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                    <span class="hover:text-orange-600 cursor-pointer" (click)="onBackToProperties()">Propriétés</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                    <span class="text-orange-600">{{ property()!.title }}</span>
+                </nav>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Media Section -->
+                <div id="media-section" class="lg:col-span-8">
+                    <!-- Main Viewer -->
+                    <div id="main-viewer" class="mb-6">
+                        <div class="viewer-3d h-[400px] sm:h-[500px] relative flex items-center justify-center rounded-2xl overflow-hidden">
+                            @if (currentMainImage()) {
+                                <img
+                                    [src]="currentMainImage()"
+                                    [alt]="property()!.title"
+                                    class="w-full h-full object-cover"
+                                >
+                            } @else {
+                                <div class="text-center z-10">
+                                    <div class="w-20 h-20 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-cube text-orange-400 text-3xl"></i>
+                                    </div>
+                                    <h3 class="text-white text-xl font-semibold mb-2">Vue 3D Interactive</h3>
+                                    <p class="text-gray-300 mb-4">Explorez cette propriété en 3D</p>
+                                    <button class="gradient-bg text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300">
+                                        <i class="fa-solid fa-play mr-2"></i>
+                                        Lancer la visite 3D
+                                    </button>
+                                </div>
+                            }
+                            <div class="absolute top-4 right-4 flex space-x-2">
+                                <button class="bg-white/20 backdrop-blur-sm text-white p-3 rounded-lg hover:bg-white/30 transition-colors">
+                                    <i class="fa-solid fa-expand"></i>
+                                </button>
+                                <button class="bg-white/20 backdrop-blur-sm text-white p-3 rounded-lg hover:bg-white/30 transition-colors">
+                                    <i class="fa-solid fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Gallery -->
+                    <div id="image-gallery" class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Galerie photos</h3>
+                            <span class="text-gray-600">{{ property()!.images.length }} photos</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            @for (image of property()!.images; track $index) {
+                                <div
+                                    class="relative group cursor-pointer rounded-xl overflow-hidden"
+                                    (click)="onImageClick(image)"
+                                >
+                                    <img
+                                        [src]="image"
+                                        [alt]="property()!.title"
+                                        class="w-full h-24 sm:h-32 object-cover group-hover:scale-110 transition-transform duration-300"
+                                    >
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors"></div>
+                                </div>
+                            }
+                            @if (property()!.images.length > 7) {
+                                <div class="relative group cursor-pointer rounded-xl overflow-hidden bg-gray-200 flex items-center justify-center h-24 sm:h-32">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-plus text-gray-400 text-xl mb-1"></i>
+                                        <p class="text-gray-500 text-sm">+{{ property()!.images.length - 7 }} photos</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Info Sidebar -->
+                <div id="property-info" class="lg:col-span-4">
+                    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8 sticky top-24">
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium"
+                                    [class]="property()!.status === 'À vendre' ? 'bg-orange-500 text-white' : 'bg-blue-500 text-white'"
+                                >
+                                    {{ property()!.status }}
+                                </span>
+                                <button
+                                    class="transition-colors"
+                                    [class]="isFavorite() ? 'text-orange-500' : 'text-gray-400 hover:text-orange-500'"
+                                    (click)="onToggleFavorite()"
+                                >
+                                    <i
+                                        class="text-xl"
+                                        [class]="isFavorite() ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"
+                                    ></i>
+                                </button>
+                            </div>
+                            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">{{ property()!.title }}</h1>
+                            <p class="text-gray-600 flex items-center">
+                                <i class="fa-solid fa-location-dot text-orange-500 mr-2"></i>
+                                {{ property()!.address }}
+                            </p>
+                        </div>
+
+                        <div class="mb-8">
+                            <div class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">{{ property()!.price }}</div>
+                            <div class="grid grid-cols-3 gap-3 sm:gap-4 text-center">
+                                <div class="bg-orange-50 rounded-lg p-3 sm:p-4">
+                                    <i class="fa-solid fa-bed text-orange-500 text-lg sm:text-xl mb-2"></i>
+                                    <div class="font-semibold text-gray-800 text-sm sm:text-base">{{ property()!.bedrooms }}</div>
+                                    <div class="text-xs sm:text-sm text-gray-600">Chambres</div>
+                                </div>
+                                <div class="bg-orange-50 rounded-lg p-3 sm:p-4">
+                                    <i class="fa-solid fa-bath text-orange-500 text-lg sm:text-xl mb-2"></i>
+                                    <div class="font-semibold text-gray-800 text-sm sm:text-base">{{ property()!.bathrooms }}</div>
+                                    <div class="text-xs sm:text-sm text-gray-600">Salles de bain</div>
+                                </div>
+                                <div class="bg-orange-50 rounded-lg p-3 sm:p-4">
+                                    <i class="fa-solid fa-ruler-combined text-orange-500 text-lg sm:text-xl mb-2"></i>
+                                    <div class="font-semibold text-gray-800 text-sm sm:text-base">{{ property()!.area }}</div>
+                                    <div class="text-xs sm:text-sm text-gray-600">m²</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 mb-8">
+                            <button
+                                class="w-full gradient-bg text-white py-3 sm:py-4 rounded-xl hover:shadow-lg transition-all duration-300 font-semibold"
+                                (click)="onContactAgent()"
+                            >
+                                <i class="fa-solid fa-file-upload mr-2"></i>
+                                Déposer dossier
+                            </button>
+                            <button
+                                class="w-full border-2 border-orange-500 text-orange-500 py-3 sm:py-4 rounded-xl hover:bg-orange-50 transition-all duration-300 font-semibold"
+                                (click)="onScheduleVisit()"
+                            >
+                                <i class="fa-solid fa-calendar mr-2"></i>
+                                Planifier une visite
+                            </button>
+                        </div>
+
+                        <!-- Agent Info -->
+                        <div id="agent-info" class="border-t pt-6">
+                            <h3 class="font-bold text-gray-800 mb-4">Agent immobilier</h3>
+                            <div class="flex items-center space-x-4">
+                                <img
+                                    [src]="property()!.agent.avatar"
+                                    [alt]="property()!.agent.name"
+                                    class="w-12 h-12 rounded-full"
+                                >
+                                <div>
+                                    <div class="font-semibold text-gray-800">{{ property()!.agent.name }}</div>
+                                    <div class="text-sm text-gray-600">{{ property()!.agent.title }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Details -->
+            <div id="property-details" class="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8">
+                    <!-- Description -->
+                    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Description</h2>
+                        <p class="text-gray-600 leading-relaxed">{{ property()!.description }}</p>
+                    </div>
+
+                    <!-- Characteristics -->
+                    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8 mt-6">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Caractéristiques</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Surface habitable</span>
+                                    <span class="font-semibold">{{ property()!.area }} m²</span>
+                                </div>
+                                @if (property()!.landArea) {
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Surface terrain</span>
+                                        <span class="font-semibold">{{ property()!.landArea }} m²</span>
+                                    </div>
+                                }
+                                @if (property()!.yearBuilt) {
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Année de construction</span>
+                                        <span class="font-semibold">{{ property()!.yearBuilt }}</span>
+                                    </div>
+                                }
+                                @if (property()!.floor) {
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Étage</span>
+                                        <span class="font-semibold">{{ property()!.floor }}</span>
+                                    </div>
+                                }
+                            </div>
+                            <div class="space-y-4">
+                                @if (property()!.heating) {
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Chauffage</span>
+                                        <span class="font-semibold">{{ property()!.heating }}</span>
+                                    </div>
+                                }
+                                @if (property()!.garage) {
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Garage</span>
+                                        <span class="font-semibold">{{ property()!.garage }}</span>
+                                    </div>
+                                }
+                                @if (property()!.pool !== undefined) {
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Piscine</span>
+                                        <span class="font-semibold">{{ property()!.pool ? 'Oui' : 'Non' }}</span>
+                                    </div>
+                                }
+                                @if (property()!.energyClass) {
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Classe énergétique</span>
+                                        <span class="font-semibold">{{ property()!.energyClass }}</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="lg:col-span-4">
+                    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Localisation</h3>
+                        <div class="bg-gray-200 h-48 sm:h-64 rounded-xl mb-6 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fa-solid fa-map-location-dot text-gray-400 text-3xl sm:text-4xl mb-2"></i>
+                                <p class="text-gray-500">Carte interactive</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            @for (transport of property()!.location.transport; track $index) {
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fa-solid fa-train text-orange-500 mr-3"></i>
+                                    <span>{{ transport }}</span>
+                                </div>
+                            }
+                            @for (school of property()!.location.schools; track $index) {
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fa-solid fa-graduation-cap text-orange-500 mr-3"></i>
+                                    <span>{{ school }}</span>
+                                </div>
+                            }
+                            @for (shop of property()!.location.shops; track $index) {
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fa-solid fa-shopping-cart text-orange-500 mr-3"></i>
+                                    <span>{{ shop }}</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

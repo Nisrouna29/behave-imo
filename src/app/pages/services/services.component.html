@@ -1,0 +1,151 @@
+<app-shared-header [activeRoute]="activeRoute"></app-shared-header>
+
+<section class="min-h-screen bg-gradient-to-b from-orange-50/50 to-white">
+  <!-- Header Section -->
+  <div class="bg-white border-b border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="text-center">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+          Nos <span class="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">Services</span>
+        </h1>
+        <p class="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
+          Notre nouvelle agence vous accompagne dans vos projets immobiliers avec des services spécialisés en vente, location et gestion des dossiers.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      @for (service of services(); track service.id) {
+        <div class="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 group cursor-pointer" (click)="selectService(service)">
+          <div class="text-center">
+            <div class="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 gradient-bg rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-6 sm:mb-8 group-hover:scale-110 transition-transform duration-300">
+              <i [class]="service.icon + ' text-white text-xl sm:text-2xl'"></i>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">{{ service.title }}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm sm:text-base mb-4">{{ service.description }}</p>
+            @if (service.price) {
+              <div class="text-orange-600 font-semibold text-sm sm:text-base mb-4">{{ service.price }}</div>
+            }
+            <button class="gradient-bg text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium text-sm sm:text-base w-full">
+              En savoir plus
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Process Section -->
+  <div class="bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+          Notre <span class="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">Processus</span>
+        </h2>
+        <p class="text-base sm:text-lg text-gray-600">Un accompagnement étape par étape pour votre réussite</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-white font-bold text-xl">1</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Consultation</h3>
+          <p class="text-gray-600 text-sm">Analyse de vos besoins et objectifs</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-white font-bold text-xl">2</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Stratégie</h3>
+          <p class="text-gray-600 text-sm">Définition de la stratégie personnalisée</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-white font-bold text-xl">3</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Exécution</h3>
+          <p class="text-gray-600 text-sm">Mise en œuvre avec notre équipe</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-white font-bold text-xl">4</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Suivi</h3>
+          <p class="text-gray-600 text-sm">Accompagnement continu et reporting</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="bg-gradient-to-r from-orange-500 to-orange-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="text-center text-white">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Prêt à commencer votre projet ?</h2>
+        <p class="text-lg sm:text-xl mb-6 opacity-90">Contactez nos experts pour un accompagnement personnalisé</p>
+        <button class="bg-white text-orange-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:shadow-lg transition-all duration-300 font-semibold text-base sm:text-lg">
+          <i class="fa-solid fa-phone mr-2"></i>
+          Nous contacter
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service Details Modal -->
+@if (selectedService()) {
+  <div class="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50" (click)="closeServiceDetails()">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
+      <div class="p-6 sm:p-8">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex items-center">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mr-4">
+              <i [class]="selectedService()!.icon + ' text-white text-lg'"></i>
+            </div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-800">{{ selectedService()!.title }}</h3>
+              @if (selectedService()!.price) {
+                <p class="text-orange-600 font-semibold">{{ selectedService()!.price }}</p>
+              }
+            </div>
+          </div>
+          <button (click)="closeServiceDetails()" class="text-gray-400 hover:text-gray-600">
+            <i class="fa-solid fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <p class="text-gray-600 mb-6">{{ selectedService()!.description }}</p>
+
+        <h4 class="text-lg font-bold text-gray-800 mb-4">Ce qui est inclus :</h4>
+        <ul class="space-y-2 mb-6">
+          @for (feature of selectedService()!.features; track feature) {
+            <li class="flex items-center text-gray-600">
+              <i class="fa-solid fa-check text-orange-500 mr-3"></i>
+              {{ feature }}
+            </li>
+          }
+        </ul>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button class="gradient-bg text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium flex-1">
+            <i class="fa-solid fa-phone mr-2"></i>
+            Demander un devis
+          </button>
+          <button class="border-2 border-orange-500 text-orange-600 px-6 py-3 rounded-xl hover:bg-orange-50 transition-all duration-300 font-medium flex-1">
+            <i class="fa-solid fa-calendar mr-2"></i>
+            Prendre rendez-vous
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<app-footer></app-footer>

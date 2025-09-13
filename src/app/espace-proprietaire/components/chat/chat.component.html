@@ -1,0 +1,336 @@
+<!-- Chat with Header -->
+<div class="h-screen bg-gray-50">
+    <!-- Chat Header -->
+    <header id="header" class="glass-effect border-b border-orange-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-full mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-building text-white text-lg"></i>
+                    </div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">ImmoPro</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+                        <span class="text-gray-700 font-medium">Marie Dubois</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Chat Content -->
+    <div class="flex h-full">
+        <!-- Navigation Sidebar -->
+        <aside id="left-sidebar" class="w-64 bg-white border-r border-gray-200 shadow-lg" style="height: calc(100vh - 80px);">
+            <div class="p-6">
+                <nav class="space-y-2">
+                    <div class="mb-6">
+                        <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Navigation</h3>
+                        <div class="space-y-1">
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('accueil')">
+                                <i class="fa-solid fa-home w-5 h-5 mr-3"></i>
+                                Accueil
+                            </span>
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('proprietes')">
+                                <i class="fa-solid fa-building w-5 h-5 mr-3"></i>
+                                Propriétés
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Gestion</h3>
+                        <div class="space-y-1">
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('dossiers-locataires')">
+                                <i class="fa-solid fa-folder w-5 h-5 mr-3"></i>
+                                Dossiers Locataires
+                            </span>
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('acheteurs')">
+                                <i class="fa-solid fa-users w-5 h-5 mr-3"></i>
+                                Acheteurs
+                            </span>
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('candidatures')">
+                                <i class="fa-solid fa-file-text w-5 h-5 mr-3"></i>
+                                Candidatures
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Communication</h3>
+                        <div class="space-y-1">
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-orange-600 bg-orange-50 rounded-lg cursor-pointer">
+                                <i class="fa-solid fa-comment w-5 h-5 mr-3"></i>
+                                Chat
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Outils</h3>
+                        <div class="space-y-1">
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('statistiques')">
+                                <i class="fa-solid fa-chart-bar w-5 h-5 mr-3"></i>
+                                Statistiques
+                            </span>
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('planning')">
+                                <i class="fa-solid fa-calendar w-5 h-5 mr-3"></i>
+                                Planning
+                            </span>
+                            <span class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-orange-50 hover:text-orange-600 transition-colors cursor-pointer" (click)="navigateTo('parametres')">
+                                <i class="fa-solid fa-cog w-5 h-5 mr-3"></i>
+                                Paramètres
+                            </span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Chat Users Sidebar -->
+        <div id="chat-users-sidebar" class="w-80 bg-white border-r border-gray-200" style="height: calc(100vh - 80px);">
+    <div class="p-6 border-b border-gray-200">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold text-gray-800">Messages</h2>
+            <button class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white">
+                <i class="fa-solid fa-plus text-sm"></i>
+            </button>
+        </div>
+        <div class="relative">
+            <input type="text"
+                   [(ngModel)]="searchQuery"
+                   placeholder="Rechercher une conversation..."
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+    </div>
+
+    <div id="chat-users-list" class="overflow-y-auto h-full">
+        <div class="p-4 space-y-2">
+            <div *ngFor="let user of filteredUsers"
+                 [id]="'chat-user-' + user.id"
+                 class="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                 [class.bg-orange-50]="user.isActive"
+                 [class.border-l-4]="user.isActive"
+                 [class.border-orange-500]="user.isActive"
+                 (click)="onUserClick(user)">
+                <div class="relative">
+                    <img [src]="user.avatar" [alt]="user.name" class="w-12 h-12 rounded-full">
+                    <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white"
+                         [class.bg-green-400]="user.status === 'online'"
+                         [class.bg-gray-300]="user.status === 'offline'"></div>
+                </div>
+                <div class="ml-3 flex-1">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-semibold text-gray-900">{{ user.name }}</h3>
+                        <span class="text-xs text-gray-500">{{ user.timestamp }}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 truncate">{{ user.lastMessage }}</p>
+                    <div class="flex items-center mt-1">
+                        <span class="text-xs font-medium" [class]="user.typeColor">{{ user.type }}</span>
+                        <div *ngIf="user.isActive" class="w-2 h-2 bg-orange-500 rounded-full ml-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Main Area -->
+<div id="chat-main-area" class="flex-1 flex flex-col">
+    <!-- Chat Header -->
+    <div id="chat-header" class="bg-white border-b border-gray-200 p-6">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <img [src]="activeUser.avatar" [alt]="activeUser.name" class="w-12 h-12 rounded-full">
+                <div class="ml-4">
+                    <h2 class="text-xl font-bold text-gray-900">{{ activeUser.name }}</h2>
+                    <div class="flex items-center">
+                        <div class="w-2 h-2 rounded-full mr-2"
+                             [class.bg-green-400]="activeUser.status === 'online'"
+                             [class.bg-gray-300]="activeUser.status === 'offline'"></div>
+                        <span class="text-sm text-gray-600">
+                            {{ activeUser.status === 'online' ? 'En ligne' : 'Hors ligne' }}
+                        </span>
+                        <span class="mx-2 text-gray-400">•</span>
+                        <span class="text-sm font-medium" [class]="activeUser.typeColor">
+                            {{ activeUser.type }} - Villa Neuilly
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-phone text-gray-600"></i>
+                </button>
+                <button class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-video text-gray-600"></i>
+                </button>
+                <button class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-info-circle text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
+        <div class="flex justify-center">
+            <span class="text-xs text-gray-500 bg-white px-3 py-1 rounded-full">Aujourd'hui</span>
+        </div>
+
+        <div *ngFor="let message of messages"
+             class="flex items-start"
+             [class.justify-end]="message.isOwn">
+            <img *ngIf="!message.isOwn"
+                 [src]="message.senderAvatar"
+                 [alt]="message.senderName"
+                 class="w-8 h-8 rounded-full mr-3">
+            <div class="flex-1" [class.flex]="message.isOwn" [class.justify-end]="message.isOwn">
+                <div class="max-w-md p-4 rounded-2xl"
+                     [class.chat-bubble-received]="!message.isOwn"
+                     [class.chat-bubble-sent]="message.isOwn"
+                     [class.text-white]="message.isOwn"
+                     [class.rounded-tl-md]="!message.isOwn"
+                     [class.rounded-tr-md]="message.isOwn">
+                    <p [class.text-gray-800]="!message.isOwn">{{ message.content }}</p>
+                </div>
+                <span class="text-xs text-gray-500 mt-1 block"
+                      [class.mr-11]="message.isOwn">{{ message.timestamp }}</span>
+            </div>
+            <img *ngIf="message.isOwn"
+                 [src]="message.senderAvatar"
+                 [alt]="message.senderName"
+                 class="w-8 h-8 rounded-full ml-3">
+        </div>
+
+        <!-- Typing indicator -->
+        <div class="flex justify-center">
+            <div class="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm">
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                <span class="text-sm text-gray-500 ml-2">Marie est en train d'écrire...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Input Area -->
+    <div id="chat-input-area" class="bg-white border-t border-gray-200 p-6">
+        <div class="flex items-center space-x-4">
+            <button (click)="onAttachFile()" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-paperclip text-gray-600"></i>
+            </button>
+            <button (click)="onAttachImage()" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-image text-gray-600"></i>
+            </button>
+            <div class="flex-1 relative">
+                <input type="text"
+                       [(ngModel)]="newMessage"
+                       (keypress)="onKeyPress($event)"
+                       placeholder="Tapez votre message..."
+                       class="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <button (click)="onSendMessage()"
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white hover:shadow-lg transition-all">
+                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                </button>
+            </div>
+            <button (click)="onVoiceMessage()" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-microphone text-gray-600"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Info Sidebar -->
+        <div id="chat-info-sidebar" class="w-80 bg-white border-l border-gray-200" style="height: calc(100vh - 80px);">
+    <div class="p-6">
+        <div class="text-center mb-6">
+            <img [src]="activeUser.avatar" [alt]="activeUser.name" class="w-20 h-20 rounded-full mx-auto mb-4">
+            <h3 class="text-xl font-bold text-gray-900">{{ activeUser.name }}</h3>
+            <p class="text-gray-600">{{ activeUser.type }} - Villa Neuilly</p>
+            <div class="flex items-center justify-center mt-2">
+                <div class="w-2 h-2 rounded-full mr-2"
+                     [class.bg-green-400]="activeUser.status === 'online'"
+                     [class.bg-gray-300]="activeUser.status === 'offline'"></div>
+                <span class="text-sm"
+                      [class.text-green-600]="activeUser.status === 'online'"
+                      [class.text-gray-600]="activeUser.status === 'offline'">
+                    {{ activeUser.status === 'online' ? 'En ligne' : 'Hors ligne' }}
+                </span>
+            </div>
+        </div>
+
+        <div id="contact-info" class="mb-6">
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">Informations de contact</h4>
+            <div class="space-y-3">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-envelope w-5 text-gray-400 mr-3"></i>
+                    <span class="text-sm text-gray-600">pierre.martin&#64;email.com</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-phone w-5 text-gray-400 mr-3"></i>
+                    <span class="text-sm text-gray-600">+33 6 12 34 56 78</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-map-marker-alt w-5 text-gray-400 mr-3"></i>
+                    <span class="text-sm text-gray-600">Neuilly-sur-Seine</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="property-info" class="mb-6">
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">Propriété associée</h4>
+            <div class="bg-gray-50 rounded-lg p-4">
+                <h5 class="font-semibold text-gray-900 mb-2">Villa Neuilly</h5>
+                <p class="text-sm text-gray-600 mb-2">Neuilly-sur-Seine</p>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Loyer:</span>
+                    <span class="font-semibold text-gray-900">2,800€/mois</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="shared-files" class="mb-6">
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">Fichiers partagés</h4>
+            <div class="space-y-2">
+                <div class="flex items-center p-2 bg-gray-50 rounded-lg">
+                    <i class="fa-solid fa-file-pdf text-red-500 mr-3"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-900">Contrat_location.pdf</p>
+                        <p class="text-xs text-gray-500">2.3 MB • Il y a 2 jours</p>
+                    </div>
+                </div>
+                <div class="flex items-center p-2 bg-gray-50 rounded-lg">
+                    <i class="fa-solid fa-file-image text-blue-500 mr-3"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-900">Photos_villa.zip</p>
+                        <p class="text-xs text-gray-500">15.7 MB • Il y a 1 semaine</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="quick-actions" class="space-y-2">
+            <h4 class="text-sm font-semibold text-gray-700 mb-3">Actions rapides</h4>
+            <button (click)="onQuickAction('appointment')"
+                    class="w-full flex items-center justify-center px-4 py-2 bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors">
+                <i class="fa-solid fa-calendar mr-2"></i>
+                Planifier un RDV
+            </button>
+            <button (click)="onQuickAction('dossier')"
+                    class="w-full flex items-center justify-center px-4 py-2 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
+                <i class="fa-solid fa-file-alt mr-2"></i>
+                Voir le dossier
+            </button>
+            <button (click)="onQuickAction('property')"
+                    class="w-full flex items-center justify-center px-4 py-2 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
+                <i class="fa-solid fa-building mr-2"></i>
+                Voir la propriété
+            </button>
+        </div>
+    </div>
+    </div>
+</div>

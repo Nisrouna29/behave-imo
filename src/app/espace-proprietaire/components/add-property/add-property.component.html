@@ -1,0 +1,362 @@
+<div class="bg-gray-50 min-h-screen">
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Form Header -->
+    <div class="mb-8">
+      <div class="flex items-center mb-4">
+        <button (click)="goBack()" class="text-orange-600 hover:text-orange-700 mr-4">
+          <i class="fa-solid fa-arrow-left text-xl"></i>
+        </button>
+        <h1 class="text-4xl font-bold text-gray-800">Ajouter une propriété</h1>
+      </div>
+
+      <!-- Stepper Navigation -->
+      <div class="flex items-center justify-center mb-8">
+        <div class="flex items-center space-x-8">
+          <div class="flex items-center">
+            <div [class]="currentStep >= 1 ? 'step-active' : 'step-inactive'"
+                 class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg cursor-pointer"
+                 (click)="goToStep(1)">
+              {{ currentStep > 1 ? '✓' : '1' }}
+            </div>
+            <div class="ml-3">
+              <div [class]="currentStep >= 1 ? 'text-orange-600' : 'text-gray-400'" class="text-sm font-semibold">Étape 1</div>
+              <div [class]="currentStep >= 1 ? 'text-gray-800' : 'text-gray-400'" class="text-lg font-bold">Informations de la propriété</div>
+            </div>
+          </div>
+          <div class="w-16 h-1 bg-gray-300 rounded"></div>
+          <div class="flex items-center">
+            <div [class]="currentStep >= 2 ? 'step-active' : 'step-inactive'"
+                 class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg cursor-pointer"
+                 (click)="goToStep(2)">
+              {{ currentStep > 2 ? '✓' : '2' }}
+            </div>
+            <div class="ml-3">
+              <div [class]="currentStep >= 2 ? 'text-orange-600' : 'text-gray-400'" class="text-sm font-semibold">Étape 2</div>
+              <div [class]="currentStep >= 2 ? 'text-gray-800' : 'text-gray-400'" class="text-lg font-bold">Documents personnalisés</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Content -->
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" class="space-y-8">
+
+      <!-- Étape 1: Informations de la propriété -->
+      <div *ngIf="currentStep === 1" class="step-content">
+
+        <!-- Informations générales -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fa-solid fa-info-circle text-orange-600 mr-3"></i>
+            Informations générales
+          </h2>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Titre de l'annonce *</label>
+              <input type="text" formControlName="title" placeholder="Ex: Villa moderne avec piscine"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Type de bien *</label>
+              <select formControlName="propertyType"
+                      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <option value="">Sélectionner un type</option>
+                <option *ngFor="let type of propertyTypes" [value]="type">{{ type }}</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Statut *</label>
+              <select formControlName="status"
+                      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Prix *</label>
+              <div class="relative">
+                <input type="number" formControlName="price" placeholder="750000"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <span class="absolute right-4 top-3 text-gray-500">€</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+            <textarea rows="4" formControlName="description" placeholder="Décrivez votre bien en détail..."
+                      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent"></textarea>
+          </div>
+        </div>
+
+        <!-- Localisation -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fa-solid fa-location-dot text-orange-600 mr-3"></i>
+            Localisation
+          </h2>
+          <div class="grid grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Adresse *</label>
+              <input type="text" formControlName="address" placeholder="123 Rue de la Paix"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Ville *</label>
+              <input type="text" formControlName="city" placeholder="Paris"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Code postal *</label>
+              <input type="text" formControlName="postalCode" placeholder="75001"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+          </div>
+        </div>
+
+        <!-- Caractéristiques -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fa-solid fa-home text-orange-600 mr-3"></i>
+            Caractéristiques
+          </h2>
+          <div class="grid grid-cols-4 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Surface (m²) *</label>
+              <input type="number" formControlName="surface" placeholder="120"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de chambres *</label>
+              <input type="number" formControlName="bedrooms" placeholder="3"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de salles de bain *</label>
+              <input type="number" formControlName="bathrooms" placeholder="2"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Étage</label>
+              <input type="number" formControlName="floor" placeholder="3"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+          </div>
+
+          <!-- Informations supplémentaires -->
+          <div class="mt-6 grid grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Propriété meublée</label>
+              <select formControlName="furnished"
+                      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <option value="">Sélectionner</option>
+                <option value="meuble">Meublé</option>
+                <option value="non-meuble">Non meublé</option>
+                <option value="semi-meuble">Semi-meublé</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Caution (€)</label>
+              <div class="relative">
+                <input type="number" formControlName="deposit" placeholder="1500"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <span class="absolute right-4 top-3 text-gray-500">€</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Animaux autorisés</label>
+              <select formControlName="petsAllowed"
+                      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <option value="">Sélectionner</option>
+                <option value="autorises">Autorisés</option>
+                <option value="interdits">Interdits</option>
+                <option value="avec-conditions">Avec conditions</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Fumeurs -->
+          <div class="mt-6">
+            <label class="block text-sm font-medium text-gray-700 mb-4">Fumeurs autorisés</label>
+            <div class="flex space-x-6">
+              <label class="flex items-center">
+                <input type="radio" formControlName="smokingAllowed" value="oui"
+                       class="w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500">
+                <span class="ml-2 text-sm text-gray-700">Oui</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" formControlName="smokingAllowed" value="non"
+                       class="w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500">
+                <span class="ml-2 text-sm text-gray-700">Non</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" formControlName="smokingAllowed" value="exterieur"
+                       class="w-4 h-4 text-orange-600 border-gray-300 focus:ring-orange-500">
+                <span class="ml-2 text-sm text-gray-700">Extérieur uniquement</span>
+              </label>
+            </div>
+          </div>
+          <div class="mt-6">
+            <label class="block text-sm font-medium text-gray-700 mb-4">Équipements</label>
+            <div class="grid grid-cols-4 gap-4">
+              <label *ngFor="let equipment of availableEquipment" class="flex items-center">
+                <input type="checkbox"
+                       [checked]="propertyForm.get('equipment')?.value?.includes(equipment)"
+                       (change)="onEquipmentChange(equipment, $event)"
+                       class="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500">
+                <span class="ml-2 text-sm text-gray-700">{{ equipment }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photos du bien -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fa-solid fa-images text-orange-600 mr-3"></i>
+            Photos du bien *
+          </h2>
+
+          <div class="image-upload-area rounded-xl p-12 text-center mb-6">
+            <div class="flex flex-col items-center">
+              <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                <i class="fa-solid fa-cloud-upload-alt text-orange-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Glissez vos images ici</h3>
+              <p class="text-gray-600 mb-4">ou cliquez pour sélectionner des fichiers</p>
+              <button type="button" (click)="fileInput.click()" class="gradient-bg text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300">
+                <i class="fa-solid fa-plus mr-2"></i>
+                Choisir des images
+              </button>
+              <p class="text-sm text-gray-500 mt-2">JPG, PNG ou WebP (Max. 10MB par image)</p>
+            </div>
+            <input #fileInput type="file" multiple accept="image/*" (change)="onFileSelected($event)" class="hidden">
+          </div>
+
+          <div *ngIf="uploadedImages.length > 0" class="grid grid-cols-4 gap-4">
+            <div *ngFor="let image of uploadedImages; let i = index" class="relative group">
+              <img [src]="getImagePreview(image)" alt="Property image" class="w-full h-32 object-cover rounded-lg border-2 border-orange-200">
+              <div *ngIf="i === 0" class="absolute top-2 left-2">
+                <span class="bg-orange-600 text-white text-xs px-2 py-1 rounded">Principal</span>
+              </div>
+              <button type="button" (click)="removeImage(i)" class="absolute top-2 right-2 bg-red-500 text-white w-6 h-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                <i class="fa-solid fa-times text-xs"></i>
+              </button>
+            </div>
+            <div *ngIf="uploadedImages.length < 10" class="image-upload-area rounded-lg h-32 flex items-center justify-center cursor-pointer" (click)="fileInput.click()">
+              <div class="text-center">
+                <i class="fa-solid fa-plus text-orange-600 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-600">Ajouter</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-4">
+            <i class="fa-solid fa-info-circle mr-1"></i>
+            La première image sera utilisée comme photo principale. Vous pouvez réorganiser en glissant-déposant.
+          </p>
+        </div>
+
+        <!-- Actions Étape 1 -->
+        <div class="flex items-center justify-end pt-6">
+          <div class="flex space-x-4">
+            <button type="button" (click)="cancel()" class="border border-gray-300 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-medium">
+              Annuler
+            </button>
+            <button type="button" (click)="nextStep()" class="gradient-bg text-white px-8 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium">
+              Suivant
+              <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étape 2: Documents et informations locataire -->
+      <div *ngIf="currentStep === 2" class="step-content">
+
+        <!-- Documents personnalisés -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fa-solid fa-file-text text-orange-600 mr-3"></i>
+            Documents personnalisés
+          </h2>
+
+          <!-- Documents personnalisés -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-semibold text-gray-800">Ajouter des documents</h3>
+              <button type="button" (click)="addCustomDocument()" class="gradient-bg text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-300">
+                <i class="fa-solid fa-plus mr-2"></i>
+                Ajouter un document
+              </button>
+            </div>
+
+            <div *ngFor="let doc of customDocuments; let i = index" class="bg-gray-50 p-4 rounded-lg mb-4">
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="font-medium text-gray-800">Document personnalisé {{ i + 1 }}</h4>
+                <button type="button" (click)="removeCustomDocument(i)" class="text-red-500 hover:text-red-700">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Nom du document</label>
+                  <input type="text" [(ngModel)]="doc.name" placeholder="Ex: Certificat de non-gage"
+                         class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Type de champ</label>
+                  <select [(ngModel)]="doc.type" (change)="onDocumentTypeChange(i, $event)"
+                          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                    <option value="text">Champ texte</option>
+                    <option value="select">Liste déroulante</option>
+                    <option value="checkbox">Case à cocher</option>
+                  </select>
+                </div>
+
+                <!-- Options pour les listes déroulantes -->
+                <div *ngIf="doc.type === 'select'" class="space-y-2">
+                  <label class="block text-sm font-medium text-gray-700">Options de la liste</label>
+                  <div *ngFor="let option of doc.options; let j = index" class="flex items-center space-x-2">
+                    <input type="text" [value]="option" (input)="onSelectOptionChange(i, j, $event)"
+                           placeholder="Option {{ j + 1 }}"
+                           class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                    <button type="button" (click)="removeSelectOption(i, j)"
+                            [disabled]="doc.options!.length <= 1"
+                            class="text-red-500 hover:text-red-700 disabled:text-gray-400 disabled:cursor-not-allowed">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                  <button type="button" (click)="addSelectOption(i)" class="text-orange-600 hover:text-orange-700 text-sm">
+                    <i class="fa-solid fa-plus mr-1"></i>
+                    Ajouter une option
+                  </button>
+                </div>
+
+                <div class="flex items-center">
+                  <input type="checkbox" [(ngModel)]="doc.required" class="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500">
+                  <span class="ml-2 text-sm text-gray-700">Document obligatoire</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions Étape 2 -->
+        <div class="flex items-center justify-end pt-6">
+          <div class="flex space-x-4">
+            <button type="button" (click)="previousStep()" class="border border-gray-300 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-medium">
+              <i class="fa-solid fa-arrow-left mr-2"></i>
+              Précédent
+            </button>
+            <button type="submit" class="gradient-bg text-white px-8 py-3 rounded-xl hover:shadow-lg transition-all duration-300 font-medium">
+              <i class="fa-solid fa-check mr-2"></i>
+              Publier la propriété
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

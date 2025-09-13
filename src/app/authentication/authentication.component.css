@@ -1,0 +1,129 @@
+/* Authentication component styles */
+.auth-bg {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
+    min-height: 100vh;
+}
+
+.form-card {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.tab-active {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: white;
+}
+
+.input-focus:focus {
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* Form animations */
+.auth-form {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tab transitions */
+button[class*="tab"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Input focus states */
+input:focus,
+select:focus {
+    outline: none;
+    transform: translateY(-1px);
+}
+
+/* Button hover effects */
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Loading spinner */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .auth-visual {
+        display: none !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .form-card {
+        padding: 1.5rem !important;
+    }
+
+    .auth-tabs button {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.875rem;
+    }
+}
+
+/* Password strength indicator */
+.password-strength {
+    height: 4px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.password-strength.weak {
+    background-color: #ef4444;
+    width: 33%;
+}
+
+.password-strength.medium {
+    background-color: #f59e0b;
+    width: 66%;
+}
+
+.password-strength.strong {
+    background-color: #10b981;
+    width: 100%;
+}
+
+/* Social auth buttons */
+.social-auth button {
+    transition: all 0.2s ease;
+}
+
+.social-auth button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form validation styles */
+input.ng-invalid.ng-touched {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+input.ng-valid.ng-touched {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}

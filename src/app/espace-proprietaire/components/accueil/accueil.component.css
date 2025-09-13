@@ -1,0 +1,8 @@
+.gradient-bg { 
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); 
+}
+
+.glass-effect { 
+    backdrop-filter: blur(10px); 
+    background: rgba(255, 255, 255, 0.95); 
+}
